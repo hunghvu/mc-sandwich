@@ -7,26 +7,42 @@
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
+    <style>
+        .bg {
+            background: url("assets/image/bg-pizza.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 1">
-        <a class="navbar-brand font" href="#">
-            <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">
-            McFood</a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    <div class="bg" style="height: 2160px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.5">
+            <a class="navbar-brand font" href="index.html">
+                <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">
+                McFood</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link active font" href="index.html"><b>Home</b> <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active font" href="#"><b>Menu</b></a>
+                    <a class="nav-item nav-link active font" href="#"><b>Order</b></a>
+                </div>
+
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
+                    <a class="nav-item nav-link active font" href="#"><b>Register</b></a>
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/image/navbar-cart.svg" width="30" height="30" alt="">
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
+    
+
 </body>
 
 </html>
