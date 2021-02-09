@@ -1,0 +1,8 @@
+@font-face {
+    font-family: VampiroOne-Regular;
+    src: url(../assets/font/VampiroOne-Regular.ttf);
+ }
+ 
+ .font {
+    font-family: VampiroOne-Regular;
+ }
