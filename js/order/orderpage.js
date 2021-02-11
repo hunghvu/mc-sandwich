@@ -18,7 +18,11 @@ $(document).ready(() => {
     let specialToppingPrice = [0];
     let sizePrice = [0];
     let quantity = 1;
+    let quantityInput = document.getElementById("quantity-customization")
     let total = document.getElementById("total-customization");
+    let orderName = "";
+    let orderNameInput = document.getElementById("name-customization")
+    let orderNo = 0;
 
     let bread = document.getElementsByName("bread-option");
     addListenerForRadio(bread, breadPrice);
@@ -38,14 +42,22 @@ $(document).ready(() => {
     let size = document.getElementsByName("size-option");
     addListenerForRadio(size, sizePrice);
 
-    document.getElementById("quantity-customization").addEventListener("input", event => {
-        quantity = document.getElementById("quantity-customization").value;
+    quantityInput.addEventListener("input", event => {
+        quantity = quantityInput.value;
         if (quantity < 1) quantity = 1; // Min quantity is 1
         total.innerHTML = "$" + getTotal();
     });
 
+    orderNameInput.addEventListener("input", event => {
+        orderName = orderNameInput.value;
+    });
+
     document.getElementById("button-reset").addEventListener("click", event => {
         reset();
+    })
+
+    document.getElementById("button-add-to-cart").addEventListener("click", event => {
+        addToCart();
     })
 
     function getPrice(id) {
@@ -106,16 +118,55 @@ $(document).ready(() => {
             "topping-sprout": 0, "topping-pickle": 0
         };
         toppingPrice[0] = 0;
-        lspecialToppingPriceList = { "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0 };
+        specialToppingPriceList = { "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0 };
         specialToppingPrice[0] = 0;
         sizePrice[0] = 0;
         quantity = 1;
-        console.log(true);
+        total.innerHTML = "$0.00";
         let input = document.getElementsByTagName("input");
         [].forEach.call(input, element => {
             element.checked = false;
             element.value = null;
         });
+    }
+
+    /**
+     * This functions handle add to cart button on customized sandwich page.
+     */
+    function addToCart() {
+
+        // See if the order is properly filled, if not, display an alert.
+        let isBreadFilled = false;
+        let isMeatFilled = false;
+        let isToppingFilled = false;
+        let isSpecialToppingFilled = false;
+        let isSizeFilled = false;
+        let isQuantityFilled = false;
+        let isOrderNameFilled = false;
+        [].forEach.call(bread, element => {if(element.checked) isBreadFilled = true});
+        [].forEach.call(meat, element => {if(element.checked) isMeatFilled = true});
+        [].forEach.call(topping, element => {if(element.checked) isToppingFilled = true});
+        [].forEach.call(specialTopping, element => {if(element.checked) isSpecialToppingFilled = true});
+        [].forEach.call(size, element => {if(element.checked) isSizeFilled = true});
+        if(quantityInput.value !== null && quantityInput !== "") isQuantityFilled = true;
+        if(orderNameInput.value !== null && orderNameInput.value !== "") isOrderNameFilled = true;
+        // console.log(isBreadFilled, isMeatFilled, isOrderNameFilled, isQuantityFilled, isSizeFilled, isSpecialToppingFilled, isToppingFilled);
+        if (!(isBreadFilled && isMeatFilled && isOrderNameFilled && isToppingFilled 
+            && isSpecialToppingFilled && isSizeFilled && isQuantityFilled && isOrderNameFilled)) {
+                alert("Please fully fill in an order to continue.");
+                return;
+        }
+
+        // Create a json for the order info.
+        let order = new OrderObject(breadPrice[0], meatPrice[0], toppingPriceList, toppingPrice[0], specialToppingPriceList, 
+            specialToppingPrice[0], sizePrice[0], quantity, total.innerHTML, orderName);
+        let orderInfoInJson = JSON.stringify(order);
+
+        // Save in session storage.
+        sessionStorage.setItem(orderNo.toString(), orderInfoInJson);
+        orderNo ++; // Use number as a standardized way to lookup session storage. Not optimal, but work for demo-ing purpose.
+        reset();
+        // console.log(orderInfoInJson);
     }
 
 })
