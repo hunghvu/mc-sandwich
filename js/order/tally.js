@@ -7,12 +7,14 @@ $(document).ready(() => {
     // Using array/object to pass by reference.
     let breadPrice = [0];
     let meatPrice = [0];
-    let toppingPriceList = {"topping-cheddar": 0, "topping-mozzarella": 0, 
-                        "topping-english": 0, "topping-feta": 0, 
-                        "topping-spinach": 0, "topping-carrot": 0, 
-                        "topping-sprout": 0, "topping-pickle": 0};
+    let toppingPriceList = {
+        "topping-cheddar": 0, "topping-mozzarella": 0,
+        "topping-english": 0, "topping-feta": 0,
+        "topping-spinach": 0, "topping-carrot": 0,
+        "topping-sprout": 0, "topping-pickle": 0
+    };
     let toppingPrice = [0];
-    let specialToppingPriceList = {"special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0};
+    let specialToppingPriceList = { "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0 };
     let specialToppingPrice = [0];
     let sizePrice = [0];
     let quantity = 1;
@@ -41,6 +43,10 @@ $(document).ready(() => {
         if (quantity < 1) quantity = 1; // Min quantity is 1
         total.innerHTML = "$" + getTotal();
     });
+
+    document.getElementById("button-reset").addEventListener("click", event => {
+        reset();
+    })
 
     function getPrice(id) {
         return parseFloat($(id).next().text().substring(1));
@@ -85,8 +91,33 @@ $(document).ready(() => {
                 total.innerHTML = "$" + getTotal();
             })
         })
-
     }
+
+    /**
+     * This function will clear customized sandwich form.
+     */
+    function reset() {
+        breadPrice[0] = 0;
+        meatPrice[0] = 0;
+        toppingPriceList = {
+            "topping-cheddar": 0, "topping-mozzarella": 0,
+            "topping-english": 0, "topping-feta": 0,
+            "topping-spinach": 0, "topping-carrot": 0,
+            "topping-sprout": 0, "topping-pickle": 0
+        };
+        toppingPrice[0] = 0;
+        lspecialToppingPriceList = { "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0 };
+        specialToppingPrice[0] = 0;
+        sizePrice[0] = 0;
+        quantity = 1;
+        console.log(true);
+        let input = document.getElementsByTagName("input");
+        [].forEach.call(input, element => {
+            element.checked = false;
+            element.value = null;
+        });
+    }
+
 })
 
 
