@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- The home page -->
+<!-- This is built upon a starter template provided by Bootstrap -->
+<!-- Some text, e.g: <p> or header, etc are taken or paraphrased from open source like Wikipedia or generator for demo purpose-->
+<html>
+
+<head>
+  <title>Restaurant - Hung Vu</title>
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/font.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <style>
+    .bg {
+      /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("assets/image/bg-wood.jpg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" style="height: 1080px;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.5">
+      <a class="navbar-brand font" href="index.html">
+        <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">
+        McFood</a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link active font" href="index.html"><b>Home</b> <span
+              class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active font" href="menu.html"><b>Menu</b></a>
+          <a class="nav-item nav-link active font" href="order.html"><b>Order</b></a>
+        </div>
+
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
+          <a class="nav-item nav-link active font" href="#"><b>Register</b></a>
+          <a class="navbar-brand" href="#">
+            <img src="assets/image/navbar-cart.svg" width="30" height="30" alt="">
+          </a>
+        </div>
+      </div>
+    </nav>
+    <h1 style="text-align: center; padding-top: 50px; color: aqua;" class="font">Order</h1>
+
+    <!-- Description are taken (with some modification) from https://www.subway.com/en-ag/menunutrition/menu/all-->
+
+    <ul class="nav nav-tabs" id="orderTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab"
+          aria-controls="quickorder" aria-selected="true">Quick Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="customization-tab" data-toggle="tab" href="#customization" role="tab"
+          aria-controls="customization" aria-selected="false">Customized Sandwich</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="quick-order-content" style="background-color: antiquewhite;">
+      <div class="tab-pane fade show active" id="quickorder" role="tabpanel" aria-labelledby="quick-order-tab">
+        <div class="row">
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-beef.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">McSandwich Club</h5>
+                <p class="card-text">Stuffed with thinly cut slices of roast beef, this crowd favorite is served on the
+                  oven-fresh bread of your choice.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>Wheat Bread</li>
+                <li class="list-group-item"><b>Meat type: </b>Roast Beef</li>
+                <li class="list-group-item"><b>Topping: </b>Cheddar Cheese</li>
+                <li class="list-group-item"><b>Tertiary topping: </b>Habanero Hot Sauce</li>
+                <li class="list-group-item"><b>Size: </b>Small</li>
+                <li class="list-group-item"><b>Price: </b>$5.99</li>
+              </ul>
+              <!-- Separate card body so it has different size. -->
+              <div class="card-body">
+                <a href="#" id="button-club" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="text" id="quantity-club"><br><br>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-chicken.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">Over Roasted Chicken</h5>
+                <p class="card-text">ender chicken patty on freshly baked bread... now that’s tempting to the max!</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>White Bread</li>
+                <li class="list-group-item"><b>Meat type: </b>Roast Chicken</li>
+                <li class="list-group-item"><b>Topping: </b>Old English Cheese</li>
+                <li class="list-group-item"><b>Tertiary topping: </b>Smokey BBQ</li>
+                <li class="list-group-item"><b>Size: </b>Large</li>
+                <li class="list-group-item"><b>Price: </b>$9.99</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" id="button-chicken" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="text" id="quantity-chicken"><br><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-pork.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">Ham</h5>
+                <p class="card-text">With unbeatable value and toppings, our ham sandwich becomes something new and
+                  exciting every day.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>Malted Rye</li>
+                <li class="list-group-item"><b>Meat type: </b>Pork</li>
+                <li class="list-group-item"><b>Topping: </b>Mozzarella Cheese</li>
+                <li class="list-group-item"><b>Tertiary topping: </b>Garlic Aioli</li>
+                <li class="list-group-item"><b>Size: </b>Medium</li>
+                <li class="list-group-item"><b>Price: </b>$8.99</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" id="button-ham" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="text" id="quantity-ham"><br><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-veggie.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">Vegwich Delite</h5>
+                <p class="card-text">A banquet to celebrate your healthy lifestyle, stuffed full of delicious cool,
+                  crisp vegetables.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>Italian Herb & Cheese</li>
+                <li class="list-group-item"><b>Meat type: </b>None</li>
+                <li class="list-group-item"><b>Topping: </b>Crumbled Feta</li>
+                <li class="list-group-item"><b>Tertiary topping: </b>Mayonnaise</li>
+                <li class="list-group-item"><b>Size: </b>Medium</li>
+                <li class="list-group-item"><b>Price: </b>$8.49</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" id="button-vegwich" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="text" id="quantity-vegwich"><br><br>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="customization" role="tabpanel" aria-labelledby="customization-tab">
+        asdasd
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>
