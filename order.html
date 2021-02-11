@@ -56,7 +56,7 @@
     <h1 style="text-align: center; padding-top: 50px; color: aqua;" class="font">Order</h1>
 
     <!-- Description are taken (with some modification) from https://www.subway.com/en-ag/menunutrition/menu/all-->
-
+    <!-- Quick order is from menu of the day, while customization allows user to have their own version of sandwich. -->
     <ul class="nav nav-tabs" id="orderTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab"
@@ -121,7 +121,7 @@
 
           <div class="col-sm">
             <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-pork.jpg" alt="Beed sandwich">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-pork.jpg" alt="Beef sandwich">
               <div class="card-body">
                 <h5 class="card-title">Ham</h5>
                 <p class="card-text">With unbeatable value and toppings, our ham sandwich becomes something new and
@@ -172,8 +172,207 @@
       </div>
 
       <div class="tab-pane fade" id="customization" role="tabpanel" aria-labelledby="customization-tab">
-        asdasd
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Category</th>
+              <th scope="col" colspan="4">Option</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Bread</th>
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="bread-option" id="bread-wheat" autocomplete="off">
+                <label id="bread-wheat-price">$0.99</label>
+                <label class="btn btn-secondary" for="bread-wheat">Wheat Bread</label>
+              </td>
+
+
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="bread-option" id="bread-white" autocomplete="off">
+                <label id="bread-white-price">$1.49</label>
+                <label class="btn btn-secondary" for="bread-white">White Bread</label>
+              </td>
+
+
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="bread-option" id="bread-rye" autocomplete="off">
+                <label id="bread-rye-price">$0.99</label>
+                <label class="btn btn-secondary" for="bread-rye">Maled Rye</label>
+              </td>
+
+
+              <td colspan="3">
+                <input type="radio" class="btn-check" name="bread-option" id="bread-italian" autocomplete="off">
+                <label id="bread-italian-price">$1.99</label>
+                <label class="btn btn-secondary" for="bread-italian">Italian Herb & Cheese</label>
+              </td>
+
+
+            </tr>
+            <tr>
+              <th scope="row">Meat</th>
+
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="meat-option" id="meat-chicken" autocomplete="off">
+                <label id="meat-chicken-price">$1.99</label>
+                <label class="btn btn-secondary" for="meat-chicken">Chicken</label>
+              </td>
+
+
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="meat-option" id="meat-pork" autocomplete="off">
+                <label id="meat-pork-price">$2.99</label>
+                <label class="btn btn-secondary" for="meat-pork">Pork</label>
+              </td>
+
+
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="meat-option" id="meat-beef" autocomplete="off">
+                <label id="meat-beef-price">$3.99</label>
+                <label class="btn btn-secondary" for="meat-beef">Chicken</label>
+              </td>
+
+
+              <td colspan="3">
+                <input type="radio" class="btn-check" name="meat-option" id="meat-none" autocomplete="off">
+                <label id="meat-veggie-price">$0</label>
+                <label class="btn btn-secondary" for="meat-none">None</label>
+
+              </td>
+
+            </tr>
+            <tr>
+              <th scope="row">Topping</th>
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-cheddar" autocomplete="off">
+                <label id="topping-cheddar-price">$1.99</label>
+                <label class="btn btn-secondary" for="topping-cheddar">Natural Cheddar Cheese</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-mozzarella" autocomplete="off">
+                <label id="topping-mozzarella-price">$2.99</label>
+                <label class="btn btn-secondary" for="topping-mozzarella">Mozzarella Cheese</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-english" autocomplete="off">
+                <label id="topping-english-price">$3.99</label>
+                <label class="btn btn-secondary" for="topping-english">Old English Cheese</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-feta" autocomplete="off">
+                <label id="topping-feta-price">$0</label>
+                <label class="btn btn-secondary" for="topping-feta">Crumbled Feta</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-spinach" autocomplete="off">
+                <label id="topping-spinach-price">$2.99</label>
+                <label class="btn btn-secondary" for="topping-spinach">Spinach</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-carrot" autocomplete="off">
+                <label id="topping-carrot-price">$3.99</label>
+                <label class="btn btn-secondary" for="topping-carrot">Shredded Carrot</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-sprout" autocomplete="off">
+                <label id="topping-sprout-price">$0</label>
+                <label class="btn btn-secondary" for="topping-sprout">Sprout</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-pickle" autocomplete="off">
+                <label id="topping-pickle-price">$0.99</label>
+                <label class="btn btn-secondary" for="topping-pickle">Pickle</label>
+              </td>
+
+
+              <td>
+                <input type="radio" class="btn-check" name="topping-option" id="topping-none" autocomplete="off">
+                <label id="topping-none-price">$0</label>
+                <label class="btn btn-secondary" for="topping-none">None</label>
+              </td>
+
+
+            </tr>
+            <tr>
+              <th scope="row">Tertiary Topping</th>
+
+              <td>
+                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-hanabero"
+                  autocomplete="off">
+                <label id="tertiary-topping-hanabero-price">$0.49</label>
+                <label class="btn btn-secondary" for="tertiary-topping-hanabero">Habanero Hot Sauce</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-bbq"
+                  autocomplete="off">
+                <label id="tertiary-topping-bbq-price">$3.99</label>
+                <label class="btn btn-secondary" for="tertiary-topping-bbq">Smokey BBQ</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-garlic"
+                  autocomplete="off">
+                <label id="tertiary-topping-garlic-price">$0</label>
+                <label class="btn btn-secondary" for="tertiary-topping-garlic">Garlic Aioli</label>
+              </td>
+
+              <td colspan="2">
+                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-mayonnaise"
+                  autocomplete="off">
+                <label id="tertiary-topping-mayonnaise-price">$0.99</label>
+                <label class="btn btn-secondary" for="tertiary-topping-mayonnaise">Mayonnaise</label>
+              </td>
+
+              <td colspan="4">
+                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-none"
+                  autocomplete="off">
+                <label id="tertiary-topping-none-price">$0</label>
+                <label class="btn btn-secondary" for="tertiary-topping-none">None</label>
+              </td>
+
+            </tr>
+
+            <tr>
+              <th scope="row">Quantity</th>
+              <td colspan="9">
+                <input type="text" id="quantity-customization">
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="10">
+                <!-- Use div to allign inline block https://stackoverflow.com/questions/41664991/bootstrap-4-how-do-i-center-align-a-button -->
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary" style="padding: auto;">Add to cart</button>
+                </div>
+
+              </td>
+            </tr>
+
+
+          </tbody>
+        </table>
       </div>
+
+
     </div>
 
 
