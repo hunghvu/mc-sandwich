@@ -1,5 +1,6 @@
 class OrderObject {
-    constructor(breadPrice, meatPrice, toppingPriceList, toppingPrice, specialToppingPriceList, specialToppingPrice, sizePrice, quantity, total, name) {
+    constructor(breadPrice, meatPrice, toppingPriceList, toppingPrice, specialToppingPriceList, specialToppingPrice, sizePrice, quantity, total, name,
+        breadType, meatType, toppingType, specialToppingType, sizeType) {
         this.breadPrice = [breadPrice];
         this.meatPrice = [meatPrice];
         this.toppingPriceList = toppingPriceList

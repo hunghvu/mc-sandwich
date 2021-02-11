@@ -18,8 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="js/order/orderobject.js"></script>
-    <script src="js/order/orderpage.js"></script>
+    <script src="js/cart/cartpage.js"></script>
     <style>
         .bg {
             /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
@@ -61,6 +60,23 @@
         <h1 style="text-align: center; padding-top: 50px; color: aqua;" class="font">Your Cart</h1>
 
         <!-- Description are taken (with some modification) from https://www.subway.com/en-ag/menunutrition/menu/all-->
+        <!-- Center the table: https://stackoverflow.com/questions/38160951/how-do-i-horizontally-center-a-table-in-bootstrap/38161703 -->
+        <!-- And https://getbootstrap.com/docs/4.0/layout/grid/ and https://getbootstrap.com/docs/4.0/utilities/flex/#justify-content -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <table class="table table-bordered" style="background-color: antiquewhite;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order Name</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-table">
+                        <!-- Script will fill in thi portion -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </div>
 

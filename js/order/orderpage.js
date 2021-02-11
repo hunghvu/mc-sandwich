@@ -5,6 +5,9 @@
 // Wait till the page fully loaded so we can access list properly
 $(document).ready(() => {
     // Using array/object to pass by reference.
+    let breadType = "";
+    let meatType = "";
+    let sizeType = "";
     let breadPrice = [0];
     let meatPrice = [0];
     let toppingPriceList = {
