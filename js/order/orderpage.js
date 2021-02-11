@@ -26,10 +26,9 @@ $(document).ready(() => {
     let quantity = 1;
     let orderName = "";
     
-    let quantityInput = document.getElementById("quantity-customization")
+    let quantityInput = document.getElementById("quantity-customization");
     let total = document.getElementById("total-customization");
-    let orderNameInput = document.getElementById("name-customization")
-    let orderNo = 0; // Counter to keep track of order in session storage.
+    let orderNameInput = document.getElementById("name-customization");
 
     // Add listener to keys.
     let bread = document.getElementsByName("bread-option");
@@ -181,11 +180,14 @@ $(document).ready(() => {
         let orderInfoInJson = JSON.stringify(order);
 
         // Save in session storage.
-        sessionStorage.setItem(orderNo.toString(), orderInfoInJson);
-        orderNo ++; // Use number as a standardized way to lookup session storage. Not optimal, but work for demo-ing purpose.
-                    // may need another counter to keep track of amount of order
+        let storageKey = Math.random();
+        if (sessionStorage.getItem(storageKey.toString())) {
+            storageKey = Math.random();
+        }
+        sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
+
         reset();
-        console.log(orderInfoInJson);
+        console.log(sessionStorage);
         // console.log(sessionStorage)
     }
 

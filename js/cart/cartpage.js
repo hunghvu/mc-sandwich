@@ -19,9 +19,12 @@ $(document).ready(() => {
                         + orderInJson.name
                     + "</button>"
                     + "<div class='dropdown-menu'>"
-                        + "<p>Bread type/price: $"
+                        + "<p>Bread type/price: "
+                            + orderInJson.breadType 
+                            + "/$ "
                             + orderInJson.breadPrice
                         + "</p>"
+                        + "<div class='dropdown-divider'></div>"
                     + "</div>"
                 + "</div>"
             + "</th>"
