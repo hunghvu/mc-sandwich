@@ -1,15 +1,16 @@
 /**
- * This script will display all order upon a page loaded.
+ * This script will display all order upon a page loaded, and handle functionality of order page.
  */
 $(document).ready(() => {
     // For some reasons, session storage also has key which is a log from external plugins(?).
     // Use filter to prevent it.
+    let totalPrice = 0;
+    let orderTable = $("#order-table");
+    /**
+     * Create order table based on order.
+     */
     Object.keys(sessionStorage).filter(key => !isNaN(key)).forEach(key => {
         let orderInJson = JSON.parse(sessionStorage.getItem(key));
-        // console.log(key);
-
-        let orderTable = $("#order-table");
-        // console.log(orderTable);
         orderTable.append(
             "<tr>"
             + "<th scope='row'>"
@@ -61,22 +62,41 @@ $(document).ready(() => {
             + "</div>"
             + "</div>"
             + "</th>"
+
             + "<td>"
-            + orderInJson.total
+            + "<p>" + orderInJson.total + "</p>"
             + "</td>"
-            + "</tr>")
+
+            + "<td>"
+            + "<img src='assets/image/order-remove.svg' onclick='removeOrder(" + key + ")'>" // Pass key along the way so it can detect the order.
+            + "</td>"
+            + "</tr>");
+
+            totalPrice += parseFloat(orderInJson.total.substring(1));
     })
 
+    orderTable.append(
+        "<tr>"
+        + "<th scope='row'>"
+        + "<p>Total</p>"
+        + "</th>"
 
+        + "<td colspan='2'>"
+        + "<p>$" + totalPrice.toFixed(2) + "</p>"
+        + "</td>"
+        + "</tr>"
+    );
+
+    document.getElementById("button-reset").addEventListener("click", () => reset());
+
+    function reset() {
+        sessionStorage.clear();
+        location.reload();
+    }
 });
 
+function removeOrder(orderKey) {
+    sessionStorage.removeItem(orderKey);
+    location.reload();
+}
 
-// "<!-- Dropleft button to show order information -->"
-// + "<div class='btn-group dropleft'>"
-//   + "<button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
-//     + orderInJson.name
-//   + "</button>"
-// + "<div class='dropdown-menu'>"
-// +    "<p>abc</p>"
-//   + "</div>"
-// + "</div>"
