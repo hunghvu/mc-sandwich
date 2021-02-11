@@ -165,8 +165,10 @@ $(document).ready(() => {
         // Save in session storage.
         sessionStorage.setItem(orderNo.toString(), orderInfoInJson);
         orderNo ++; // Use number as a standardized way to lookup session storage. Not optimal, but work for demo-ing purpose.
+                    // may need another counter to keep track of amount of order
         reset();
         // console.log(orderInfoInJson);
+        // console.log(sessionStorage)
     }
 
 })
