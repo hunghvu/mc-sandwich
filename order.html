@@ -32,6 +32,8 @@
 
 <body>
   <div class="bg" style="height: 1080px;">
+
+    <!-- Nav bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.5">
       <a class="navbar-brand font" href="index.html">
         <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">
@@ -57,6 +59,8 @@
 
     <!-- Description are taken (with some modification) from https://www.subway.com/en-ag/menunutrition/menu/all-->
     <!-- Quick order is from menu of the day, while customization allows user to have their own version of sandwich. -->
+
+    <!-- Tab -->
     <ul class="nav nav-tabs" id="orderTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab"
@@ -67,8 +71,12 @@
           aria-controls="customization" aria-selected="false">Customized Sandwich</a>
       </li>
     </ul>
-    <div class="tab-content" id="quick-order-content" style="background-color: antiquewhite;">
-      <div class="tab-pane fade show active" id="quickorder" role="tabpanel" aria-labelledby="quick-order-tab">
+
+    <!-- Tab content -->
+    <div class="tab-content" id="tab-content" style="background-color: antiquewhite;">
+
+      <!-- Quick order content -->
+      <div class="tab-pane fade show active" id="quickorder" role="tabpanel" aria-labelledby="tab-content">
         <div class="row">
           <div class="col-sm">
             <div class="card">
@@ -96,6 +104,7 @@
           </div>
 
 
+          <!-- Tab -->
           <div class="col-sm">
             <div class="card">
               <img class="card-img-top" src="./assets/image/carousel-subsandwich-chicken.jpg" alt="Beed sandwich">
@@ -171,6 +180,7 @@
         </div>
       </div>
 
+      <!-- Customization content -->
       <div class="tab-pane fade" id="customization" role="tabpanel" aria-labelledby="customization-tab">
         <table class="table table-bordered">
           <thead>
