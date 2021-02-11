@@ -70,6 +70,10 @@ $(document).ready(() => {
             + "<td>"
             + "<img src='assets/image/order-remove.svg' onclick='removeOrder(" + key + ")'>" // Pass key along the way so it can detect the order.
             + "</td>"
+
+            + "<td>"
+            + "<input type='checkbox' class='btn-check' name='order-remove-multiple'autocomplete='off' style='margin-left: 20px;' onchange='storeChoice(this," + key + ")'>"
+            + "</td>"
             + "</tr>");
 
             totalPrice += parseFloat(orderInJson.total.substring(1));
@@ -84,6 +88,10 @@ $(document).ready(() => {
         + "<td colspan='2'>"
         + "<p>$" + totalPrice.toFixed(2) + "</p>"
         + "</td>"
+
+        + "<td colspan='1'>"
+        + "<button type='button' class='btn btn-danger' onclick='removeMultipleOrders()'>Remove selected orders</button>"
+        + "</td>"
         + "</tr>"
     );
 
@@ -95,8 +103,39 @@ $(document).ready(() => {
     }
 });
 
+/**
+ * Remove a specific order from session storage.
+ * @param {float} orderKey 
+ */
 function removeOrder(orderKey) {
     sessionStorage.removeItem(orderKey);
     location.reload();
+}
+
+let choice = [];
+/**
+ * Remove selected orders from session storage.
+ */
+function removeMultipleOrders() {
+    choice.forEach(element => {
+        sessionStorage.removeItem(element);
+    })
+    location.reload();
+}
+
+/**
+ * Store respective order key of checked box so they can be removed later.
+ * @param {html input tag} checkbox 
+ * @param {float} orderKey 
+ */
+function storeChoice(checkbox, orderKey) {
+    if(checkbox.checked) {
+        choice.push(orderKey);
+    } else {
+        const index = choice.indexOf(orderKey); // Remove from list when uncheck box
+        if (index > -1) {
+            choice.splice(index, 1);
+        }
+    }
 }
 
