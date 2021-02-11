@@ -5,7 +5,7 @@
 <html>
 
 <head>
-  <title>Restaurant - Hung Vu</title>
+  <title>McSandwich</title>
   <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/font.css">
@@ -18,6 +18,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script src="js/order/tally.js"></script>
   <style>
     .bg {
       /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
@@ -90,7 +91,7 @@
                 <li class="list-group-item"><b>Bread type: </b>Wheat Bread</li>
                 <li class="list-group-item"><b>Meat type: </b>Roast Beef</li>
                 <li class="list-group-item"><b>Topping: </b>Cheddar Cheese</li>
-                <li class="list-group-item"><b>Tertiary topping: </b>Habanero Hot Sauce</li>
+                <li class="list-group-item"><b>special topping: </b>Habanero Hot Sauce</li>
                 <li class="list-group-item"><b>Size: </b>Small</li>
                 <li class="list-group-item"><b>Price: </b>$5.99</li>
               </ul>
@@ -116,7 +117,7 @@
                 <li class="list-group-item"><b>Bread type: </b>White Bread</li>
                 <li class="list-group-item"><b>Meat type: </b>Roast Chicken</li>
                 <li class="list-group-item"><b>Topping: </b>Old English Cheese</li>
-                <li class="list-group-item"><b>Tertiary topping: </b>Smokey BBQ</li>
+                <li class="list-group-item"><b>special topping: </b>Smokey BBQ</li>
                 <li class="list-group-item"><b>Size: </b>Large</li>
                 <li class="list-group-item"><b>Price: </b>$9.99</li>
               </ul>
@@ -140,7 +141,7 @@
                 <li class="list-group-item"><b>Bread type: </b>Malted Rye</li>
                 <li class="list-group-item"><b>Meat type: </b>Pork</li>
                 <li class="list-group-item"><b>Topping: </b>Mozzarella Cheese</li>
-                <li class="list-group-item"><b>Tertiary topping: </b>Garlic Aioli</li>
+                <li class="list-group-item"><b>special topping: </b>Garlic Aioli</li>
                 <li class="list-group-item"><b>Size: </b>Medium</li>
                 <li class="list-group-item"><b>Price: </b>$8.99</li>
               </ul>
@@ -164,7 +165,7 @@
                 <li class="list-group-item"><b>Bread type: </b>Italian Herb & Cheese</li>
                 <li class="list-group-item"><b>Meat type: </b>None</li>
                 <li class="list-group-item"><b>Topping: </b>Crumbled Feta</li>
-                <li class="list-group-item"><b>Tertiary topping: </b>Mayonnaise</li>
+                <li class="list-group-item"><b>special topping: </b>Mayonnaise</li>
                 <li class="list-group-item"><b>Size: </b>Medium</li>
                 <li class="list-group-item"><b>Price: </b>$8.49</li>
               </ul>
@@ -327,43 +328,67 @@
 
             </tr>
 
-            <!-- Tertiary topping -->
+            <!-- Special topping -->
             <tr>
-              <th scope="row">Tertiary Topping</th>
+              <th scope="row">Special Topping</th>
 
               <td>
-                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-hanabero"
+                <input type="radio" class="btn-check" name="special-topping-option" id="special-topping-hanabero"
                   autocomplete="off">
-                <label id="tertiary-topping-hanabero-price">$0.49</label>
-                <label class="btn btn-secondary" for="tertiary-topping-hanabero">Habanero Hot Sauce</label>
+                <label id="special-topping-hanabero-price">$0.49</label>
+                <label class="btn btn-secondary" for="special-topping-hanabero">Habanero Hot Sauce</label>
               </td>
 
               <td>
-                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-bbq"
+                <input type="radio" class="btn-check" name="special-topping-option" id="special-topping-bbq"
                   autocomplete="off">
-                <label id="tertiary-topping-bbq-price">$3.99</label>
-                <label class="btn btn-secondary" for="tertiary-topping-bbq">Smokey BBQ</label>
+                <label id="special-topping-bbq-price">$3.99</label>
+                <label class="btn btn-secondary" for="special-topping-bbq">Smokey BBQ</label>
               </td>
 
               <td>
-                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-garlic"
+                <input type="radio" class="btn-check" name="special-topping-option" id="special-topping-garlic"
                   autocomplete="off">
-                <label id="tertiary-topping-garlic-price">$0</label>
-                <label class="btn btn-secondary" for="tertiary-topping-garlic">Garlic Aioli</label>
+                <label id="special-topping-garlic-price">$0</label>
+                <label class="btn btn-secondary" for="special-topping-garlic">Garlic Aioli</label>
               </td>
 
               <td colspan="2">
-                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-mayonnaise"
+                <input type="radio" class="btn-check" name="special-topping-option" id="special-topping-mayonnaise"
                   autocomplete="off">
-                <label id="tertiary-topping-mayonnaise-price">$0.99</label>
-                <label class="btn btn-secondary" for="tertiary-topping-mayonnaise">Mayonnaise</label>
+                <label id="special-topping-mayonnaise-price">$0.99</label>
+                <label class="btn btn-secondary" for="special-topping-mayonnaise">Mayonnaise</label>
               </td>
 
               <td colspan="4">
-                <input type="radio" class="btn-check" name="tertiary-topping-option" id="tertiary-topping-none"
+                <input type="radio" class="btn-check" name="special-topping-option" id="special-topping-none"
                   autocomplete="off">
-                <label id="tertiary-topping-none-price">$0</label>
-                <label class="btn btn-secondary" for="tertiary-topping-none">None</label>
+                <label id="special-topping-none-price">$0</label>
+                <label class="btn btn-secondary" for="special-topping-none">None</label>
+              </td>
+
+            </tr>
+
+            <!-- Size -->
+            <tr>
+              <th scope="row">Size</th>
+
+              <td>
+                <input type="radio" class="btn-check" name="size-option" id="size-small" autocomplete="off">
+                <label id="size-small-price">$0.49</label>
+                <label class="btn btn-secondary" for="size-small">Small</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="size-option" id="size-medium" autocomplete="off">
+                <label id="size-medium-price">$1.49</label>
+                <label class="btn btn-secondary" for="size-medium">Medium</label>
+              </td>
+
+              <td colspan="7">
+                <input type="radio" class="btn-check" name="size-option" id="large-small" autocomplete="off">
+                <label id="size-large-price">$1.99</label>
+                <label class="btn btn-secondary" for="size-large">Large</label>
               </td>
 
             </tr>
@@ -380,9 +405,18 @@
             <tr>
               <th scope="row">Total</th>
               <td colspan="9">
-                <p>$0.00</p>
+                <p id="total-customization">$0.00</p>
               </td>
             </tr>
+
+            <!-- Name order -->
+            <tr>
+              <th scope="row">Order Name</th>
+              <td colspan="9">
+                <input type="text" id="name-customization">
+              </td>
+            </tr>
+
 
             <!-- Submit button -->
             <tr>
