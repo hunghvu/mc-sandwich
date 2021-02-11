@@ -4,6 +4,7 @@
 
 // Wait till the page fully loaded so we can access list properly
 $(document).ready(() => {
+    // console.log(sessionStorage);
     // Using array/object to pass by reference.
     let breadType = [""]; // Name of choice.
     let meatType = [""];
@@ -118,27 +119,33 @@ $(document).ready(() => {
                     respectivePrice[0] += respectivePriceList[key];
                 }
                 total.innerHTML = "$" + getTotal();
+                // console.log(respectivePriceList)
             })
         })
     }
 
     /**
      * This function will clear customized sandwich form.
+     * Reset content, not reassign, or else will lose their reference.
      */
     function reset() {
-        breadPrice[0] = 0;
+        breadType[0] = ""; // Name of choice.
+        meatType[0] = "";
+        sizeType[0] = "";
+        for (const key in toppingPriceList) {
+            toppingPriceList[key] = 0;
+        }
+        for (const key in specialToppingPriceList) {
+            specialToppingPriceList[key] = 0;
+        }
+    
+        breadPrice[0] = 0; // Price of the category.
         meatPrice[0] = 0;
-        toppingPriceList = {
-            "topping-cheddar": 0, "topping-mozzarella": 0,
-            "topping-english": 0, "topping-feta": 0,
-            "topping-spinach": 0, "topping-carrot": 0,
-            "topping-sprout": 0, "topping-pickle": 0
-        };
         toppingPrice[0] = 0;
-        specialToppingPriceList = { "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0 };
         specialToppingPrice[0] = 0;
         sizePrice[0] = 0;
         quantity = 1;
+        orderName = "";
         total.innerHTML = "$0.00";
         let input = document.getElementsByTagName("input");
         [].forEach.call(input, element => {
@@ -171,7 +178,7 @@ $(document).ready(() => {
                 alert("Please fully fill in an order to continue.");
                 return;
         }
-
+        console.log(specialToppingPriceList);
         // Create a json for the order info.
         let order = new OrderObject(breadPrice[0], meatPrice[0], toppingPriceList, toppingPrice[0], specialToppingPriceList, 
             specialToppingPrice[0], sizePrice[0], quantity, total.innerHTML, orderName, breadType, meatType, sizeType);
@@ -187,7 +194,7 @@ $(document).ready(() => {
         sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
 
         reset();
-        console.log(sessionStorage);
+        // console.log(sessionStorage);
         // console.log(sessionStorage)
     }
 
