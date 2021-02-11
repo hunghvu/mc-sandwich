@@ -90,7 +90,7 @@
               <div class="card-body">
                 <a href="#" id="button-club" class="btn btn-primary" onclick="">Add to cart</a>
                 <label style="margin-left: 20px">Quantity</label>
-                <input type="text" id="quantity-club"><br><br>
+                <input type="number" id="quantity-club"><br><br>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@
               <div class="card-body">
                 <a href="#" id="button-chicken" class="btn btn-primary" onclick="">Add to cart</a>
                 <label style="margin-left: 20px">Quantity</label>
-                <input type="text" id="quantity-chicken"><br><br>
+                <input type="number" id="quantity-chicken"><br><br>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
               <div class="card-body">
                 <a href="#" id="button-ham" class="btn btn-primary" onclick="">Add to cart</a>
                 <label style="margin-left: 20px">Quantity</label>
-                <input type="text" id="quantity-ham"><br><br>
+                <input type="number" id="quantity-ham"><br><br>
               </div>
             </div>
           </div>
@@ -162,7 +162,7 @@
               <div class="card-body">
                 <a href="#" id="button-vegwich" class="btn btn-primary" onclick="">Add to cart</a>
                 <label style="margin-left: 20px">Quantity</label>
-                <input type="text" id="quantity-vegwich"><br><br>
+                <input type="number" id="quantity-vegwich"><br><br>
               </div>
             </div>
           </div>
@@ -180,6 +180,8 @@
             </tr>
           </thead>
           <tbody>
+
+            <!-- Bread -->
             <tr>
               <th scope="row">Bread</th>
               <td colspan="2">
@@ -211,6 +213,8 @@
 
 
             </tr>
+
+            <!-- Meat -->
             <tr>
               <th scope="row">Meat</th>
 
@@ -243,6 +247,8 @@
               </td>
 
             </tr>
+
+            <!-- Topping -->
             <tr>
               <th scope="row">Topping</th>
 
@@ -310,6 +316,8 @@
 
 
             </tr>
+
+            <!-- Tertiary topping -->
             <tr>
               <th scope="row">Tertiary Topping</th>
 
@@ -350,13 +358,23 @@
 
             </tr>
 
+            <!-- Quantity -->
             <tr>
               <th scope="row">Quantity</th>
               <td colspan="9">
-                <input type="text" id="quantity-customization">
+                <input type="number" id="quantity-customization">
               </td>
             </tr>
 
+            <!-- Total -->
+            <tr>
+              <th scope="row">Total</th>
+              <td colspan="9">
+                <p>$0.00</p>
+              </td>
+            </tr>
+
+            <!-- Submit button -->
             <tr>
               <td colspan="10">
                 <!-- Use div to allign inline block https://stackoverflow.com/questions/41664991/bootstrap-4-how-do-i-center-align-a-button -->
