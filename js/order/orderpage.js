@@ -166,13 +166,45 @@ $(document).ready(() => {
         let isSizeFilled = false;
         let isQuantityFilled = false;
         let isOrderNameFilled = false;
-        [].forEach.call(bread, element => {if(element.checked) isBreadFilled = true});
-        [].forEach.call(meat, element => {if(element.checked) isMeatFilled = true});
-        [].forEach.call(topping, element => {if(element.checked) isToppingFilled = true});
-        [].forEach.call(specialTopping, element => {if(element.checked) isSpecialToppingFilled = true});
-        [].forEach.call(size, element => {if(element.checked) isSizeFilled = true});
-        if(quantityInput.value !== null && quantityInput !== "") isQuantityFilled = true;
-        if(orderNameInput.value !== null && orderNameInput.value !== "") isOrderNameFilled = true;
+        let saveHtml = [];
+        [].forEach.call(bread, element => {
+            if(element.checked) {
+                isBreadFilled = true;
+                saveHtml[element.id] = true;
+            }
+        });
+        [].forEach.call(meat, element => {
+            if(element.checked) {
+                isMeatFilled = true;
+                saveHtml[element.id] = true;
+            }
+        });
+        [].forEach.call(topping, element => {
+            if(element.checked) {
+                isToppingFilled = true; 
+                saveHtml[element.id] = true;
+            }
+        });
+        [].forEach.call(specialTopping, element => {
+            if(element.checked) {
+                isSpecialToppingFilled = true; 
+                saveHtml[element.id] = true;
+            }
+        });
+        [].forEach.call(size, element => {
+            if(element.checked) {
+                isSizeFilled = true;
+                saveHtml[element.id] = true;
+            }
+        });
+        if(quantityInput.value !== null && quantityInput !== "") {
+            isQuantityFilled = true; 
+            saveHtml[quantityInput.id] = value;
+        }
+        if(orderNameInput.value !== null && orderNameInput.value !== "") {
+            isOrderNameFilled = true;
+            saveHtml[orderNameInput.id] = orderNameInput.value;
+        }
         if (!(isBreadFilled && isMeatFilled && isOrderNameFilled && isToppingFilled 
             && isSpecialToppingFilled && isSizeFilled && isQuantityFilled && isOrderNameFilled)) {
                 alert("Please fully fill in an order to continue.");
@@ -194,7 +226,7 @@ $(document).ready(() => {
         sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
 
         // Save html state.
-        sessionStorage.setItem("state" + storageKey.toString() + orderName.toString(), document.body.innerHTML);
+        sessionStorage.setItem("state" + storageKey.toString() + orderName.toString(), saveHtml);
 
         reset();
         // console.log(sessionStorage);
