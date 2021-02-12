@@ -8,4 +8,5 @@ function signout() {
     $("#button-register").css({
         "visibility": "visible",
     });
+    sessionStorage.removeItem("username");
 }

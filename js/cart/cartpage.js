@@ -2,6 +2,18 @@
  * This script will display all order upon a page loaded, and handle functionality of order page.
  */
 $(document).ready(() => {
+
+    if(sessionStorage.getItem("username")) {
+        $("#button-signin").css({
+            "visibility": "hidden",
+        });
+        $("#button-register").css({
+            "visibility": "hidden",
+        });
+        $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + sessionStorage.getItem("username") + "!</button>").insertAfter($("#button-register"));
+        $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+    }
+
     // For some reasons, session storage also has key which is a log from external plugins(?).
     // Use filter to prevent it.
     let totalPrice = 0;
