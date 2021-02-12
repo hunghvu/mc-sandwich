@@ -86,6 +86,16 @@ $(document).ready(() => {
         addToCart();
     })
 
+    // Add listener for quickorder button.
+    let buttonClub = document.getElementById("button-club");
+    let buttonChicken = document.getElementById("button-chicken");
+    let buttonHam = document.getElementById("button-ham");
+    let buttonVegwich = document.getElementById("button-vegwich");
+    buttonClub.addEventListener("click", () => quickOrder(buttonClub));
+    buttonChicken.addEventListener("click", () => quickOrder(buttonChicken));
+    buttonHam.addEventListener("click", () => quickOrder(buttonHam));
+    buttonVegwich.addEventListener("click", () => quickOrder(buttonVegwich));
+
     /**
      * Get price of a choice.
      * @param {string} id 
@@ -251,7 +261,7 @@ $(document).ready(() => {
                 saveHtml[element.id] = true;
             }
         });
-        if (quantityInput.value !== null && quantityInput !== "") {
+        if (quantityInput.value !== null && quantityInput.value !== "") {
             isQuantityFilled = true;
             saveHtml[quantityInput.id] = quantityInput.value;
         }
@@ -264,7 +274,7 @@ $(document).ready(() => {
             alert("Please fully fill in an order to continue.");
             return;
         }
-        console.log(specialToppingPriceList);
+        // console.log(specialToppingPriceList);
         // Create a json for the order info.
         let order = new OrderObject(breadPrice[0], meatPrice[0], toppingPriceList, toppingPrice[0], specialToppingPriceList,
             specialToppingPrice[0], sizePrice[0], quantity, total.innerHTML, orderName, breadType, meatType, sizeType);
@@ -294,7 +304,85 @@ $(document).ready(() => {
 
     }
 
+    function quickOrder(button) {
+        // Error prone due to too many <br> in the middle. 
+        // However, this one will mainly be hard-coded for demo purpose.
+        // Temporarily disable auto page populate for quick order.
+        let quickOrderName = $("#" + button.id).parent().prev().prev().prev()
+        let quickOrderQuantity = $("#" + button.id).parent().prev()
+            .prev().prev().prev().prev()
+            .prev().prev()
+        if (!(quickOrderName.val() !== null && quickOrderName.val() !== ""
+            && quickOrderQuantity.val() !== null && quickOrderQuantity.val() !== ""
+            && quickOrderQuantity.val() !== undefined && quickOrderName.val() !== undefined)) {
+            alert("Please fill in a quantity and an order name first.");
+            return;
+        }
+
+        let orderInfoInJson = null;
+        if (button === document.getElementById("button-club")) {
+            toppingPriceList["topping-cheddar"] = 1.99;
+            specialToppingPriceList["special-topping-hanabero"] = 0.49;
+            let order = new OrderObject(0.99, 3.99, toppingPriceList, 1.99, specialToppingPriceList,
+                0.49, 0.49, quickOrderQuantity.val(), "$" + 7.95 * quickOrderQuantity.val(), quickOrderName.val(), "Wheat Bread", "Beef", "Small");
+            order.initToppingType();
+            order.initSpecialToppingType();
+            orderInfoInJson = JSON.stringify(order);
+        }
+
+        if (button === document.getElementById("button-chicken")) {
+            toppingPriceList["topping-english"] = 3.99;
+            specialToppingPriceList["special-topping-garlic"] = 0.00;
+            let order = new OrderObject(1.49, 1.99, toppingPriceList, 3.99, specialToppingPriceList,
+                0.00, 1.99, quickOrderQuantity.val(), "$" + 9.46 * quickOrderQuantity.val(), quickOrderName.val(), "White Bread", "Chicken", "Large");
+            order.initToppingType();
+            order.initSpecialToppingType();
+            orderInfoInJson = JSON.stringify(order);
+        }
+
+        if (button === document.getElementById("button-ham")) {
+            toppingPriceList["topping-mozzarella"] = 2.99;
+            specialToppingPriceList["special-topping-hanabero"] = 0.00;
+            let order = new OrderObject(0.99, 2.99, toppingPriceList, 2.99, specialToppingPriceList,
+                0.00, 1.49, quickOrderQuantity.val(), "$" + 8.46 * quickOrderQuantity.val(), quickOrderName.val(), "Malted Rye", "Pork", "Medium");
+            order.initToppingType();
+            order.initSpecialToppingType();
+            orderInfoInJson = JSON.stringify(order);
+        }
+
+        if (button === document.getElementById("button-vegwich")) {
+            toppingPriceList["topping-pickle"] = 0.99;
+            specialToppingPriceList["special-topping-mayonnaise"] = 0.99;
+            let order = new OrderObject(1.99, 0.00, toppingPriceList, 0.99, specialToppingPriceList,
+                0.99, 1.49, quickOrderQuantity.val(), "$" + 5.46 * quickOrderQuantity.val(), quickOrderName.val(), "Italian Herb & Cheese", "None", "Medium");
+            order.initToppingType();
+            order.initSpecialToppingType();
+            orderInfoInJson = JSON.stringify(order);
+        }
+
+        if (params.get("order")) { //Overwrite old order
+            let stateComponent = params.get("order").split("-");
+            console.log(stateComponent[1])
+            sessionStorage.setItem(stateComponent[1], orderInfoInJson);
+
+            console.log(sessionStorage)
+        } else { // Add a new order
+            let storageKey = Math.random();
+            if (sessionStorage.getItem(storageKey.toString())) {
+                storageKey = Math.random();
+            }
+            sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
+        }
+
+        // 0.99+3.99+1.99+0.49+0.49
+        // 1.49+1.99+3.99+ 0 + 1.99
+        // 0.99 + 2.99 + 2.99 +0 + 1.49
+        // 1.99 + 0 + 0.99 + 0.99 + 1.49
+    }
+
+
 })
+
 
 
 
