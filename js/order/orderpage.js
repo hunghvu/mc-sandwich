@@ -4,6 +4,23 @@
 
 // Wait till the page fully loaded so we can access list properly
 $(document).ready(() => {
+    // Populate customized page if navigate form cart.
+    let params = new URLSearchParams(window.location.search);
+    let orderState = sessionStorage.getItem(params.get("order"));
+    // console.log(orderState);
+    if (orderState) {
+        let orderInJson = JSON.parse(orderState);
+        Object.keys(orderInJson).forEach(key => {
+            let orderChoice = document.getElementById(key.toString());
+            //Must access json val via [] for some reasons, maybe because of "-" in key name?
+            if(orderInJson[key] === true) {
+                orderChoice.checked = true;
+            } else {
+                orderChoice.value = orderInJson[key];
+            }
+        })
+    }
+
     // console.log(sessionStorage);
     // Using array/object to pass by reference.
     let breadType = [""]; // Name of choice.
@@ -166,7 +183,7 @@ $(document).ready(() => {
         let isSizeFilled = false;
         let isQuantityFilled = false;
         let isOrderNameFilled = false;
-        let saveHtml = [];
+        let saveHtml = {}; // Used to populate page later on.
         [].forEach.call(bread, element => {
             if(element.checked) {
                 isBreadFilled = true;
@@ -199,7 +216,7 @@ $(document).ready(() => {
         });
         if(quantityInput.value !== null && quantityInput !== "") {
             isQuantityFilled = true; 
-            saveHtml[quantityInput.id] = value;
+            saveHtml[quantityInput.id] = quantityInput.value;
         }
         if(orderNameInput.value !== null && orderNameInput.value !== "") {
             isOrderNameFilled = true;
@@ -226,11 +243,10 @@ $(document).ready(() => {
         sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
 
         // Save html state.
-        sessionStorage.setItem("state" + storageKey.toString() + orderName.toString(), saveHtml);
+        sessionStorage.setItem("state" + storageKey.toString() + orderName.toString(), JSON.stringify(saveHtml));
 
         reset();
-        // console.log(sessionStorage);
-        // console.log(sessionStorage)
+
     }
 
 })

@@ -9,9 +9,9 @@ $(document).ready(() => {
     /**
      * Create order table based on order.
      */
-    console.log(Object.keys(sessionStorage))
+    // console.log(Object.keys(sessionStorage))
     Object.keys(sessionStorage).filter(key => !isNaN(key)).forEach(key => {
-        let orderInJson = JSON.parse(sessionStorage.getItem(key));
+        let orderInJson = JSON.parse(sessionStorage.getItem(key)); // Object is saved as string in storage
         orderTable.append(
             "<tr>"
             + "<th scope='row'>"
@@ -181,6 +181,6 @@ function navigateToOrderPage(orderKey, orderName) {
     // console.log(orderKey);
     // console.log(orderName);
     let savedHtmlKey = "state" + orderKey + orderName;
-    window.location.href = "order.html?order" + savedHtmlKey;
+    window.location.href = "order.html?order=" + savedHtmlKey;
 }
 
