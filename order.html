@@ -36,7 +36,7 @@
   <div class="bg" style="height: 1080px;">
 
     <!-- Nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand font" href="index.html">
         <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">McSandwich</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -47,15 +47,95 @@
           <a class="nav-item nav-link active font" href="order.html"><b>Order</b></a>
         </div>
 
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
-          <a class="nav-item nav-link active font" href="#"><b>Register</b></a>
+        <div class="navbar-nav" id="navbar-user">
+          <!-- <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
+          <a class="nav-item nav-link active font" href="#"><b>Register</b></a> -->
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-signin"
+            id="button-signin">Sign-in</button>
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-register"
+            id="button-register">Register</button>
+          <div class="modal fade" id="dialog-signin" tabindex="-1" role="dialog" aria-labelledby="signin"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Sign in</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <!-- Password recovery, etc are not in the specification -->
+                    <div class="form-group">
+                      <label for="username" class="col-form-label">Username:</label>
+                      <input type="text" class="form-control" id="signin-username">
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-form-label">Password:</label>
+                      <input type="text" class="form-control" id="signin-password">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="signin()">Sign in</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="dialog-register" tabindex="-1" role="dialog" aria-labelledby="register"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Register</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <!-- Password recovery, etc are not in the specification -->
+                    <div class="form-group">
+                      <label for="username" class="col-form-label">First name:</label>
+                      <input type="text" class="form-control" id="register-firstname">
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-form-label">Last name:</label>
+                      <input type="text" class="form-control" id="register-lastname">
+                    </div>
+                    <div class="form-group">
+                      <label for="username" class="col-form-label">Username:</label>
+                      <input type="text" class="form-control" id="register-username">
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-form-label">Password: At least 1 upper case, length > 7</label>
+                      <input type="text" class="form-control" id="register-password">
+                    </div>
+                    <div class="form-group">
+                      <label for="username" class="col-form-label">Retype password:</label>
+                      <input type="text" class="form-control" id="register-retype-password">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    onclick="register()">Accept</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button> -->
           <a class="navbar-brand" href="#">
             <a href="cart.html"><img src="assets/image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
           </a>
         </div>
       </div>
     </nav>
+
     <h1 style="text-align: center; padding-top: 50px; color: aqua;" class="font">Order</h1>
 
     <!-- Description are taken (with some modification) from https://www.subway.com/en-ag/menunutrition/menu/all-->
@@ -64,12 +144,13 @@
     <!-- Tab -->
     <ul class="nav nav-tabs" id="orderTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="customization-tab" data-toggle="tab" href="#customization" role="tab" style="background-color: #144F57; color: white;"
-          aria-controls="customization" aria-selected="false">Customized Sandwich</a>
+        <a class="nav-link active" id="customization-tab" data-toggle="tab" href="#customization" role="tab"
+          style="background-color: #144F57; color: white;" aria-controls="customization"
+          aria-selected="false">Customized Sandwich</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab" style="background-color: blue; color: white;"
-          aria-controls="quickorder" aria-selected="true">Quick Order</a>
+        <a class="nav-link " id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab"
+          style="background-color: blue; color: white;" aria-controls="quickorder" aria-selected="true">Quick Order</a>
       </li>
     </ul>
 
@@ -321,7 +402,8 @@
                 <div class="text-center">
                   <button type="button" class="btn btn-primary" id="button-reset">Reset</button>
                   <button type="button" class="btn btn-primary" id="button-add-to-cart">Add to cart</button>
-                  <button type="button" class="btn btn-primary" onclick="window.location.href='cart.html'">Go to cart</button>
+                  <button type="button" class="btn btn-primary" onclick="window.location.href='cart.html'">Go to
+                    cart</button>
                 </div>
 
               </td>
@@ -374,7 +456,7 @@
                 <p class="card-text">Tender chicken patty on freshly baked bread... now that’s tempting to the max!</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Bread type: </b>White Bread</li> 
+                <li class="list-group-item"><b>Bread type: </b>White Bread</li>
                 <li class="list-group-item"><b>Meat type: </b>Roast Chicken</li>
                 <li class="list-group-item"><b>Topping: </b>Old English Cheese</li>
                 <li class="list-group-item"><b>Special topping: </b>Garlic Aioli</li>
