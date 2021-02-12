@@ -18,7 +18,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script src="js/user/generictest.js"></script>
   <script src="js/user/signin.js"></script>
+  <script src="js/user/register.js"></script>
   <style>
     .bg {
       /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
@@ -47,13 +49,14 @@
         <div class="navbar-nav">
           <!-- <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
           <a class="nav-item nav-link active font" href="#"><b>Register</b></a> -->
-          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#signin"
-            data-whatever="@mdo">Sign-in</button>
-          <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#signin">Sign-in</button>
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#register">Register</button>
+          <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
+                  <h5 class="modal-title">Sign in</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -63,11 +66,11 @@
                     <!-- Password recovery, etc are not in the specification -->
                     <div class="form-group">
                       <label for="username" class="col-form-label">Username:</label>
-                      <input type="text" class="form-control" id="username">
+                      <input type="text" class="form-control" id="signin-username">
                     </div>
                     <div class="form-group">
                       <label for="password" class="col-form-label">Password:</label>
-                      <input type="text" class="form-control" id="password">
+                      <input type="text" class="form-control" id="signin-password">
                     </div>
                   </form>
                 </div>
@@ -78,6 +81,49 @@
               </div>
             </div>
           </div>
+
+          <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <!-- Password recovery, etc are not in the specification -->
+                  <div class="form-group">
+                    <label for="username" class="col-form-label">First name:</label>
+                    <input type="text" class="form-control" id="register-firstname">
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-form-label">Last name:</label>
+                    <input type="text" class="form-control" id="register-lastname">
+                  </div>
+                  <div class="form-group">
+                    <label for="username" class="col-form-label">Username:</label>
+                    <input type="text" class="form-control" id="register-username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-form-label">Password: At least 1 upper case, length > 7</label>
+                    <input type="text" class="form-control" id="register-password">
+                  </div>
+                  <div class="form-group">
+                    <label for="username" class="col-form-label">Retype password:</label>
+                    <input type="text" class="form-control" id="register-retype-password">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="register()">Accept</button>
+              </div>
+            </div>
+          </div>
+        </div>
           <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button> -->
           <a class="navbar-brand" href="#">
             <a href="cart.html"><img src="assets/image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
@@ -106,7 +152,7 @@
         <li data-target="#carousel" data-slide-to="2"></li>
         <li data-target="#carousel" data-slide-to="3"></li>
       </ol>
-      <div class="carousel-inner" style="padding: 300px; padding-top: 0px; padding-bottom: 100px;">
+      <div class="carousel-inner" style="padding: 100px; padding-top: 0px;">
         <div class="carousel-item active">
           <img class="d-block w-100" src="assets/image/carousel-subsandwich-beef.jpg"
             alt="First slide, sub sandwich with beef.">
