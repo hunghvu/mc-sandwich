@@ -72,7 +72,11 @@ $(document).ready(() => {
             + "</td>"
 
             + "<td>"
-            + "<input type='checkbox' class='btn-check' name='order-remove-multiple'autocomplete='off' style='margin-left: 20px;' onchange='storeChoice(this," + key + ")'>"
+            + "<input type='checkbox' class='btn-check' name='order-remove-multiple'autocomplete='off' style='margin-left: 20px;' onchange='storeRemoveChoice(this," + key + ")'>"
+            + "</td>"
+
+            + "<td>"
+            + "<input type='text' onInput='storeNameChoice(this," + key + ")'>"
             + "</td>"
             + "</tr>");
 
@@ -89,8 +93,12 @@ $(document).ready(() => {
         + "<p>$" + totalPrice.toFixed(2) + "</p>"
         + "</td>"
 
-        + "<td colspan='1'>"
+        + "<td>"
         + "<button type='button' class='btn btn-danger' onclick='removeMultipleOrders()'>Remove selected orders</button>"
+        + "</td>"
+
+        + "<td>"
+        + "<button type='button' class='btn btn-info' onclick='renameMultipleOrders()'>Rename selected orders</button>"
         + "</td>"
         + "</tr>"
     );
@@ -112,12 +120,12 @@ function removeOrder(orderKey) {
     location.reload();
 }
 
-let choice = [];
+let removeChoice = [];
 /**
  * Remove selected orders from session storage.
  */
 function removeMultipleOrders() {
-    choice.forEach(element => {
+    removeChoice.forEach(element => {
         sessionStorage.removeItem(element);
     })
     location.reload();
@@ -128,14 +136,38 @@ function removeMultipleOrders() {
  * @param {html input tag} checkbox 
  * @param {float} orderKey 
  */
-function storeChoice(checkbox, orderKey) {
+function storeRemoveChoice(checkbox, orderKey) {
     if(checkbox.checked) {
-        choice.push(orderKey);
+        removeChoice.push(orderKey);
     } else {
-        const index = choice.indexOf(orderKey); // Remove from list when uncheck box
+        const index = removeChoice.indexOf(orderKey); // Remove from list when uncheck box
         if (index > -1) {
-            choice.splice(index, 1);
+            removeChoice.splice(index, 1);
         }
     }
+}
+
+
+let nameChoice = [];
+/**
+ * This function will rename multiple orders at once.
+ */
+function renameMultipleOrders(){
+    for (key in nameChoice) {
+        let toBeRenamed = JSON.parse(sessionStorage.getItem(key));
+        toBeRenamed.name = nameChoice[key];
+        // Parse the key again for safety reason
+        sessionStorage.setItem(parseFloat(key), JSON.stringify(toBeRenamed));
+    }
+    location.reload();
+}
+
+/**
+ * This function stores a new name of order and its respective order key.
+ * @param {string} nameInput 
+ * @param {float} orderKey 
+ */
+function storeNameChoice(nameInput, orderKey) {
+    nameChoice[orderKey] = nameInput.value;
 }
 
