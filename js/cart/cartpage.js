@@ -180,7 +180,7 @@ function storeNameChoice(nameInput, orderKey) {
 function navigateToOrderPage(orderKey, orderName) {
     // console.log(orderKey);
     // console.log(orderName);
-    let savedHtmlKey = "state" + orderKey + orderName;
+    let savedHtmlKey = "state-" + orderKey + "-" + orderName;
     window.location.href = "order.html?order=" + savedHtmlKey;
 }
 

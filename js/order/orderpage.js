@@ -61,7 +61,7 @@ $(document).ready(() => {
     addListenerForRadio(size, sizePrice, sizeType);
 
     // Pre-check to see if the page is populate.
-    if(quantityInput.value !== null && quantityInput.value !== ""){
+    if (quantityInput.value !== null && quantityInput.value !== "") {
         quantity = quantityInput.value;
         if (quantity < 1) quantity = 1; // Min quantity is 1
         total.innerHTML = "$" + getTotal();
@@ -72,7 +72,7 @@ $(document).ready(() => {
         total.innerHTML = "$" + getTotal();
     });
     // Pre-check to see if the page is populate.
-    if(orderNameInput.value !== null && orderNameInput.value !== ""){
+    if (orderNameInput.value !== null && orderNameInput.value !== "") {
         orderName = orderNameInput.value;
     }
     orderNameInput.addEventListener("input", event => {
@@ -273,14 +273,22 @@ $(document).ready(() => {
         let orderInfoInJson = JSON.stringify(order);
 
         // Save in session storage.
-        let storageKey = Math.random();
-        if (sessionStorage.getItem(storageKey.toString())) {
-            storageKey = Math.random();
-        }
-        sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
+        if (params.get("order")) { //Overwrite old order
+            let stateComponent = params.get("order").split("-");
+            console.log(stateComponent[1])
+            sessionStorage.setItem(stateComponent[1], orderInfoInJson);
+            sessionStorage.setItem(orderState, JSON.stringify(saveHtml))
+            console.log(sessionStorage)
+        } else { // Add a new order
+            let storageKey = Math.random();
+            if (sessionStorage.getItem(storageKey.toString())) {
+                storageKey = Math.random();
+            }
+            sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
 
-        // Save html state.
-        sessionStorage.setItem("state" + storageKey.toString() + orderName.toString(), JSON.stringify(saveHtml));
+            // Save html state.
+            sessionStorage.setItem("state-" + storageKey.toString() + "-" + orderName.toString(), JSON.stringify(saveHtml));
+        }
 
         reset();
 
