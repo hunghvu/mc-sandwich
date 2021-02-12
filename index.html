@@ -21,6 +21,7 @@
   <script src="js/user/generictest.js"></script>
   <script src="js/user/signin.js"></script>
   <script src="js/user/register.js"></script>
+  <script src="js/user/signout.js"></script>
   <style>
     .bg {
       /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
@@ -46,12 +47,12 @@
           <a class="nav-item nav-link active font" href="order.html"><b>Order</b></a>
         </div>
 
-        <div class="navbar-nav">
+        <div class="navbar-nav" id="navbar-user">
           <!-- <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
           <a class="nav-item nav-link active font" href="#"><b>Register</b></a> -->
-          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#signin">Sign-in</button>
-          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#register">Register</button>
-          <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-signin" id="button-signin">Sign-in</button>
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-register" id="button-register">Register</button>
+          <div class="modal fade" id="dialog-signin" tabindex="-1" role="dialog" aria-labelledby="signin"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -76,13 +77,13 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="signin()">Sign in</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="signin()">Sign in</button>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          <div class="modal fade" id="dialog-register" tabindex="-1" role="dialog" aria-labelledby="register"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -119,7 +120,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="register()">Accept</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="register()">Accept</button>
               </div>
             </div>
           </div>
