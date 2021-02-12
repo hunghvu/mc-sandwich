@@ -64,125 +64,20 @@
     <!-- Tab -->
     <ul class="nav nav-tabs" id="orderTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab"
-          aria-controls="quickorder" aria-selected="true">Quick Order</a>
+        <a class="nav-link active" id="customization-tab" data-toggle="tab" href="#customization" role="tab" style="background-color: #144F57; color: white;"
+          aria-controls="customization" aria-selected="false">Customized Sandwich</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="customization-tab" data-toggle="tab" href="#customization" role="tab"
-          aria-controls="customization" aria-selected="false">Customized Sandwich</a>
+        <a class="nav-link " id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab" style="background-color: blue; color: white;"
+          aria-controls="quickorder" aria-selected="true">Quick Order</a>
       </li>
     </ul>
 
     <!-- Tab content -->
     <div class="tab-content" id="tab-content" style="background-color: antiquewhite;">
 
-      <!-- Quick order content -->
-      <div class="tab-pane fade show active" id="quickorder" role="tabpanel" aria-labelledby="tab-content">
-        <div class="row">
-          <div class="col-sm">
-            <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-beef.jpg" alt="Beed sandwich">
-              <div class="card-body">
-                <h5 class="card-title">McSandwich Club</h5>
-                <p class="card-text">Stuffed with thinly cut slices of roast beef, this crowd favorite is served on the
-                  oven-fresh bread of your choice.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Bread type: </b>Wheat Bread</li>
-                <li class="list-group-item"><b>Meat type: </b>Roast Beef</li>
-                <li class="list-group-item"><b>Topping: </b>Cheddar Cheese</li>
-                <li class="list-group-item"><b>special topping: </b>Habanero Hot Sauce</li>
-                <li class="list-group-item"><b>Size: </b>Small</li>
-                <li class="list-group-item"><b>Price: </b>$5.99</li>
-              </ul>
-              <!-- Separate card body so it has different size. -->
-              <div class="card-body">
-                <a href="#" id="button-club" class="btn btn-primary" onclick="">Add to cart</a>
-                <label style="margin-left: 20px">Quantity</label>
-                <input type="number" id="quantity-club"><br><br>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- Tab -->
-          <div class="col-sm">
-            <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-chicken.jpg" alt="Beed sandwich">
-              <div class="card-body">
-                <h5 class="card-title">Over Roasted Chicken</h5>
-                <p class="card-text">ender chicken patty on freshly baked bread... now that’s tempting to the max!</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Bread type: </b>White Bread</li>
-                <li class="list-group-item"><b>Meat type: </b>Roast Chicken</li>
-                <li class="list-group-item"><b>Topping: </b>Old English Cheese</li>
-                <li class="list-group-item"><b>special topping: </b>Smokey BBQ</li>
-                <li class="list-group-item"><b>Size: </b>Large</li>
-                <li class="list-group-item"><b>Price: </b>$9.99</li>
-              </ul>
-              <div class="card-body">
-                <a href="#" id="button-chicken" class="btn btn-primary" onclick="">Add to cart</a>
-                <label style="margin-left: 20px">Quantity</label>
-                <input type="number" id="quantity-chicken"><br><br>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm">
-            <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-pork.jpg" alt="Beef sandwich">
-              <div class="card-body">
-                <h5 class="card-title">Ham</h5>
-                <p class="card-text">With unbeatable value and toppings, our ham sandwich becomes something new and
-                  exciting every day.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Bread type: </b>Malted Rye</li>
-                <li class="list-group-item"><b>Meat type: </b>Pork</li>
-                <li class="list-group-item"><b>Topping: </b>Mozzarella Cheese</li>
-                <li class="list-group-item"><b>special topping: </b>Garlic Aioli</li>
-                <li class="list-group-item"><b>Size: </b>Medium</li>
-                <li class="list-group-item"><b>Price: </b>$8.99</li>
-              </ul>
-              <div class="card-body">
-                <a href="#" id="button-ham" class="btn btn-primary" onclick="">Add to cart</a>
-                <label style="margin-left: 20px">Quantity</label>
-                <input type="number" id="quantity-ham"><br><br>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm">
-            <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-veggie.jpg" alt="Beed sandwich">
-              <div class="card-body">
-                <h5 class="card-title">Vegwich Delite</h5>
-                <p class="card-text">A banquet to celebrate your healthy lifestyle, stuffed full of delicious cool,
-                  crisp vegetables.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Bread type: </b>Italian Herb & Cheese</li>
-                <li class="list-group-item"><b>Meat type: </b>None</li>
-                <li class="list-group-item"><b>Topping: </b>Crumbled Feta</li>
-                <li class="list-group-item"><b>special topping: </b>Mayonnaise</li>
-                <li class="list-group-item"><b>Size: </b>Medium</li>
-                <li class="list-group-item"><b>Price: </b>$8.49</li>
-              </ul>
-              <div class="card-body">
-                <a href="#" id="button-vegwich" class="btn btn-primary" onclick="">Add to cart</a>
-                <label style="margin-left: 20px">Quantity</label>
-                <input type="number" id="quantity-vegwich"><br><br>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-
       <!-- Customization content -->
-      <div class="tab-pane fade" id="customization" role="tabpanel" aria-labelledby="customization-tab">
+      <div class="tab-pane fade show active" id="customization" role="tabpanel" aria-labelledby="customization-tab">
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -271,7 +166,8 @@
 
 
               <td>
-                <input type="checkbox" class="btn-check" name="topping-option" id="topping-mozzarella" autocomplete="off">
+                <input type="checkbox" class="btn-check" name="topping-option" id="topping-mozzarella"
+                  autocomplete="off">
                 <label id="topping-mozzarella-price">$2.99</label>
                 <label class="btn btn-secondary" for="topping-mozzarella">Mozzarella Cheese</label>
               </td>
@@ -434,6 +330,113 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Quick order content -->
+      <div class="tab-pane fade" id="quickorder" role="tabpanel" aria-labelledby="tab-content">
+        <div class="row">
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-beef.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">McSandwich Club</h5>
+                <p class="card-text">Stuffed with thinly cut slices of roast beef, this crowd favorite is served on the
+                  oven-fresh bread of your choice.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>Wheat Bread</li>
+                <li class="list-group-item"><b>Meat type: </b>Roast Beef</li>
+                <li class="list-group-item"><b>Topping: </b>Cheddar Cheese</li>
+                <li class="list-group-item"><b>special topping: </b>Habanero Hot Sauce</li>
+                <li class="list-group-item"><b>Size: </b>Small</li>
+                <li class="list-group-item"><b>Price: </b>$5.99</li>
+              </ul>
+              <!-- Separate card body so it has different size. -->
+              <div class="card-body">
+                <a href="#" id="button-club" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="number" id="quantity-club"><br><br>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Tab -->
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-chicken.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">Over Roasted Chicken</h5>
+                <p class="card-text">ender chicken patty on freshly baked bread... now that’s tempting to the max!</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>White Bread</li>
+                <li class="list-group-item"><b>Meat type: </b>Roast Chicken</li>
+                <li class="list-group-item"><b>Topping: </b>Old English Cheese</li>
+                <li class="list-group-item"><b>special topping: </b>Smokey BBQ</li>
+                <li class="list-group-item"><b>Size: </b>Large</li>
+                <li class="list-group-item"><b>Price: </b>$9.99</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" id="button-chicken" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="number" id="quantity-chicken"><br><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-pork.jpg" alt="Beef sandwich">
+              <div class="card-body">
+                <h5 class="card-title">Ham</h5>
+                <p class="card-text">With unbeatable value and toppings, our ham sandwich becomes something new and
+                  exciting every day.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>Malted Rye</li>
+                <li class="list-group-item"><b>Meat type: </b>Pork</li>
+                <li class="list-group-item"><b>Topping: </b>Mozzarella Cheese</li>
+                <li class="list-group-item"><b>special topping: </b>Garlic Aioli</li>
+                <li class="list-group-item"><b>Size: </b>Medium</li>
+                <li class="list-group-item"><b>Price: </b>$8.99</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" id="button-ham" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="number" id="quantity-ham"><br><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <div class="card">
+              <img class="card-img-top" src="./assets/image/carousel-subsandwich-veggie.jpg" alt="Beed sandwich">
+              <div class="card-body">
+                <h5 class="card-title">Vegwich Delite</h5>
+                <p class="card-text">A banquet to celebrate your healthy lifestyle, stuffed full of delicious cool,
+                  crisp vegetables.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Bread type: </b>Italian Herb & Cheese</li>
+                <li class="list-group-item"><b>Meat type: </b>None</li>
+                <li class="list-group-item"><b>Topping: </b>Crumbled Feta</li>
+                <li class="list-group-item"><b>special topping: </b>Mayonnaise</li>
+                <li class="list-group-item"><b>Size: </b>Medium</li>
+                <li class="list-group-item"><b>Price: </b>$8.49</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" id="button-vegwich" class="btn btn-primary" onclick="">Add to cart</a>
+                <label style="margin-left: 20px">Quantity</label>
+                <input type="number" id="quantity-vegwich"><br><br>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
 
 
     </div>

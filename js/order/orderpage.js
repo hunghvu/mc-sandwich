@@ -60,7 +60,7 @@ $(document).ready(() => {
     let size = document.getElementsByName("size-option");
     addListenerForRadio(size, sizePrice, sizeType);
 
-    // Pre-check to see if the page is populate.
+    // Pre-check to in case the page is pre-populated.
     if (quantityInput.value !== null && quantityInput.value !== "") {
         quantity = quantityInput.value;
         if (quantity < 1) quantity = 1; // Min quantity is 1
@@ -71,7 +71,7 @@ $(document).ready(() => {
         if (quantity < 1) quantity = 1; // Min quantity is 1
         total.innerHTML = "$" + getTotal();
     });
-    // Pre-check to see if the page is populate.
+    // Pre-check to in case the page is pre-populated.
     if (orderNameInput.value !== null && orderNameInput.value !== "") {
         orderName = orderNameInput.value;
     }
@@ -126,7 +126,7 @@ $(document).ready(() => {
                 }
             })
         });
-        // Pre-check to see if the page is populate.
+        // Pre-check to in case the page is pre-populated.
         [].forEach.call(buttonGroup, element => {
             if (element.checked) {
                 let id = "#" + element.id;
@@ -162,7 +162,7 @@ $(document).ready(() => {
             })
         });
 
-        // Pre-check to see if the page is populate.
+        // Pre-check to in case the page is pre-populated.
         [].forEach.call(buttonGroup, element => {
             let id = element.id;
             if (element.checked) {
