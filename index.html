@@ -18,6 +18,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script src="js/user/signin.js"></script>
   <style>
     .bg {
       /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
@@ -32,7 +33,7 @@
 
 <body>
   <div class="bg" style="height: 2160px;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand font" href="index.html">
         <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">McSandwich</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -44,14 +45,48 @@
         </div>
 
         <div class="navbar-nav">
-          <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
-          <a class="nav-item nav-link active font" href="#"><b>Register</b></a>
+          <!-- <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
+          <a class="nav-item nav-link active font" href="#"><b>Register</b></a> -->
+          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#signin"
+            data-whatever="@mdo">Sign-in</button>
+          <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <!-- Password recovery, etc are not in the specification -->
+                    <div class="form-group">
+                      <label for="username" class="col-form-label">Username:</label>
+                      <input type="text" class="form-control" id="username">
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-form-label">Password:</label>
+                      <input type="text" class="form-control" id="password">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="signin()">Sign in</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button> -->
           <a class="navbar-brand" href="#">
             <a href="cart.html"><img src="assets/image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
           </a>
         </div>
       </div>
     </nav>
+
+
 
 
 
