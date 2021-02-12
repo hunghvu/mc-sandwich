@@ -9,6 +9,7 @@ $(document).ready(() => {
     /**
      * Create order table based on order.
      */
+    console.log(Object.keys(sessionStorage))
     Object.keys(sessionStorage).filter(key => !isNaN(key)).forEach(key => {
         let orderInJson = JSON.parse(sessionStorage.getItem(key));
         orderTable.append(
@@ -78,6 +79,12 @@ $(document).ready(() => {
             + "<td>"
             + "<input type='text' onInput='storeNameChoice(this," + key + ")'>"
             + "</td>"
+
+            + "<td>"
+            + "<img src='assets/image/order-update.svg' onclick='navigateToOrderPage(" + key +","+ orderInJson.name + ")'>" // For some reason, cannot put string inside args
+                                                                                                                        // E.g: "state123" causes unexpected syntax err at line 1.
+                                                                                                                        // The work around is using 2 args then process inside callee instead.
+            + "</td>"
             + "</tr>");
 
             totalPrice += parseFloat(orderInJson.total.substring(1));
@@ -113,7 +120,7 @@ $(document).ready(() => {
 
 /**
  * Remove a specific order from session storage.
- * @param {float} orderKey 
+ * @param {string} orderKey 
  */
 function removeOrder(orderKey) {
     sessionStorage.removeItem(orderKey);
@@ -134,7 +141,7 @@ function removeMultipleOrders() {
 /**
  * Store respective order key of checked box so they can be removed later.
  * @param {html input tag} checkbox 
- * @param {float} orderKey 
+ * @param {string} orderKey 
  */
 function storeRemoveChoice(checkbox, orderKey) {
     if(checkbox.checked) {
@@ -156,8 +163,7 @@ function renameMultipleOrders(){
     for (key in nameChoice) {
         let toBeRenamed = JSON.parse(sessionStorage.getItem(key));
         toBeRenamed.name = nameChoice[key];
-        // Parse the key again for safety reason
-        sessionStorage.setItem(parseFloat(key), JSON.stringify(toBeRenamed));
+        sessionStorage.setItem(key, JSON.stringify(toBeRenamed));
     }
     location.reload();
 }
@@ -165,9 +171,15 @@ function renameMultipleOrders(){
 /**
  * This function stores a new name of order and its respective order key.
  * @param {string} nameInput 
- * @param {float} orderKey 
+ * @param {string} orderKey 
  */
 function storeNameChoice(nameInput, orderKey) {
     nameChoice[orderKey] = nameInput.value;
+}
+
+function navigateToOrderPage(orderKey, orderName) {
+    // console.log(orderKey);
+    // console.log(orderName);
+    let savedHtmlKey = "state" + orderKey + orderName;
 }
 

@@ -193,6 +193,9 @@ $(document).ready(() => {
         }
         sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
 
+        // Save html state.
+        sessionStorage.setItem("state" + storageKey.toString() + orderName.toString(), document.body.innerHTML);
+
         reset();
         // console.log(sessionStorage);
         // console.log(sessionStorage)
