@@ -13,7 +13,7 @@ $(document).ready(() => {
         Object.keys(orderInJson).forEach(key => {
             let orderChoice = document.getElementById(key.toString());
             //Must access json val via [] for some reasons, maybe because of "-" in key name?
-            if(orderInJson[key] === true) {
+            if (orderInJson[key] === true) {
                 orderChoice.checked = true;
             } else {
                 orderChoice.value = orderInJson[key];
@@ -32,8 +32,8 @@ $(document).ready(() => {
         "topping-spinach": 0, "topping-carrot": 0,
         "topping-sprout": 0, "topping-pickle": 0
     };
-    let specialToppingPriceList = { 
-        "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0 
+    let specialToppingPriceList = {
+        "special-topping-hanabero": 0, "special-topping-bbq": 0, "special-topping-garlic": 0, "special-topping-mayonnaise": 0
     };
 
     let breadPrice = [0]; // Price of the category.
@@ -43,7 +43,7 @@ $(document).ready(() => {
     let sizePrice = [0];
     let quantity = 1;
     let orderName = "";
-    
+
     let quantityInput = document.getElementById("quantity-customization");
     let total = document.getElementById("total-customization");
     let orderNameInput = document.getElementById("name-customization");
@@ -59,11 +59,22 @@ $(document).ready(() => {
     addListenerForCheckBox(specialTopping, specialToppingPriceList, specialToppingPrice);
     let size = document.getElementsByName("size-option");
     addListenerForRadio(size, sizePrice, sizeType);
+
+    // Pre-check to see if the page is populate.
+    if(quantityInput.value !== null && quantityInput.value !== ""){
+        quantity = quantityInput.value;
+        if (quantity < 1) quantity = 1; // Min quantity is 1
+        total.innerHTML = "$" + getTotal();
+    }
     quantityInput.addEventListener("input", event => {
         quantity = quantityInput.value;
         if (quantity < 1) quantity = 1; // Min quantity is 1
         total.innerHTML = "$" + getTotal();
     });
+    // Pre-check to see if the page is populate.
+    if(orderNameInput.value !== null && orderNameInput.value !== ""){
+        orderName = orderNameInput.value;
+    }
     orderNameInput.addEventListener("input", event => {
         orderName = orderNameInput.value;
     });
@@ -114,6 +125,17 @@ $(document).ready(() => {
                     respectiveType[0] = getName(id);
                 }
             })
+        });
+        // Pre-check to see if the page is populate.
+        [].forEach.call(buttonGroup, element => {
+            if (element.checked) {
+                let id = "#" + element.id;
+                respectivePrice[0] = getPrice(id);
+                total.innerHTML = "$" + getTotal();
+                if (respectiveType !== null) { // Only use for bread, meat, and size.
+                    respectiveType[0] = getName(id);
+                }
+            }
         })
     }
 
@@ -138,6 +160,21 @@ $(document).ready(() => {
                 total.innerHTML = "$" + getTotal();
                 // console.log(respectivePriceList)
             })
+        });
+
+        // Pre-check to see if the page is populate.
+        [].forEach.call(buttonGroup, element => {
+            let id = element.id;
+            if (element.checked) {
+                respectivePriceList[id] = getPrice("#" + id);
+            } else {
+                respectivePriceList[id] = 0;
+            }
+            respectivePrice[0] = 0;
+            for (const key in respectivePriceList) {
+                respectivePrice[0] += respectivePriceList[key];
+            }
+            total.innerHTML = "$" + getTotal();
         })
     }
 
@@ -155,7 +192,7 @@ $(document).ready(() => {
         for (const key in specialToppingPriceList) {
             specialToppingPriceList[key] = 0;
         }
-    
+
         breadPrice[0] = 0; // Price of the category.
         meatPrice[0] = 0;
         toppingPrice[0] = 0;
@@ -185,51 +222,51 @@ $(document).ready(() => {
         let isOrderNameFilled = false;
         let saveHtml = {}; // Used to populate page later on.
         [].forEach.call(bread, element => {
-            if(element.checked) {
+            if (element.checked) {
                 isBreadFilled = true;
                 saveHtml[element.id] = true;
             }
         });
         [].forEach.call(meat, element => {
-            if(element.checked) {
+            if (element.checked) {
                 isMeatFilled = true;
                 saveHtml[element.id] = true;
             }
         });
         [].forEach.call(topping, element => {
-            if(element.checked) {
-                isToppingFilled = true; 
+            if (element.checked) {
+                isToppingFilled = true;
                 saveHtml[element.id] = true;
             }
         });
         [].forEach.call(specialTopping, element => {
-            if(element.checked) {
-                isSpecialToppingFilled = true; 
+            if (element.checked) {
+                isSpecialToppingFilled = true;
                 saveHtml[element.id] = true;
             }
         });
         [].forEach.call(size, element => {
-            if(element.checked) {
+            if (element.checked) {
                 isSizeFilled = true;
                 saveHtml[element.id] = true;
             }
         });
-        if(quantityInput.value !== null && quantityInput !== "") {
-            isQuantityFilled = true; 
+        if (quantityInput.value !== null && quantityInput !== "") {
+            isQuantityFilled = true;
             saveHtml[quantityInput.id] = quantityInput.value;
         }
-        if(orderNameInput.value !== null && orderNameInput.value !== "") {
+        if (orderNameInput.value !== null && orderNameInput.value !== "") {
             isOrderNameFilled = true;
             saveHtml[orderNameInput.id] = orderNameInput.value;
         }
-        if (!(isBreadFilled && isMeatFilled && isOrderNameFilled && isToppingFilled 
+        if (!(isBreadFilled && isMeatFilled && isOrderNameFilled && isToppingFilled
             && isSpecialToppingFilled && isSizeFilled && isQuantityFilled && isOrderNameFilled)) {
-                alert("Please fully fill in an order to continue.");
-                return;
+            alert("Please fully fill in an order to continue.");
+            return;
         }
         console.log(specialToppingPriceList);
         // Create a json for the order info.
-        let order = new OrderObject(breadPrice[0], meatPrice[0], toppingPriceList, toppingPrice[0], specialToppingPriceList, 
+        let order = new OrderObject(breadPrice[0], meatPrice[0], toppingPriceList, toppingPrice[0], specialToppingPriceList,
             specialToppingPrice[0], sizePrice[0], quantity, total.innerHTML, orderName, breadType, meatType, sizeType);
         order.initToppingType();
         order.initSpecialToppingType();
