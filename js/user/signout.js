@@ -8,5 +8,7 @@ function signout() {
     $("#button-register").css({
         "visibility": "visible",
     });
-    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("username"); // Clear user name
+    sessionStorage.removeItem("0"); // Clear guest order
+    location.reload();
 }

@@ -32,8 +32,8 @@ function signin() {
         hardCodedOrder();
     }
     sessionStorage.setItem("username", signinUsername);
-    
-    console.log(sessionStorage);
+    location.reload();
+    // console.log(sessionStorage);
 }
 
 /**

@@ -21,7 +21,7 @@ $(document).ready(() => {
     /**
      * Create order table based on order.
      */
-    // console.log(Object.keys(sessionStorage))
+    console.log(Object.keys(sessionStorage))
     Object.keys(sessionStorage).filter(key => !isNaN(key)).forEach(key => {
         let orderInJson = JSON.parse(sessionStorage.getItem(key)); // Object is saved as string in storage
         orderTable.append(
