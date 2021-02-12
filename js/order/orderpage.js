@@ -277,7 +277,7 @@ $(document).ready(() => {
             let stateComponent = params.get("order").split("-");
             console.log(stateComponent[1])
             sessionStorage.setItem(stateComponent[1], orderInfoInJson);
-            sessionStorage.setItem(orderState, JSON.stringify(saveHtml))
+            sessionStorage.setItem(params.get("order"), JSON.stringify(saveHtml))
             console.log(sessionStorage)
         } else { // Add a new order
             let storageKey = Math.random();
