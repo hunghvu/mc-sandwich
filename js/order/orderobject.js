@@ -1,3 +1,6 @@
+/**
+ * This class represents information of an order.
+ */
 class OrderObject {
     constructor(breadPrice, meatPrice, toppingPriceList, toppingPrice, specialToppingPriceList, specialToppingPrice, sizePrice, quantity, total, name,
         breadType, meatType, sizeType) {
@@ -20,7 +23,7 @@ class OrderObject {
     }
 
     /**
-     * This function create a name list of chosen topping.
+     * This function create a name list of chosen topping (e.g: Spinach, etc).
      */
     initToppingType() {
         for (const key in this.toppingPriceList) {
@@ -31,7 +34,7 @@ class OrderObject {
     }
 
     /**
-     * This function create a name list of chosen topping name.
+     * This function create a name list of chosen special topping (e.g: Mayonnaise, etc).
      */
     initSpecialToppingType() {
         for (const key in this.specialToppingPriceList) {

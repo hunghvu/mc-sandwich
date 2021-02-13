@@ -1,10 +1,14 @@
 /**
- * This script will display tally and update it in real time
+ * This script will display tally and update it in real time.
+ * It also provides handler for buttons on this page.
  */
 
 // Wait till the page fully loaded so we can access list properly
 $(document).ready(() => {
 
+    /**
+     * Display logged username on top right.
+     */
     if (sessionStorage.getItem("username")) {
         $("#button-signin").css({
             "visibility": "hidden",
@@ -110,7 +114,7 @@ $(document).ready(() => {
 
     /**
      * Get price of a choice.
-     * @param {string} id 
+     * @param {string} id id of an element
      */
     function getPrice(id) {
         return parseFloat($(id).next().text().substring(1));
@@ -118,7 +122,7 @@ $(document).ready(() => {
 
     /**
      * Get name of a choice.
-     * @param {string} id 
+     * @param {string} id id of an element
      */
     function getName(id) {
         return $(id).next().next().text();
@@ -133,9 +137,9 @@ $(document).ready(() => {
 
     /**
      * This function will add listener to radio button options, so it can react upon user's choice.
-     * @param {NodeList} buttonGroup 
-     * @param {Array} respectivePrice 
-     * @param {Array} respectiveType
+     * @param {NodeList} buttonGroup a radio button group
+     * @param {Array} respectivePrice a price of given choice
+     * @param {Array} respectiveType a type of given choice
      */
     function addListenerForRadio(buttonGroup, respectivePrice, respectiveType = null) {
         [].forEach.call(buttonGroup, element => {
@@ -163,8 +167,8 @@ $(document).ready(() => {
 
     /**
      * This function will add listener to checkbox button options, so it can react upon user's choice.
-     * @param {NodeList} buttonGroup 
-     * @param {Map} respectivePriceList 
+     * @param {NodeList} buttonGroup a checkbox group
+     * @param {Map} respectivePriceList a respective price list of the whole checkbox group
      */
     function addListenerForCheckBox(buttonGroup, respectivePriceList, respectivePrice) {
         [].forEach.call(buttonGroup, element => {
@@ -243,6 +247,7 @@ $(document).ready(() => {
         let isQuantityFilled = false;
         let isOrderNameFilled = false;
         let saveHtml = {}; // Used to populate page later on.
+        // Save choices and check if all categories already have a choice.
         [].forEach.call(bread, element => {
             if (element.checked) {
                 isBreadFilled = true;
@@ -295,7 +300,7 @@ $(document).ready(() => {
         let orderInfoInJson = JSON.stringify(order);
 
         // Save in session storage.
-        if (params.get("order")) { //Overwrite old order
+        if (params.get("order")) { // Overwrite old order inside session storage
             let stateComponent = params.get("order").split("-");
             // console.log(stateComponent[1])
             sessionStorage.setItem(stateComponent[1], orderInfoInJson);
@@ -308,7 +313,7 @@ $(document).ready(() => {
             }
             sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
 
-            // Save html state.
+            // Save html state (choices).
             sessionStorage.setItem("state-" + storageKey.toString() + "-" + orderName.toString(), JSON.stringify(saveHtml));
         }
 
@@ -316,6 +321,10 @@ $(document).ready(() => {
 
     }
 
+    /**
+     * This function handles buttons on quick order tab.
+     * @param {HTML button} button 
+     */
     function quickOrder(button) {
         // Error prone due to too many <br> in the middle. 
         // However, this one will mainly be hard-coded for demo purpose.
@@ -385,11 +394,7 @@ $(document).ready(() => {
             }
             sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
         }
-
-        // 0.99+3.99+1.99+0.49+0.49
-        // 1.49+1.99+3.99+ 0 + 1.99
-        // 0.99 + 2.99 + 2.99 +0 + 1.49
-        // 1.99 + 0 + 0.99 + 0.99 + 1.49
+        
     }
 
 
