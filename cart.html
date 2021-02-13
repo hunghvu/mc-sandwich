@@ -72,11 +72,11 @@
                                     <form>
                                         <!-- Password recovery, etc are not in the specification -->
                                         <div class="form-group">
-                                            <label for="username" class="col-form-label">Username:</label>
+                                            <label for="signin-username" class="col-form-label">Username:</label>
                                             <input type="text" class="form-control" id="signin-username">
                                         </div>
                                         <div class="form-group">
-                                            <label for="password" class="col-form-label">Password:</label>
+                                            <label for="signin-password" class="col-form-label">Password:</label>
                                             <input type="text" class="form-control" id="signin-password">
                                         </div>
                                     </form>
@@ -172,7 +172,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialog-review-order"
                         id="button-place-order" onclick="placeOrder()">Place Order</button>
                     <div class="modal fade" id="dialog-review-order" tabindex="-1" role="dialog"
-                        aria-labelledby="signin" aria-hidden="true">
+                        aria-labelledby="Review Order" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -185,15 +185,26 @@
                                     <form id="order-review">
                                         <!-- Filled in later by a script. -->
                                     </form>
+                                    <div class="form-group">
+                                        <label for="order-fullname" class="col-form-label">Fullname: </label>
+                                        <input type="text" class="form-control" id="order-fullname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="order-address" class="col-form-label">Address:</label>
+                                        <input type="text" class="form-control" id="order-address">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                        onclick="acceptOrder()">Accept</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-target="#dialog-enter-order-info"
+                                        onclick="acceptOrder()">Confirm Order</button>
+ 
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
