@@ -24,6 +24,9 @@ $(document).ready(() => {
     let params = new URLSearchParams(window.location.search);
     let orderState = sessionStorage.getItem(params.get("order"));
     // console.log(orderState);
+    console.log(params);
+    console.log(params.get("order"));
+    console.log(orderState);
     if (orderState) {
         let orderInJson = JSON.parse(orderState);
         Object.keys(orderInJson).forEach(key => {
