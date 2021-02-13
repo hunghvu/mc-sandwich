@@ -207,8 +207,20 @@ let nameChoice = []; // List of orders and the new name associated with them.
 function renameMultipleOrders() {
     for (key in nameChoice) {
         let toBeRenamed = JSON.parse(sessionStorage.getItem(key));
-        toBeRenamed.name = nameChoice[key];
-        sessionStorage.setItem(key, JSON.stringify(toBeRenamed));
+        
+        // console.log(sessionStorage)
+        let oldHtmlKey = "state-" + key + "-" + toBeRenamed.name; // Indicate key of old html state.
+        toBeRenamed.name = nameChoice[key]; // Rename order
+        let newHtmlKey = "state-" + key + "-" + nameChoice[key]; // New key of html state
+        sessionStorage.setItem(key, JSON.stringify(toBeRenamed)); // Store order info, not html state.
+        let oldHtmlState = JSON.parse(sessionStorage.getItem(oldHtmlKey)); // Old html state
+        // console.log(oldHtmlState["name-customization"]);
+        oldHtmlState["name-customization"] = toBeRenamed.name; // Change the information.
+        sessionStorage.setItem(newHtmlKey, JSON.stringify(oldHtmlState)); // Store a new state since we cannot change key name
+        sessionStorage.removeItem(oldHtmlKey); // Remove old html state.
+        // console.log(sessionStorage);
+        
+        
     }
     location.reload();
 }
