@@ -1,3 +1,6 @@
+/**
+ * This script handles menu page. The only task is display user name on top right.
+ */
 $(document).ready(() => {
     let username = sessionStorage.getItem("username")
     if (username) {
