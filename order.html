@@ -8,7 +8,7 @@
   <title>McSandwich</title>
   <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/font.css">
+  <!-- <link rel="stylesheet" type="text/css" href="css/font.css"> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -18,20 +18,30 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="js/order/orderobject.js"></script>
-  <script src="js/order/orderpage.js"></script>
-  <script src="js/user/generictest.js"></script>
-  <script src="js/user/signin.js"></script>
-  <script src="js/user/register.js"></script>
-  <script src="js/user/signout.js"></script>
+  <script src="../order/orderobject.js"></script>
+  <script src="../order/orderpage.js"></script>
+  <script src="../user/generictest.js"></script>
+  <script src="../user/signin.js"></script>
+  <script src="../user/register.js"></script>
+  <script src="../user/signout.js"></script>
   <style>
     .bg {
       /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("assets/image/bg-wood.jpg");
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("../image/bg-wood.jpg");
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
+    }
+  </style>
+  <style>
+    @font-face {
+      font-family: VampiroOne-Regular;
+      src: url(/font/VampiroOne-Regular.ttf);
+    }
+
+    .font {
+      font-family: VampiroOne-Regular;
     }
   </style>
 </head>
@@ -421,7 +431,7 @@
         <div class="row">
           <div class="col-sm">
             <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-beef.jpg" alt="Beed sandwich">
+              <img class="card-img-top" src="../image/carousel-subsandwich-beef.jpg" alt="Beed sandwich">
               <div class="card-body">
                 <h5 class="card-title">McSandwich Club</h5>
                 <p class="card-text">Stuffed with thinly cut slices of roast beef, this crowd favorite is served on the
@@ -452,7 +462,7 @@
           <!-- Tab -->
           <div class="col-sm">
             <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-chicken.jpg" alt="Beed sandwich">
+              <img class="card-img-top" src="../image/carousel-subsandwich-chicken.jpg" alt="Beed sandwich">
               <div class="card-body">
                 <h5 class="card-title">Over Roasted Chicken</h5>
                 <p class="card-text">Tender chicken patty on freshly baked bread... now that’s tempting to the max!</p>
@@ -479,7 +489,7 @@
 
           <div class="col-sm">
             <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-pork.jpg" alt="Beef sandwich">
+              <img class="card-img-top" src="../image/carousel-subsandwich-pork.jpg" alt="Beef sandwich">
               <div class="card-body">
                 <h5 class="card-title">Ham</h5>
                 <p class="card-text">With unbeatable value and toppings, our ham sandwich becomes something new and
@@ -507,7 +517,7 @@
 
           <div class="col-sm">
             <div class="card">
-              <img class="card-img-top" src="./assets/image/carousel-subsandwich-veggie.jpg" alt="Beed sandwich">
+              <img class="card-img-top" src="../image/carousel-subsandwich-veggie.jpg" alt="Beed sandwich">
               <div class="card-body">
                 <h5 class="card-title">Vegwich Delite</h5>
                 <p class="card-text">A banquet to celebrate your healthy lifestyle, stuffed full of delicious cool,
