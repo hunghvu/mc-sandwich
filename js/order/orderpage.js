@@ -71,6 +71,7 @@ $(document).ready(() => {
     addListenerForRadio(meat, meatPrice, meatType);
     let topping = document.getElementsByName("topping-option");
     addListenerForCheckBox(topping, toppingPriceList, toppingPrice);
+
     let specialTopping = document.getElementsByName("special-topping-option");
     addListenerForCheckBox(specialTopping, specialToppingPriceList, specialToppingPrice);
     let size = document.getElementsByName("size-option");
@@ -91,6 +92,40 @@ $(document).ready(() => {
     if (orderNameInput.value !== null && orderNameInput.value !== "") {
         orderName = orderNameInput.value;
     }
+
+    // Use different listener for "None" choice.
+    document.getElementById("topping-none").addEventListener("input", event => {
+        for (let i = 0; i < topping.length; i++) { // Can't use for each in here.
+            if (topping[i].id !== "topping-none" && document.getElementById("topping-none").checked === true) {
+                topping[i].checked = false;
+                topping[i].disabled = true;
+                for (const key in toppingPriceList) {
+                    toppingPriceList[key] = 0;
+                }
+                toppingPrice[0] = 0;
+                total.innerHTML = "$" + getTotal();
+            } else {
+                topping[i].disabled = false;
+            }
+        }
+    })
+
+    // Use different listener for "None" choice.
+    document.getElementById("special-topping-none").addEventListener("input", event => {
+        for (let i = 0; i < specialTopping.length; i++) { // Can't use for each in here.
+            if (specialTopping[i].id !== "special-topping-none" && document.getElementById("special-topping-none").checked === true) {
+                specialTopping[i].checked = false;
+                specialTopping[i].disabled = true;
+                for (const key in specialToppingPriceList) {
+                    specialToppingPriceList[key] = 0;
+                }
+                specialToppingPrice[0] = 0;
+                total.innerHTML = "$" + getTotal();
+            } else {
+                specialTopping[i].disabled = false;
+            }
+        }
+    })
     orderNameInput.addEventListener("input", event => {
         orderName = orderNameInput.value;
     });
@@ -187,7 +222,7 @@ $(document).ready(() => {
                 // console.log(respectivePriceList)
             })
         });
-
+        // Weird behavior, can't put anything here (before []) or there will be a compiled error.
         // Pre-check to in case the page is pre-populated.
         [].forEach.call(buttonGroup, element => {
             let id = element.id;
@@ -202,6 +237,7 @@ $(document).ready(() => {
             }
             total.innerHTML = "$" + getTotal();
         })
+
     }
 
     /**
@@ -394,7 +430,7 @@ $(document).ready(() => {
             }
             sessionStorage.setItem(storageKey.toString(), orderInfoInJson);
         }
-        
+
     }
 
 
