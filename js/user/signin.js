@@ -75,7 +75,7 @@ function hardCodedOrder() {
         savePage["size-small"] = true;
         savePage["quantity-customization"] = 1;
         savePage["name-customization"] = "guest";
-        sessionStorage.setItem("state-1-guest", JSON.stringify(savePage));
+        sessionStorage.setItem("state-0-guest", JSON.stringify(savePage));
         sessionStorage.setItem("0", orderInfoInJson);
     }
 

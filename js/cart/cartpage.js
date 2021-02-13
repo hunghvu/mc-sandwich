@@ -25,9 +25,11 @@ $(document).ready(() => {
     /**
      * Create order table based on order.
      */
-    console.log(Object.keys(sessionStorage))
+    // console.log(Object.keys(sessionStorage))
     Object.keys(sessionStorage).filter(key => !isNaN(key)).forEach(key => {
         let orderInJson = JSON.parse(sessionStorage.getItem(key)); // Object is saved as string in storage
+        // console.log(key)
+        // console.log(orderInJson.name)
         orderTable.append(
             "<tr>"
             + "<th scope='row'>"
@@ -99,8 +101,9 @@ $(document).ready(() => {
             + "</td>"
 
             + "<td>"
-            + "<img src='assets/image/order-update.svg' onclick='navigateToOrderPage(" + key + "," + orderInJson.name + ")'>" // For some reason, cannot put string inside args
-            // E.g: "state123" causes unexpected syntax err at line 1.
+            + "<img src='assets/image/order-update.svg' onclick='navigateToOrderPage(" + key + ", \x22" + orderInJson.name + "\x22 )'>" // For some reason, cannot put string inside args
+            // E.g: "state123" causes unexpected syntax err at line 1. => also cannot use order name which contains alpha character (html treat the char as a reference to the page)
+            //  => non-existed reference causes bug, while number is implcitly converted to a string (coercion). => Need to put name inside quote.
             // The work around is using 2 args then process inside callee instead.
             + "</td>"
 
@@ -111,6 +114,8 @@ $(document).ready(() => {
             + "</tr>");
 
         totalPrice += parseFloat(orderInJson.total.substring(1));
+        // console.log(key)
+        // console.log(orderInJson.name)
     })
 
     orderTable.append(
@@ -226,8 +231,10 @@ function storeNameChoice(nameInput, orderKey) {
  * @param {string} orderName a name of the order to be updated
  */
 function navigateToOrderPage(orderKey, orderName) {
+    // console.log(orderKey)
     let savedHtmlKey = "state-" + orderKey + "-" + orderName;
     window.location.href = "order.html?order=" + savedHtmlKey;
+    // console.log(orderKey, orderName);
 }
 
 let favoriteChoice = {}; // An object store favorite choices of user, I use object so it can be stringified and stored.
