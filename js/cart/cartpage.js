@@ -89,7 +89,7 @@ $(document).ready(() => {
             + "</td>"
 
             + "<td>"
-            + "<img src='assets/image/order-remove.svg' onclick='removeOrder(" + key + ")'>" // Pass key along the way so it can detect the order.
+            + "<img src='../image/order-remove.svg' onclick='removeOrder(" + key + ")'>" // Pass key along the way so it can detect the order.
             + "</td>"
 
             + "<td>"
@@ -101,7 +101,7 @@ $(document).ready(() => {
             + "</td>"
 
             + "<td>"
-            + "<img src='assets/image/order-update.svg' onclick='navigateToOrderPage(" + key + ", \x22" + orderInJson.name + "\x22 )'>" // For some reason, cannot put string inside args
+            + "<img src='../image/order-update.svg' onclick='navigateToOrderPage(" + key + ", \x22" + orderInJson.name + "\x22 )'>" // For some reason, cannot put string inside args
             // E.g: "state123" causes unexpected syntax err at line 1. => also cannot use order name which contains alpha character (html treat the char as a reference to the page)
             //  => non-existed reference causes bug, while number is implcitly converted to a string (coercion). => Need to put name inside quote.
             // The work around is using 2 args then process inside callee instead.
