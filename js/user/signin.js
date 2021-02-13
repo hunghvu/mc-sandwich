@@ -1,5 +1,5 @@
 /**
- * This scripts handles signin functionality.
+ * Provide handler for signin button.
  */
 function signin() {
     // Check if any input is empty.
@@ -18,6 +18,7 @@ function signin() {
         return;
     }
 
+    // Perform signin.
     $("#button-signin").css({
         "visibility": "hidden",
     });
@@ -37,7 +38,7 @@ function signin() {
 }
 
 /**
- * This provides a hard coded order for a user account.
+ * This provides a hard coded order for a user account (guest@test.com).
  */
 function hardCodedOrder() {
     let params = new URLSearchParams(window.location.search);

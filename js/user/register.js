@@ -1,5 +1,5 @@
 /**
- * This script handles register functionality.
+ * Handle register button
  */
 function register() {
     // Check if any input is empty.
@@ -19,7 +19,7 @@ function register() {
         return;
     }
     // Only use simple rules to demo.
-    // Require upper case, length >= 8.
+    // Require at least one upper case character, length >= 8.
     if (registerPassword === registerPassword.toLowerCase() || registerPassword.length < 8) {
         alert("Error: Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7.");
         return;
@@ -30,6 +30,7 @@ function register() {
         return;
     }
 
+    // Directly sign in after complete registration.
     $("#button-signin").css({
         "visibility": "hidden",
     });

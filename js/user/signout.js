@@ -1,3 +1,6 @@
+/**
+ * Provide handler for signout button.
+ */
 function signout() {
     // console.log(document.getElementById("button-userinfo"))
     document.getElementById("button-userinfo").remove();

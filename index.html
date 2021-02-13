@@ -50,8 +50,6 @@
         </div>
 
         <div class="navbar-nav" id="navbar-user">
-          <!-- <a class="nav-item nav-link active font" href="#"><b>Sign-in</b></a>
-          <a class="nav-item nav-link active font" href="#"><b>Register</b></a> -->
           <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-signin"
             id="button-signin">Sign-in</button>
           <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-register"
@@ -70,12 +68,12 @@
                   <form>
                     <!-- Password recovery, etc are not in the specification -->
                     <div class="form-group">
-                      <label for="username" class="col-form-label">Username:</label>
+                      <label for="signin-username" class="col-form-label">Username:</label>
                       <input type="text" class="form-control" id="signin-username">
                     </div>
                     <div class="form-group">
-                      <label for="password" class="col-form-label">Password:</label>
-                      <input type="text" class="form-control" id="signin-password">
+                      <label for="signin-password" class="col-form-label">Password:</label>
+                      <input type="password" class="form-control" id="signin-password">
                     </div>
                   </form>
                 </div>
@@ -113,12 +111,13 @@
                       <input type="text" class="form-control" id="register-username">
                     </div>
                     <div class="form-group">
-                      <label for="password" class="col-form-label">Password: At least 1 upper case, length > 7</label>
-                      <input type="text" class="form-control" id="register-password">
+                      <label for="password" class="col-form-label">Password: At least 1 upper
+                        case, length > 7</label>
+                      <input type="password" class="form-control" id="register-password">
                     </div>
                     <div class="form-group">
                       <label for="username" class="col-form-label">Retype password:</label>
-                      <input type="text" class="form-control" id="register-retype-password">
+                      <input type="password" class="form-control" id="register-retype-password">
                     </div>
                   </form>
                 </div>
@@ -135,6 +134,7 @@
             <a href="cart.html"><img src="assets/image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
           </a>
         </div>
+
       </div>
     </nav>
 
