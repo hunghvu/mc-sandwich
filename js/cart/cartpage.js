@@ -1,8 +1,12 @@
 /**
- * This script will display all order upon a page loaded, and handle functionality of order page.
+ * This script will display all order upon a page loaded, and handle functionalites of order page.
+ * The functionalities includes add, remove order, change name, confirm and place order, etc.
  */
 $(document).ready(() => {
 
+    /**
+     * Display logged username on top right.
+     */
     if (sessionStorage.getItem("username")) {
         $("#button-signin").css({
             "visibility": "hidden",
@@ -14,7 +18,7 @@ $(document).ready(() => {
         $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
     }
 
-    // For some reasons, session storage also has key which is a log from external plugins(?).
+    // For some reasons, session storage also has key which is a log from external plugins like LiveServer(?).
     // Use filter to prevent it.
     let totalPrice = 0;
     let orderTable = $("#order-table");
@@ -75,7 +79,7 @@ $(document).ready(() => {
 
             + "</div>"
             + "</div>"
-            // + "</div>"
+
             + "</th>"
 
             + "<td>"
@@ -134,15 +138,18 @@ $(document).ready(() => {
     );
 
     document.getElementById("button-reset").addEventListener("click", () => reset());
-
+    
+    // Clear review order modal upon dismissal.
     $(".modal").on("hidden.bs.modal", function () {
-        // document.getElementById("order-total-price-review").remove(); // Can clone element once, so have to remove the old element.
         $("#order-review").html(""); // Weird behavior, fine to reset form, but reset model-body won't allow its child to be altered later on.
     });
 
 
 });
 
+/**
+ * This function will reset session storage excluding current logged username.
+ */
 function reset() {
     for (key in sessionStorage) {
         if (key !== "username") sessionStorage.removeItem(key);
@@ -153,14 +160,14 @@ function reset() {
 
 /**
  * Remove a specific order from session storage.
- * @param {string} orderKey 
+ * @param {string} orderKey a key of order inside session storage
  */
 function removeOrder(orderKey) {
     sessionStorage.removeItem(orderKey);
     location.reload();
 }
 
-let removeChoice = [];
+let removeChoice = []; // Store list of orders to be removed.
 /**
  * Remove selected orders from session storage.
  */
@@ -173,8 +180,8 @@ function removeMultipleOrders() {
 
 /**
  * Store respective order key of checked box so they can be removed later.
- * @param {html input tag} checkbox 
- * @param {string} orderKey 
+ * @param {html input tag} checkbox reference to a checkbox
+ * @param {string} orderKey a key of order inside session storage
  */
 function storeRemoveChoice(checkbox, orderKey) {
     if (checkbox.checked) {
@@ -188,7 +195,7 @@ function storeRemoveChoice(checkbox, orderKey) {
 }
 
 
-let nameChoice = [];
+let nameChoice = []; // List of orders and the new name associated with them.
 /**
  * This function will rename multiple orders at once.
  */
@@ -203,21 +210,32 @@ function renameMultipleOrders() {
 
 /**
  * This function stores a new name of order and its respective order key.
- * @param {string} nameInput 
- * @param {string} orderKey 
+ * @param {string} nameInput a reference to an input
+ * @param {string} orderKey a key of order inside session storage
  */
 function storeNameChoice(nameInput, orderKey) {
     nameChoice[orderKey] = nameInput.value;
 }
 
+/**
+ * This function navigte a page from cart to order page.
+ * This is used when a user want to update their other info.
+ * The query is made in a way so order page recognize the respectivve 
+ *  info inside session storage to populate the order page.
+ * @param {string} orderKey a key of order to be updated inside session storage
+ * @param {string} orderName a name of the order to be updated
+ */
 function navigateToOrderPage(orderKey, orderName) {
-    // console.log(orderKey);
-    // console.log(orderName);
     let savedHtmlKey = "state-" + orderKey + "-" + orderName;
     window.location.href = "order.html?order=" + savedHtmlKey;
 }
 
-let favoriteChoice = {};
+let favoriteChoice = {}; // An object store favorite choices of user, I use object so it can be stringified and stored.
+
+/**
+ * This function stores favorites some info of favorite orders inside session storage
+ *   so they can be used later on if necessary.
+ */
 function saveFavorites() {
     if (!sessionStorage.getItem("username")) {
         alert("Please sign in first to use 'Favorite' feature");
@@ -229,6 +247,12 @@ function saveFavorites() {
         + "This can be used in the future as the specification does not define behavior of 'Favorite'."
         + "The storage info is printed out in console if you want to check.");
 }
+
+/**
+ * This functions store choice to a favoriteChoice object.
+ * @param {*} checkbox 
+ * @param {*} orderKey 
+ */
 function storeFavoriteChoice(checkbox, orderKey) {
     if (!sessionStorage.getItem("username")) {
         alert("Please sign in first to use 'Favorite' feature");
@@ -243,6 +267,9 @@ function storeFavoriteChoice(checkbox, orderKey) {
     }
 }
 
+/**
+ * This function handle Place Order button (display review order).
+ */
 function placeOrder() {
     let orderInfo = document.getElementsByName("order-info");
     [].forEach.call(orderInfo, element => {
@@ -263,6 +290,9 @@ function placeOrder() {
     )
 }
 
+/**
+ * This function handles confirm order button.
+ */
 function acceptOrder() {
     if (!sessionStorage.getItem("username")) {
         alert("Please sign in to place order.");
