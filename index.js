@@ -22,7 +22,6 @@ app.get("/cart", (request, response) => { response.sendFile(path.join(__dirname 
 
 
 
-// Attempt to fix code H10: https://stackoverflow.com/questions/14322989/first-heroku-deploy-failed-error-code-h10
-app.listen(process.env.PORT || 3000, function () {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(process.env.PORT || 5000, () => {
+    console.log("Server up and running on port: " + (process.env.PORT || 5000));
 });
