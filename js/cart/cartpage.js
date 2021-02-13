@@ -235,7 +235,7 @@ function storeFavoriteChoice(checkbox, orderKey) {
         checkbox.checked = false;
         return;
     }
-    console.log(sessionStorage.getItem("username"))
+    // console.log(sessionStorage.getItem("username"))
     if (checkbox.checked) {
         favoriteChoice[orderKey] = true;
     } else {
@@ -246,7 +246,7 @@ function storeFavoriteChoice(checkbox, orderKey) {
 function placeOrder() {
     let orderInfo = document.getElementsByName("order-info");
     [].forEach.call(orderInfo, element => {
-        console.log(element);
+        // console.log(element);
         $("#order-review").append(
             "<div class='form-group'>"
             + element.outerHTML
@@ -256,8 +256,8 @@ function placeOrder() {
     let copyTotal = document.getElementById("cart-total").cloneNode(true);
     copyTotal.id = "cart-total-review";
     copyTotal.innerHTML = "Total: " + copyTotal.innerHTML;
-    console.log(copyTotal);
-    console.log("order-total-price");
+    // console.log(copyTotal);
+    // console.log("order-total-price");
     $("#order-review").append(
         copyTotal.outerHTML
     )

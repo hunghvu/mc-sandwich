@@ -297,10 +297,10 @@ $(document).ready(() => {
         // Save in session storage.
         if (params.get("order")) { //Overwrite old order
             let stateComponent = params.get("order").split("-");
-            console.log(stateComponent[1])
+            // console.log(stateComponent[1])
             sessionStorage.setItem(stateComponent[1], orderInfoInJson);
             sessionStorage.setItem(params.get("order"), JSON.stringify(saveHtml))
-            console.log(sessionStorage)
+            // console.log(sessionStorage)
         } else { // Add a new order
             let storageKey = Math.random();
             if (sessionStorage.getItem(storageKey.toString())) {
@@ -374,7 +374,7 @@ $(document).ready(() => {
 
         if (params.get("order")) { //Overwrite old order
             let stateComponent = params.get("order").split("-");
-            console.log(stateComponent[1])
+            // console.log(stateComponent[1])
             sessionStorage.setItem(stateComponent[1], orderInfoInJson);
 
             console.log(sessionStorage)

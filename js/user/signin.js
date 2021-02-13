@@ -61,7 +61,7 @@ function hardCodedOrder() {
 
     if (params.get("order")) { //Overwrite old order
         let stateComponent = params.get("order").split("-");
-        console.log(stateComponent[1])
+        // console.log(stateComponent[1])
         sessionStorage.setItem(stateComponent[1], orderInfoInJson);
 
         // console.log(sessionStorage)
