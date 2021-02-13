@@ -8,7 +8,7 @@
   <title>McSandwich</title>
   <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/font.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/css/font.css"> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -18,20 +18,30 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="js/home/homepage.js"></script>
-  <script src="js/order/orderobject.js"></script>
-  <script src="js/user/generictest.js"></script>
-  <script src="js/user/signin.js"></script>
-  <script src="js/user/register.js"></script>
-  <script src="js/user/signout.js"></script>
+  <script src="home/homepage.js"></script>
+  <script src="order/orderobject.js"></script>
+  <script src="user/generictest.js"></script>
+  <script src="user/signin.js"></script>
+  <script src="user/register.js"></script>
+  <script src="user/signout.js"></script>
   <style>
     .bg {
       /* Source: https://stackoverflow.com/questions/26621513/darken-css-background-image*/
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("assets/image/bg-wood.jpg");
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("image/bg-wood.jpg");
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
+    }
+  </style>
+  <style>
+    @font-face {
+      font-family: VampiroOne-Regular;
+      src: url(/font/VampiroOne-Regular.ttf);
+    }
+
+    .font {
+      font-family: VampiroOne-Regular;
     }
   </style>
 </head>
@@ -40,13 +50,12 @@
   <div class="bg" style="height: 2160px;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand font" href="index.html">
-        <img src="assets/image/navbar-icon.svg" width="30" height="30" alt="">McSandwich</a>
+        <img src="image/navbar-icon.svg" width="30" height="30" alt="">McSandwich</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link active font" href="index.html"><b>Home</b> <span
-              class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link active font" href="menu.html"><b>Menu</b></a>
-          <a class="nav-item nav-link active font" href="order.html"><b>Order</b></a>
+          <a class="nav-item nav-link active font" href="/"><b>Home</b> <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active font" href="/menu"><b>Menu</b></a>
+          <a class="nav-item nav-link active font" href="/order"><b>Order</b></a>
         </div>
 
         <div class="navbar-nav" id="navbar-user">
@@ -131,7 +140,7 @@
           </div>
           <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button> -->
           <a class="navbar-brand" href="#">
-            <a href="cart.html"><img src="assets/image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
+            <a href="/cart"><img src="image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
           </a>
         </div>
 
@@ -160,7 +169,7 @@
       </ol>
       <div class="carousel-inner" style="padding: 100px; padding-top: 0px;">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="assets/image/carousel-subsandwich-beef.jpg"
+          <img class="d-block w-100" src="image/carousel-subsandwich-beef.jpg"
             alt="First slide, sub sandwich with beef.">
           <div class="carousel-caption d-none d-md-block" style="background: grey; opacity: 0.8;">
             <h5 style="color: white;"><b>Beef</b></h5>
@@ -169,7 +178,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="assets/image/carousel-subsandwich-chicken.jpg"
+          <img class="d-block w-100" src="image/carousel-subsandwich-chicken.jpg"
             alt="Second slide, sub sandwich with chicken.">
           <div class="carousel-caption d-none d-md-block" style="background: grey; opacity: 0.8;">
             <h5 style="color: white;"><b>Chicken</b></h5>
@@ -177,7 +186,7 @@
           </div>
         </div>
         <div class=" carousel-item">
-              <img class="d-block w-100" src="assets/image/carousel-subsandwich-pork.jpg"
+              <img class="d-block w-100" src="image/carousel-subsandwich-pork.jpg"
                 alt="Third slide, sub sandwich with pork.">
             <div class="carousel-caption d-none d-md-block" style="background: grey; opacity: 0.8;">
               <h5 style="color: white;"><b>Pork</b></h5>
@@ -186,7 +195,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="assets/image/carousel-subsandwich-veggie.jpg"
+            <img class="d-block w-100" src="image/carousel-subsandwich-veggie.jpg"
               alt="Fourth slide, sub sandwich with veggie.">
             <div class="carousel-caption d-none d-md-block" style="background: grey; opacity: 0.8;">
               <h5 style="color: white;"><b>Veggie</b></h5>
@@ -208,12 +217,12 @@
       <div style="background: grey; border-radius: 10px 60px 30px; padding: 20px;">
         <h4 style="text-align: center; color: cyan" class="font">Testimonials</h4>
 
-        <img src="assets/image/testimonial-quote.svg" alt="Quote symbol"
+        <img src="image/testimonial-quote.svg" alt="Quote symbol"
           style="padding: 40px; display: block; margin-left: auto;margin-right: auto;">
         <p style="text-align: center; color: white;">"Fantastic, I'm totally blown away by Testimonial Generator." Jack
           F.</p>
 
-        <img src="assets/image/testimonial-quote.svg" alt="Quote symbol"
+        <img src="image/testimonial-quote.svg" alt="Quote symbol"
           style="padding: 40px; display: block; margin-left: auto;margin-right: auto;">
         <p style="text-align: center; color:white">"I've been going to this restaurant with my son every weekend since
           March 2020." - Wylma T.</p>
