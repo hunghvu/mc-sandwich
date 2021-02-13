@@ -13,12 +13,12 @@ let path = require("path"); // To form an absolute path.
 
 app.use(express.static("assets")); // Serve static 
 app.use(express.static("js"));
-app.use(express.static("css"));
+// app.use(express.static("css"));
 // There is no complex interaction as of now (not as webservice), so I don't decompose.
 app.get("/", (request, response) => { response.sendFile(path.join(__dirname + "/index.html")) });
-app.get("/menu", (request, response) => { response.sendFile(path.join(__dirname + "/menu.html")) });
-app.get("/order", (request, response) => { response.sendFile(path.join(__dirname + "/order.html")) });
-app.get("/cart", (request, response) => { response.sendFile(path.join(__dirname + "/cart.html")) });
+// app.get("/menu", (request, response) => { response.sendFile(path.join(__dirname + "/menu.html")) });
+// app.get("/order", (request, response) => { response.sendFile(path.join(__dirname + "/order.html")) });
+// app.get("/cart", (request, response) => { response.sendFile(path.join(__dirname + "/cart.html")) });
 
 
 
