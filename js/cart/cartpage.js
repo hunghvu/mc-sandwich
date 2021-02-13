@@ -97,6 +97,11 @@ $(document).ready(() => {
                                                                                                                         // E.g: "state123" causes unexpected syntax err at line 1.
                                                                                                                         // The work around is using 2 args then process inside callee instead.
             + "</td>"
+
+            + "<td>"
+            + "<input type='checkbox' class='btn-check' name='order-favorite'autocomplete='off' style='margin-left: 20px;' onchange='storeFavoriteChoice(this," + key + ")'>"
+            + "</td>" 
+
             + "</tr>");
 
             totalPrice += parseFloat(orderInJson.total.substring(1));
@@ -116,8 +121,12 @@ $(document).ready(() => {
         + "<button type='button' class='btn btn-danger' onclick='removeMultipleOrders()'>Remove selected orders</button>"
         + "</td>"
 
-        + "<td>"
+        + "<td colspan='2'>"
         + "<button type='button' class='btn btn-info' onclick='renameMultipleOrders()'>Rename selected orders</button>"
+        + "</td>"
+
+        + "<td>"
+        + "<button type='button' class='btn btn-info' onclick='saveFavorites()'>Save Favorite orders</button>"
         + "</td>"
         + "</tr>"
     );
@@ -125,7 +134,10 @@ $(document).ready(() => {
     document.getElementById("button-reset").addEventListener("click", () => reset());
 
     function reset() {
-        sessionStorage.clear();
+        for(key in sessionStorage) {
+            if(key !== "username") sessionStorage.removeItem(key);
+        };
+        alert("Reset all orders successfully.");
         location.reload();
     }
 });
@@ -196,3 +208,28 @@ function navigateToOrderPage(orderKey, orderName) {
     window.location.href = "order.html?order=" + savedHtmlKey;
 }
 
+let favoriteChoice = {};
+function saveFavorites() {
+    if(!sessionStorage.getItem("username")){
+        alert("Please sign in first to use 'Favorite' feature");
+        return;
+    }
+    sessionStorage.setItem("favorite", JSON.stringify(favoriteChoice));
+    console.log(sessionStorage);
+    alert("Save 'Favorites' sucessfullly. As of now it's save as a JSON string in session storage."
+        + "This can be used in the future as the specification does not define behavior of 'Favorite'."
+        + "The storage info is printed out in console if you want to check.");
+}
+function storeFavoriteChoice(checkbox, orderKey) {
+    if(!sessionStorage.getItem("username")){
+        alert("Please sign in first to use 'Favorite' feature");
+        checkbox.checked = false;
+        return;
+    }
+    console.log(sessionStorage.getItem("username"))
+    if(checkbox.checked) {
+        favoriteChoice[orderKey] = true;
+    } else {
+        favoriteChoice[orderKey] = false;
+    }
+}
