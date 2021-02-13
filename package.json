@@ -4,7 +4,8 @@
   "description": "TCSS 460 Site/Service Assignment 1",
   "main": "index.js",
   "scripts": {
-    "test": "index.js"
+    "test": "index.js",
+    "start": "index.js"
   },
   "engines": {
     "node": "14.x"
