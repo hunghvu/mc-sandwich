@@ -3,7 +3,7 @@
  */
 $(document).ready(() => {
 
-    if(sessionStorage.getItem("username")) {
+    if (sessionStorage.getItem("username")) {
         $("#button-signin").css({
             "visibility": "hidden",
         });
@@ -28,6 +28,7 @@ $(document).ready(() => {
             "<tr>"
             + "<th scope='row'>"
             + "<!-- Dropleft button to show order information -->"
+            + "<div name='order-info'>" // Group the buttons to display in order review later.
             + "<div class='btn-group dropleft'>"
             + "<button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
             + orderInJson.name
@@ -74,10 +75,11 @@ $(document).ready(() => {
 
             + "</div>"
             + "</div>"
+            // + "</div>"
             + "</th>"
 
             + "<td>"
-            + "<p>" + orderInJson.total + "</p>"
+            + "<p id='order-total-price'>" + orderInJson.total + "</p>"
             + "</td>"
 
             + "<td>"
@@ -93,18 +95,18 @@ $(document).ready(() => {
             + "</td>"
 
             + "<td>"
-            + "<img src='assets/image/order-update.svg' onclick='navigateToOrderPage(" + key +","+ orderInJson.name + ")'>" // For some reason, cannot put string inside args
-                                                                                                                        // E.g: "state123" causes unexpected syntax err at line 1.
-                                                                                                                        // The work around is using 2 args then process inside callee instead.
+            + "<img src='assets/image/order-update.svg' onclick='navigateToOrderPage(" + key + "," + orderInJson.name + ")'>" // For some reason, cannot put string inside args
+            // E.g: "state123" causes unexpected syntax err at line 1.
+            // The work around is using 2 args then process inside callee instead.
             + "</td>"
 
             + "<td>"
             + "<input type='checkbox' class='btn-check' name='order-favorite'autocomplete='off' style='margin-left: 20px;' onchange='storeFavoriteChoice(this," + key + ")'>"
-            + "</td>" 
+            + "</td>"
 
             + "</tr>");
 
-            totalPrice += parseFloat(orderInJson.total.substring(1));
+        totalPrice += parseFloat(orderInJson.total.substring(1));
     })
 
     orderTable.append(
@@ -114,7 +116,7 @@ $(document).ready(() => {
         + "</th>"
 
         + "<td colspan='2'>"
-        + "<p>$" + totalPrice.toFixed(2) + "</p>"
+        + "<p id='cart-total'>$" + totalPrice.toFixed(2) + "</p>"
         + "</td>"
 
         + "<td>"
@@ -133,9 +135,14 @@ $(document).ready(() => {
 
     document.getElementById("button-reset").addEventListener("click", () => reset());
 
+    $(".modal").on("hidden.bs.modal", function () {
+        // document.getElementById("order-total-price-review").remove(); // Can clone element once, so have to remove the old element.
+        $("#order-review").html(""); // Weird behavior, fine to reset form, but reset model-body won't allow its child to be altered later on.
+    });
+
     function reset() {
-        for(key in sessionStorage) {
-            if(key !== "username") sessionStorage.removeItem(key);
+        for (key in sessionStorage) {
+            if (key !== "username") sessionStorage.removeItem(key);
         };
         alert("Reset all orders successfully.");
         location.reload();
@@ -168,7 +175,7 @@ function removeMultipleOrders() {
  * @param {string} orderKey 
  */
 function storeRemoveChoice(checkbox, orderKey) {
-    if(checkbox.checked) {
+    if (checkbox.checked) {
         removeChoice.push(orderKey);
     } else {
         const index = removeChoice.indexOf(orderKey); // Remove from list when uncheck box
@@ -183,7 +190,7 @@ let nameChoice = [];
 /**
  * This function will rename multiple orders at once.
  */
-function renameMultipleOrders(){
+function renameMultipleOrders() {
     for (key in nameChoice) {
         let toBeRenamed = JSON.parse(sessionStorage.getItem(key));
         toBeRenamed.name = nameChoice[key];
@@ -210,7 +217,7 @@ function navigateToOrderPage(orderKey, orderName) {
 
 let favoriteChoice = {};
 function saveFavorites() {
-    if(!sessionStorage.getItem("username")){
+    if (!sessionStorage.getItem("username")) {
         alert("Please sign in first to use 'Favorite' feature");
         return;
     }
@@ -221,15 +228,43 @@ function saveFavorites() {
         + "The storage info is printed out in console if you want to check.");
 }
 function storeFavoriteChoice(checkbox, orderKey) {
-    if(!sessionStorage.getItem("username")){
+    if (!sessionStorage.getItem("username")) {
         alert("Please sign in first to use 'Favorite' feature");
         checkbox.checked = false;
         return;
     }
     console.log(sessionStorage.getItem("username"))
-    if(checkbox.checked) {
+    if (checkbox.checked) {
         favoriteChoice[orderKey] = true;
     } else {
         favoriteChoice[orderKey] = false;
     }
 }
+
+function placeOrder() {
+    let orderInfo = document.getElementsByName("order-info");
+    [].forEach.call(orderInfo, element => {
+        console.log(element);
+        $("#order-review").append(
+            "<div class='form-group'>"
+            + element.outerHTML
+            + "</div>"
+        )
+    })
+    let copyTotal = document.getElementById("cart-total").cloneNode(true);
+    copyTotal.id = "cart-total-review";
+    copyTotal.innerHTML = "Total: " + copyTotal.innerHTML;
+    console.log(copyTotal);
+    console.log("order-total-price");
+    $("#order-review").append(
+        copyTotal.outerHTML
+    )
+}
+
+function acceptOrder() {
+    if (!sessionStorage.getItem("username")) {
+        alert("Please sign in to place order.");
+        return;
+    }
+}
+
