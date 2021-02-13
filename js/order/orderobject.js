@@ -16,15 +16,15 @@ class OrderObject {
         this.meatType = meatType;
         this.sizeType = sizeType;
         this.toppingType = [];
-        this.specialToppingType =[];
+        this.specialToppingType = [];
     }
 
     /**
      * This function create a name list of chosen topping.
      */
     initToppingType() {
-        for(const key in this.toppingPriceList){
-            if(this.toppingPriceList[key] !== 0) {
+        for (const key in this.toppingPriceList) {
+            if (this.toppingPriceList[key] !== 0) {
                 this.toppingType.push($("#" + key).next().next().text());
             }
         }
@@ -34,8 +34,8 @@ class OrderObject {
      * This function create a name list of chosen topping name.
      */
     initSpecialToppingType() {
-        for(const key in this.specialToppingPriceList) {
-            if(this.specialToppingPriceList[key] !== 0) {
+        for (const key in this.specialToppingPriceList) {
+            if (this.specialToppingPriceList[key] !== 0) {
                 this.specialToppingType.push($("#" + key).next().next().text());
             }
         }

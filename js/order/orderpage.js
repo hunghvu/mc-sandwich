@@ -5,7 +5,7 @@
 // Wait till the page fully loaded so we can access list properly
 $(document).ready(() => {
 
-    if(sessionStorage.getItem("username")) {
+    if (sessionStorage.getItem("username")) {
         $("#button-signin").css({
             "visibility": "hidden",
         });
@@ -15,7 +15,7 @@ $(document).ready(() => {
         $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + sessionStorage.getItem("username") + "!</button>").insertAfter($("#button-register"));
         $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
     }
-    
+
     // Populate customized page if navigate form cart.
     let params = new URLSearchParams(window.location.search);
     let orderState = sessionStorage.getItem(params.get("order"));

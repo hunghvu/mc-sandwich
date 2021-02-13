@@ -28,7 +28,7 @@ function signin() {
     // User info button is not used at the moment (not in specification).
     $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + signinUsername + "!</button>").insertAfter($("#button-register"));
     $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-    if(signinUsername === "guest@test.com"){
+    if (signinUsername === "guest@test.com") {
         hardCodedOrder();
     }
     sessionStorage.setItem("username", signinUsername);
@@ -65,7 +65,7 @@ function hardCodedOrder() {
         sessionStorage.setItem(stateComponent[1], orderInfoInJson);
 
         // console.log(sessionStorage)
-    } else { 
+    } else {
         let savePage = {}
         savePage["bread-wheat"] = true;
         savePage["meat-beef"] = true;

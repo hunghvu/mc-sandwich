@@ -140,14 +140,16 @@ $(document).ready(() => {
         $("#order-review").html(""); // Weird behavior, fine to reset form, but reset model-body won't allow its child to be altered later on.
     });
 
-    function reset() {
-        for (key in sessionStorage) {
-            if (key !== "username") sessionStorage.removeItem(key);
-        };
-        alert("Reset all orders successfully.");
-        location.reload();
-    }
+
 });
+
+function reset() {
+    for (key in sessionStorage) {
+        if (key !== "username") sessionStorage.removeItem(key);
+    };
+    alert("Reset all orders successfully.");
+    location.reload();
+}
 
 /**
  * Remove a specific order from session storage.
@@ -264,7 +266,13 @@ function placeOrder() {
 function acceptOrder() {
     if (!sessionStorage.getItem("username")) {
         alert("Please sign in to place order.");
-        return;
+        // return;
+    } else if ((checkEmpty($("#order-fullname").val())
+        || checkEmpty($("#order-address").val()))) {
+        alert("Error: Empty field(s). Please enter all required information.")
+    } else {
+        alert("Order(s) placed succesfully. Cart cleared.")
+        reset();
     }
 }
 

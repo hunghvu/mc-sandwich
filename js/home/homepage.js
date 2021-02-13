@@ -1,7 +1,7 @@
 $(document).ready(() => {
     let username = sessionStorage.getItem("username")
     console.log(username);
-    if(username) {
+    if (username) {
         $("#button-signin").css({
             "visibility": "hidden",
         });
