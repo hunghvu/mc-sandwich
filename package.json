@@ -1,7 +1,7 @@
 {
   "name": "McSandwich",
   "version": "1.0.0",
-  "description": "TCSS 460 Site/Service Assignment 1",
+  "description": "TCSS 460 Site/Service Assignment",
   "main": "index.js",
   "scripts": {
     "test": "index.js"
