@@ -57,18 +57,6 @@ async function register() {
         let json = await response.json();
         if (json.success) {
             alert("Register successfully. Close this dialog to continue.");
-            // Directly sign in after complete registration.
-            $("#button-signin").css({
-                "visibility": "hidden",
-            });
-            $("#button-register").css({
-                "visibility": "hidden",
-            });
-            // User info button is not used at the moment (not in specification).
-            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + json.username + "!</button>").insertAfter($("#button-register"));
-            $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-            sessionStorage.setItem("username", json.username);
-            console.log(sessionStorage)
         }
     } else {
         let json = await response.json();
