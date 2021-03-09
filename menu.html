@@ -18,6 +18,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
   <script src="../menu/menupage.js"></script>
   <script src="../order/orderobject.js"></script>
   <script src="../user/generictest.js"></script>
@@ -48,104 +49,8 @@
 
 <body>
   <div class="bg" style="height: 1080px;">
+    <div w3-include-html="../nav.html"></div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand font" href="../">
-        <img src="../image/navbar-icon.svg" width="30" height="30" alt="">McSandwich</a>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link active font" href="../"><b>Home</b> <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link active font" href="../menu"><b>Menu</b></a>
-          <a class="nav-item nav-link active font" href="../order"><b>Order</b></a>
-        </div>
-
-        <div class="navbar-nav" id="navbar-user">
-          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-signin"
-            id="button-signin">Sign-in</button>
-          <button type="button" class="btn bg-transparent" data-toggle="modal" data-target="#dialog-register"
-            id="button-register">Register</button>
-          <div class="modal fade" id="dialog-signin" tabindex="-1" role="dialog" aria-labelledby="signin"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Sign in</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <!-- Password recovery, etc are not in the specification -->
-                    <div class="form-group">
-                      <label for="signin-username" class="col-form-label">Username:</label>
-                      <input type="text" class="form-control" id="signin-username">
-                    </div>
-                    <div class="form-group">
-                      <label for="signin-password" class="col-form-label">Password:</label>
-                      <input type="password" class="form-control" id="signin-password">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="signin()">Sign in</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" id="dialog-register" tabindex="-1" role="dialog" aria-labelledby="register"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Register</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <!-- Password recovery, etc are not in the specification -->
-                    <div class="form-group">
-                      <label for="username" class="col-form-label">First name:</label>
-                      <input type="text" class="form-control" id="register-firstname">
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="col-form-label">Last name:</label>
-                      <input type="text" class="form-control" id="register-lastname">
-                    </div>
-                    <div class="form-group">
-                      <label for="username" class="col-form-label">Username:</label>
-                      <input type="text" class="form-control" id="register-username">
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="col-form-label">Password: At least 1 upper
-                        case, length > 7</label>
-                      <input type="password" class="form-control" id="register-password">
-                    </div>
-                    <div class="form-group">
-                      <label for="username" class="col-form-label">Retype password:</label>
-                      <input type="password" class="form-control" id="register-retype-password">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"
-                    onclick="register()">Accept</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button> -->
-          <a class="navbar-brand" href="#">
-            <a href="../cart"><img src="../image/navbar-cart.svg" width="30" height="30" alt="Shopping cart"></a>
-          </a>
-        </div>
-      </div>
-    </nav>
 
     <h1 style="text-align: center; padding-top: 50px; color: aqua;" class="font">Menu of the day</h1>
 
@@ -242,7 +147,9 @@
 
     </div>
   </div>
-
+  <script>
+    w3.includeHTML();
+  </script>
 </body>
 
 </html>

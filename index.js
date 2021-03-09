@@ -42,6 +42,7 @@ app.use('/orders', middleware.checkTokenCookies, require('./server/routes/orders
 app.use(express.static("assets")); // Serve static 
 app.use(express.static("js"));
 app.use(express.static("css"));
+app.use(express.static("template"));
 
 
 /**
