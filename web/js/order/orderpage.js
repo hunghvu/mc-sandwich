@@ -4,7 +4,7 @@
  */
 
 // Wait till the page fully loaded so we can access list properly
-$(document).ready(() => {
+window.onload = () => {
 
     /**
      * Display logged username on top right.
@@ -437,7 +437,7 @@ $(document).ready(() => {
     }
 
 
-})
+}
 
 
 
