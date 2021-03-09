@@ -66,6 +66,14 @@ router.get('/', (request, response, next) => {
             message: "Malformed Authorization Header"
         })
     }
+}, (request, response, next) => { // Password rules tester on server
+    if (request.auth.password === request.auth.password.toLowerCase() || request.auth.password.length < 8) {
+        response.status(400).send({
+            message : "Invalid login information! Please re-enter username and/or password."
+        })
+    } else {
+        next();
+    }
 }, (request, response) => {
     const theQuery = "SELECT Password, Salt, MemberId FROM Members WHERE Email=$1"
     const values = [request.auth.email]

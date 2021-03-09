@@ -18,8 +18,6 @@ async function signin() {
         return;
     }
 
-
-
     let encoded = window.btoa(signinUsername + ':' + signinPassword);
 
     let response = await fetch("../auth", {
@@ -34,6 +32,7 @@ async function signin() {
         console.log(json)
 
         if (json.success) {
+            // Update client side to reflect sign in state
             $("#button-signin").css({
                 "visibility": "hidden",
             });
@@ -44,12 +43,14 @@ async function signin() {
             // User info button is not used at the moment (not in specification).
             $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + signinUsername + "!</button>").insertAfter($("#button-register"));
             $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+            // location.reload();
         }
     } else {
-        alert("HTTP-Error: " + response.status)
-        console.log(response.status)
         let json = await response.json()
-        console.log(json)
+        // console.log(json)
+        alert("HTTP-Error: " + response.status + " - " + json.message);
+        // console.log(response.status)
+
     }
 
 
