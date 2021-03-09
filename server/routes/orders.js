@@ -107,56 +107,71 @@ router.post("/", (request, response) => {
     // };
     // console.log(request);
     //Retrieve data from query params
-    const size = request.body.size;
-    const color = request.body.color;
-    const option1 = request.body.option1;
-    const option2 = request.body.option2;
-    const option3 = request.body.option3;
-    console.log(request.body);
-    console.log(size);
-    console.log(color);
-    console.log(option1);
-    console.log(option2);
-    console.log(option3);
-    console.log("-----------");
-    console.log(isProvided(size));
-    console.log(isProvided(color));
-    console.log(isProvided(option1));
-    console.log(isProvided(option2));
-    console.log(isProvided(option3));
-    const valueProvided = isProvided(size) && isProvided(color) && isProvided(option1) && isProvided(option2) && isProvided(option3);
+    // const size = request.body.size;
+    // const color = request.body.color;
+    // const option1 = request.body.option1;
+    // const option2 = request.body.option2;
+    // const option3 = request.body.option3;
+    // console.log(request.body);
+    // console.log(size);
+    // console.log(color);
+    // console.log(option1);
+    // console.log(option2);
+    // console.log(option3);
+    // console.log("-----------");
+    // console.log(isProvided(size));
+    // console.log(isProvided(color));
+    // console.log(isProvided(option1));
+    // console.log(isProvided(option2));
+    // console.log(isProvided(option3));
+    // const valueProvided = isProvided(size) && isProvided(color) && isProvided(option1) && isProvided(option2) && isProvided(option3);
+    const valueProvided = request.body.order !== undefined;
     if (!valueProvided)  {
         response.status(400).send({message: "Missing parameters"});
         return;
     };
 
-    const validBoolean = [
-        "TRUE", "t", "true", "y", "yes", "on", "1", // True
-        "FALSE", "f", "false", "n", "no", "off", "0", // False
-        "null", "unknown" // Unknown
-    ]
-    const isSizeValid = ["small", "medium", "large"].includes(size);
-    const isColorValid = ["red", "green", "blue"].includes(color);
-    const isOptionsProvided = validBoolean.includes(option1) && validBoolean.includes(option2) && validBoolean.includes(option3);
-    const isJsonValid = isSizeValid && isColorValid && isOptionsProvided;
-    if (!isJsonValid) {
-        response.status(400).send({message: "Invalid parameters"});
-        return;
-    };
+    let orderCounter = 0;
+    while(request.body.order[orderCounter] !== undefined) {
+        console.log(request.body.order[orderCounter]);
+        const isBreadTypeValid = ["Wheat Bread", "White Bread", "Maled Rye", "Italian Herb & Cheese"].includes(request.body.order[orderCounter].breadType[0]);
+        const isMeatTypeValid = ["Chicken", "Pork", "Beef", "None"].includes(request.body.order[orderCounter].meatType[0]);
+        const isSizeValid = ["Small", "Medium", "Large"].includes(request.body.order[orderCounter].sizeType[0]);
+        let isToppingValid = [].some.call(request.body.order[orderCounter].toppingType, element => 
+            ["Natural Cheddar Cheese", "Mozzarella Cheese", "Old English Cheese", "Crumbled Feta", 
+            "Spinach", "Shredded Carrot", "Sprout", "Pickle", "None",].includes(element)
+        )
+        let isSpecialToppingValid = [].some.call(request.body.order[orderCounter].specialToppingType, element => 
+            ["Habanero Hot Sauce", "Smokey BBQ", "Garlic Aioli", "Mayonnaise", "None"].includes(element)
+        )
+        console.log("Bread", isBreadTypeValid);
+        console.log("Meat", isMeatTypeValid);
+        console.log("Size", isSizeValid);
+        console.log("Topping", isToppingValid);
+        console.log("Special topping", isSpecialToppingValid);
+        console.log("--------------------------------------------------");
+        const isJsonValid = isBreadTypeValid && isMeatTypeValid && isSizeValid && isToppingValid && isSpecialToppingValid;
+        if (!isJsonValid) {
+            response.status(400).send({message: "Invalid parameters"});
+            return;
+        };
+        orderCounter++;
+    }
 
-    const memberId = request.decoded.memberid;
+    // const memberId = request.decoded.memberid;
+    // console.log(request.decoded["1"])
 
     // Insert to table
-    const theQuery = "INSERT INTO Orders(MemberID, My_Size, My_Color, Option1, Option2, Option3) "
-                    +"VALUES ($1, $2, $3, $4, $5, $6) "
-    const values = [memberId, size, color, option1, option2, option3];
-    pool.query(theQuery, values).then(result => {
-        // console.log(true);
-        response.status(200).send({
-            success: true,
-            message: "Order is inserted"
-        })
-    })
+    // const theQuery = "INSERT INTO Orders(MemberID, My_Size, My_Color, Option1, Option2, Option3) "
+    //                 +"VALUES ($1, $2, $3, $4, $5, $6) "
+    // const values = [memberId, size, color, option1, option2, option3];
+    // pool.query(theQuery, values).then(result => {
+    //     // console.log(true);
+    //     response.status(200).send({
+    //         success: true,
+    //         message: "Order is inserted"
+    //     })
+    // })
 
 })
 module.exports = router

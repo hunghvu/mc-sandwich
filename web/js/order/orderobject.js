@@ -31,6 +31,7 @@ class OrderObject {
                 this.toppingType.push($("#" + key).next().next().text());
             }
         }
+        if (this.toppingType.length === 0) this.toppingType.push("None")
     }
 
     /**
@@ -42,5 +43,6 @@ class OrderObject {
                 this.specialToppingType.push($("#" + key).next().next().text());
             }
         }
+        if (this.specialToppingType.length === 0) this.specialToppingType.push("None")
     }
 }

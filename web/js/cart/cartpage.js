@@ -3,21 +3,22 @@
  * The functionalities includes add, remove order, change name, confirm and place order, etc.
  */
 let orderList = [];
-$(document).ready(() => {
+window.onload = () => {
 
     /**
      * Display logged username on top right.
      */
-    if (sessionStorage.getItem("username")) {
-        $("#button-signin").css({
-            "visibility": "hidden",
-        });
-        $("#button-register").css({
-            "visibility": "hidden",
-        });
-        $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + sessionStorage.getItem("username") + "!</button>").insertAfter($("#button-register"));
-        $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-    }
+     let username = sessionStorage.getItem("username")
+     if (username) {
+         $("#button-signin").css({
+             "visibility": "hidden",
+         });
+         $("#button-register").css({
+             "visibility": "hidden",
+         });
+         $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + username + "!</button>").insertAfter($("#button-register"));
+         $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+     }
 
     // For some reasons, session storage also has key which is a log from external plugins like LiveServer(?).
     // Use filter to prevent it.
@@ -152,7 +153,7 @@ $(document).ready(() => {
     });
 
 
-});
+};
 
 /**
  * This function will reset session storage excluding current logged username.
@@ -329,13 +330,15 @@ async function acceptOrder() {
     for (let i = 0; i < orderList.length; i++) {
         toOrder[i] = orderList[i];
     }
-
+    console.log(toOrder)
     let response = await fetch("../orders", {
         method: "POST",
         headers: {
             "Content-type": "application/json;charset=utf-8"
         },
-        body: JSON.stringify(toOrder)
+        body: JSON.stringify({
+            order: toOrder
+        })
     })
 
     if (response.ok) { // if HTTP-status is 200-299
@@ -347,8 +350,8 @@ async function acceptOrder() {
 
     } else {
         // console.log(response.status)
-        // let json = await response.json() // Short json, parsing is fast so can but alert after this
-        alert("HTTP-Error: " + response.status)
+        let json = await response.json() // Short json, parsing is fast so can but alert after this
+        alert("HTTP-Error: " + response.status + "-" + json.message);
     }
 }
 
