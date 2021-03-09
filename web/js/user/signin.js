@@ -3,7 +3,7 @@
  */
 async function signin() {
     // Check if any input is empty.
-    let signinEmail = $("#signin-username").val();
+    let signinEmail = $("#signin-email").val();
     let signinPassword = $("#signin-password").val()
     if ((checkEmpty(signinEmail))
         || checkEmpty(signinPassword)) {
@@ -29,7 +29,7 @@ async function signin() {
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
         let json = await response.json()
-        console.log(json)
+        // console.log(json)
 
         if (json.success) {
             alert("Sign in successfully. Close this dialog to continue.");
@@ -42,9 +42,9 @@ async function signin() {
             });
         
             // User info button is not used at the moment (not in specification).
-            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + signinEmail + "!</button>").insertAfter($("#button-register"));
+            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + json.username + "!</button>").insertAfter($("#button-register"));
             $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-            sessionStorage.setItem("username", signinEmail);
+            sessionStorage.setItem("username", json.username);
             // location.reload();
         }
     } else {

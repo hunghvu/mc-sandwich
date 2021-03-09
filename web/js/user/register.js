@@ -65,9 +65,9 @@ async function register() {
                 "visibility": "hidden",
             });
             // User info button is not used at the moment (not in specification).
-            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + registerUsername + "!</button>").insertAfter($("#button-register"));
+            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + json.username + "!</button>").insertAfter($("#button-register"));
             $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-            sessionStorage.setItem("username", registerUsername);
+            sessionStorage.setItem("username", json.username);
             console.log(sessionStorage)
         }
     } else {

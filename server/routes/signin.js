@@ -29,7 +29,8 @@ const jwt = require('jsonwebtoken')
  *     {
  *       "success": true,
  *       "message": "Authentication successful!",
- *       "token": "eyJhbGciO...abc123"
+ *       "token": "eyJhbGciO...abc123",
+ *       "username": NameHere
  *     }
  * 
  * @apiError (400: Missing Authorization Header) {String} message "Missing Authorization Header"
@@ -77,7 +78,7 @@ router.get('/', (request, response, next) => {
         next();
     }
 }, (request, response) => {
-    const theQuery = "SELECT Password, Salt, MemberId FROM Members WHERE Email=$1"
+    const theQuery = "SELECT Password, Salt, MemberId, Username FROM Members WHERE Email=$1"
     const values = [request.auth.email]
     pool.query(theQuery, values)
         .then(result => { 
@@ -124,7 +125,8 @@ router.get('/', (request, response, next) => {
                 response.json({
                     success: true,
                     message: 'Authentication successful!',
-                    token: token
+                    token: token,
+                    username: result.rows[0].username
                 })
             } else {
                 //credentials dod not match

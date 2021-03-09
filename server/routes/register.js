@@ -86,14 +86,15 @@ router.post('/', (request, response) => {
         
         //We're using placeholders ($1, $2, $3) in the SQL query string to avoid SQL Injection
         //If you want to read more: https://stackoverflow.com/a/8265319
-        let theQuery = "INSERT INTO MEMBERS(FirstName, LastName, Username, Email, Password, Salt) VALUES ($1, $2, $3, $4, $5, $6) RETURNING Email"
+        let theQuery = "INSERT INTO MEMBERS(FirstName, LastName, Username, Email, Password, Salt) VALUES ($1, $2, $3, $4, $5, $6) RETURNING Email, Username"
         let values = [first, last, username, email, salted_hash, salt]
         pool.query(theQuery, values)
             .then(result => {
                 //We successfully added the user!
                 response.status(201).send({
                     success: true,
-                    email: result.rows[0].email
+                    email: result.rows[0].email,
+                    username: result.rows[0].username
                 })
             })
             .catch((error) => {
