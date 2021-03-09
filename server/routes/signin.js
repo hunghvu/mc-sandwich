@@ -40,6 +40,8 @@ const jwt = require('jsonwebtoken')
  * 
  * @apiError (400: Invalid Credentials) {String} message "Credentials did not match"
  * 
+ * @apiError (400: Invalid input(s)) {String} message "Invalid input(s)"
+ * 
  */ 
 router.get('/', (request, response, next) => {
     if (isProvided(request.headers.authorization)) {
@@ -69,7 +71,7 @@ router.get('/', (request, response, next) => {
 }, (request, response, next) => { // Password rules tester on server
     if (request.auth.password === request.auth.password.toLowerCase() || request.auth.password.length < 8) {
         response.status(400).send({
-            message : "Invalid login information! Please re-enter username and/or password."
+            message : "Invalid input(s)"
         })
     } else {
         next();

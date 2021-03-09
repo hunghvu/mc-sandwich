@@ -6,12 +6,14 @@ function register() {
     let registerFirstname = $("#register-firstname").val();
     let registerLastname = $("#register-lastname").val();
     let registerUsername = $("#register-username").val();
+    let registerEmail = $("#register-email").val();
     let registerPassword = $("#register-password").val();
     let registerRetypePassword = $("#register-retype-password").val();
 
     if ((checkEmpty(registerFirstname)
         || checkEmpty(registerLastname)
         || checkEmpty(registerUsername)
+        || checkEmpty(registerEmail)
         || checkEmpty(registerPassword)
         || checkEmpty(registerRetypePassword))) {
 
@@ -19,6 +21,12 @@ function register() {
         return;
     }
     // Only use simple rules to demo.
+
+    // Only require an email to contains '@'.
+    if (!register.includes("@")) {
+        alert("Invalid email format");
+        return;
+    }
     // Require at least one upper case character, length >= 8.
     if (registerPassword === registerPassword.toLowerCase() || registerPassword.length < 8) {
         alert("Error: Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7.");

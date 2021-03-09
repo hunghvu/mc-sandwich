@@ -42,6 +42,12 @@ const router = express.Router()
  * 
  * @apiError (400: Email exists) {String} message "Email exists"
  * 
+ * @apiError (400: Invalid email format) {String} message "Invalid email format"
+ * 
+ * @apiError (400: Invalid password) {String} message "Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7"
+ * 
+ * @apiError (400: Invalid retype-password) {String} message "Invalid password(s)! Passwords mismatch"
+ * 
  */ 
 router.post('/', (request, response) => {
 
@@ -51,9 +57,27 @@ router.post('/', (request, response) => {
     const username = isProvided(request.body.username) ?  request.body.username : request.body.email
     const email = request.body.email
     const password = request.body.password
+    const retypePassword = request.body.retypePassword
     //Verify that the caller supplied all the parameters
     //In js, empty strings or null values evaluate to false
-    if(isProvided(first) && isProvided(last) && isProvided(username) && isProvided(email) && isProvided(password)) {
+    if(isProvided(first) && isProvided(last) && isProvided(username) && isProvided(email) && isProvided(password) && isProvided(retypePassword)) {
+        // Server side registration input tester
+        if (!email.includes("@")) {
+            response.status(400).send({
+                message: "Invalid email format"
+            })
+            return;
+        } else if (password === password.toLowerCase || password.length < 8) {
+            response.status(400).send({
+                message: "Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7"
+            })
+            return;
+        } else if (password !== retypePassword) {
+            response.status(400).send({
+                message: "Invalid password(s)! Passwords mismatch"
+            })
+            return;
+        }
         //We're storing salted hashes to make our application more secure
         //If you're interested as to what that is, and why we should use it
         //watch this youtube video: https://www.youtube.com/watch?v=8ZtInClXe1Q
