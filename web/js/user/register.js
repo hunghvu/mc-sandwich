@@ -1,7 +1,7 @@
 /**
  * Handle register button
  */
-function register() {
+async function register() {
     // Check if any input is empty.
     let registerFirstname = $("#register-firstname").val();
     let registerLastname = $("#register-lastname").val();
@@ -23,7 +23,7 @@ function register() {
     // Only use simple rules to demo.
 
     // Only require an email to contains '@'.
-    if (!register.includes("@")) {
+    if (!registerEmail.includes("@")) {
         alert("Invalid email format");
         return;
     }
@@ -38,15 +38,43 @@ function register() {
         return;
     }
 
-    // Directly sign in after complete registration.
-    $("#button-signin").css({
-        "visibility": "hidden",
+    let response = await fetch("../auth", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify({
+            first: registerFirstname,
+            last: registerLastname,
+            username: registerUsername,
+            email: registerEmail,
+            password: registerPassword,
+            retypePassword: registerRetypePassword
+        })
     });
-    $("#button-register").css({
-        "visibility": "hidden",
-    });
-    // User info button is not used at the moment (not in specification).
-    $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + registerUsername + "!</button>").insertAfter($("#button-register"));
-    $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+
+    if (response.ok) {
+        let json = await response.json();
+        if (json.success) {
+            alert("Register successfully. Close this dialog to continue.");
+            // Directly sign in after complete registration.
+            $("#button-signin").css({
+                "visibility": "hidden",
+            });
+            $("#button-register").css({
+                "visibility": "hidden",
+            });
+            // User info button is not used at the moment (not in specification).
+            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + registerUsername + "!</button>").insertAfter($("#button-register"));
+            $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+            sessionStorage.setItem("username", registerUsername);
+            console.log(sessionStorage)
+        }
+    } else {
+        let json = await response.json();
+        alert("HTTP-Error: " + response.status + "-" + json.message);
+    }
+
+
 
 }
