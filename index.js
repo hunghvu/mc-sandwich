@@ -39,20 +39,20 @@ app.use('/auth', require('./server/routes/register.js'));
 app.use('/orders', middleware.checkTokenCookies, require('./server/routes/orders.js'));
 
 
-app.use(express.static("assets")); // Serve static 
-app.use(express.static("js"));
-app.use(express.static("css"));
-app.use(express.static("template"));
+app.use(express.static("web/assets")); // Serve static 
+app.use(express.static("web/js"));
+app.use(express.static("web/css"));
+app.use(express.static("web/template"));
 
 
 /**
  * Form an absolute path.
  */
 const path = require("path"); 
-app.get("/", (request, response) => { response.sendFile(path.join(__dirname + "/index.html")) });
-app.get("/menu", (request, response) => { response.sendFile(path.join(__dirname + "/menu.html")) });
-app.get("/order", (request, response) => { response.sendFile(path.join(__dirname + "/order.html")) });
-app.get("/cart", (request, response) => { response.sendFile(path.join(__dirname + "/cart.html")) });
+app.get("/", (request, response) => { response.sendFile(path.join(__dirname + "/web/index.html")) });
+app.get("/menu", (request, response) => { response.sendFile(path.join(__dirname + "/web/menu.html")) });
+app.get("/order", (request, response) => { response.sendFile(path.join(__dirname + "/web/order.html")) });
+app.get("/cart", (request, response) => { response.sendFile(path.join(__dirname + "/web/cart.html")) });
 
 
 
