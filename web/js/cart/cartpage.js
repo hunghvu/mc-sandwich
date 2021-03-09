@@ -2,6 +2,7 @@
  * This script will display all order upon a page loaded, and handle functionalites of order page.
  * The functionalities includes add, remove order, change name, confirm and place order, etc.
  */
+let orderList = [];
 $(document).ready(() => {
 
     /**
@@ -28,6 +29,7 @@ $(document).ready(() => {
     // console.log(Object.keys(sessionStorage))
     Object.keys(sessionStorage).filter(key => !isNaN(key)).forEach(key => {
         let orderInJson = JSON.parse(sessionStorage.getItem(key)); // Object is saved as string in storage
+        orderList.push(orderInJson);
         // console.log(key)
         // console.log(orderInJson.name)
         orderTable.append(
@@ -117,7 +119,7 @@ $(document).ready(() => {
         // console.log(key)
         // console.log(orderInJson.name)
     })
-
+    // console.log(orderList);
     orderTable.append(
         "<tr>"
         + "<th scope='row'>"
@@ -312,16 +314,41 @@ function placeOrder() {
 /**
  * This function handles confirm order button.
  */
-function acceptOrder() {
-    if (!sessionStorage.getItem("username")) {
-        alert("Please sign in to place order.");
-        // return;
-    } else if ((checkEmpty($("#order-fullname").val())
-        || checkEmpty($("#order-address").val()))) {
-        alert("Error: Empty field(s). Please enter all required information.")
+async function acceptOrder() {
+    // if (!sessionStorage.getItem("username")) {
+    //     alert("Please sign in to place order.");
+    //     // return;
+    // } else if ((checkEmpty($("#order-fullname").val())
+    //     || checkEmpty($("#order-address").val()))) {
+    //     alert("Error: Empty field(s). Please enter all required information.")
+    // } else {
+    //     alert("Order(s) placed succesfully. Cart cleared.")
+    //     reset();
+    // }
+    let toOrder = {};
+    for (let i = 0; i < orderList.length; i++) {
+        toOrder[i] = orderList[i];
+    }
+
+    let response = await fetch("../orders", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify(toOrder)
+    })
+
+    if (response.ok) { // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        // let json = await response.json()
+        // window.location.href = "./view_order.html"
+        // alert(json.message + ". The following combination is inserted " + jsonOrder + ". Close this alert to continue.")
+        alert("success");
+
     } else {
-        alert("Order(s) placed succesfully. Cart cleared.")
-        reset();
+        // console.log(response.status)
+        // let json = await response.json() // Short json, parsing is fast so can but alert after this
+        alert("HTTP-Error: " + response.status)
     }
 }
 
