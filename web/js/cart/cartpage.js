@@ -343,10 +343,11 @@ async function acceptOrder() {
 
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
-        // let json = await response.json()
+        let json = await response.json()
         // window.location.href = "./view_order.html"
         // alert(json.message + ". The following combination is inserted " + jsonOrder + ". Close this alert to continue.")
-        alert("success");
+        alert(json.message);
+        reset();
 
     } else {
         // console.log(response.status)

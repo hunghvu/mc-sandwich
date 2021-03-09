@@ -34,7 +34,7 @@ CREATE TABLE Orders (
     Size SIZE,
     Quantity INT,
     Total_USD DOUBLE PRECISION,
-    Order_Name VARCHAR(30),
+    Order_Name VARCHAR(256),
     FOREIGN KEY(MemberID) REFERENCES Members(MemberID)
 );
 
