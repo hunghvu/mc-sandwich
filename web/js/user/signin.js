@@ -1,7 +1,7 @@
 /**
  * Provide handler for signin button.
  */
-function signin() {
+async function signin() {
     // Check if any input is empty.
     let signinUsername = $("#signin-username").val();
     let signinPassword = $("#signin-password").val()
@@ -18,22 +18,48 @@ function signin() {
         return;
     }
 
-    // Perform signin.
-    $("#button-signin").css({
-        "visibility": "hidden",
-    });
-    $("#button-register").css({
-        "visibility": "hidden",
-    });
 
-    // User info button is not used at the moment (not in specification).
-    $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + signinUsername + "!</button>").insertAfter($("#button-register"));
-    $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-    if (signinUsername === "guest@test.com") {
-        hardCodedOrder();
+
+    let encoded = window.btoa(signinUsername + ':' + signinPassword);
+
+    let response = await fetch("../auth", {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Basic ' + encoded
+        }
+    })
+    if (response.ok) { // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        let json = await response.json()
+        console.log(json)
+
+        if (json.success) {
+            $("#button-signin").css({
+                "visibility": "hidden",
+            });
+            $("#button-register").css({
+                "visibility": "hidden",
+            });
+        
+            // User info button is not used at the moment (not in specification).
+            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + signinUsername + "!</button>").insertAfter($("#button-register"));
+            $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+        }
+    } else {
+        alert("HTTP-Error: " + response.status)
+        console.log(response.status)
+        let json = await response.json()
+        console.log(json)
     }
-    sessionStorage.setItem("username", signinUsername);
-    location.reload();
+
+
+    // Perform signin.
+
+    // if (signinUsername === "guest@test.com") {
+    //     hardCodedOrder();
+    // }
+    // sessionStorage.setItem("username", signinUsername);
+    // location.reload();
     // console.log(sessionStorage);
 }
 
