@@ -42,7 +42,12 @@ async function signin() {
             });
         
             // User info button is not used at the moment (not in specification).
-            $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + json.username + "!</button>").insertAfter($("#button-register"));
+            $(  "<div class='dropdown' style='margin-top: 4px'>"
+                +"<button class='dropdown-toggle' data-toggle='dropdown' type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + json.username + "!</button>"
+                +"<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>"
+                +"<a class='dropdown-item' href='../profile'>Profile</a>"
+                +"</div>"
+            ).insertAfter($("#button-register"));
             $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
             sessionStorage.setItem("username", json.username);
             // location.reload();

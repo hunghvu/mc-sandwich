@@ -8,17 +8,22 @@ window.onload = () => {
     /**
      * Display logged username on top right.
      */
-     let username = sessionStorage.getItem("username")
-     if (username) {
-         $("#button-signin").css({
-             "visibility": "hidden",
-         });
-         $("#button-register").css({
-             "visibility": "hidden",
-         });
-         $("<button type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + username + "!</button>").insertAfter($("#button-register"));
-         $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
-     }
+    let username = sessionStorage.getItem("username")
+    if (username) {
+        $("#button-signin").css({
+            "visibility": "hidden",
+        });
+        $("#button-register").css({
+            "visibility": "hidden",
+        });
+        $("<div class='dropdown' style='margin-top: 4px'>"
+            + "<button class='dropdown-toggle' data-toggle='dropdown' type='button' class='btn bg-transparent' id='button-userinfo'>Welcome " + username + "!</button>"
+            + "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>"
+            + "<a class='dropdown-item' href='../profile'>Profile</a>"
+            + "</div>"
+        ).insertAfter($("#button-register"));
+        $("<button type='button' class='btn bg-transparent' id='button-signout' onclick='signout()'>Sign out</button>").insertBefore($("#dialog-signin"));
+    }
 
     // For some reasons, session storage also has key which is a log from external plugins like LiveServer(?).
     // Use filter to prevent it.
@@ -146,7 +151,7 @@ window.onload = () => {
     );
 
     document.getElementById("button-reset").addEventListener("click", () => reset());
-    
+
     // Clear review order modal upon dismissal.
     $(".modal").on("hidden.bs.modal", function () {
         $("#order-review").html(""); // Weird behavior, fine to reset form, but reset model-body won't allow its child to be altered later on.
@@ -210,7 +215,7 @@ let nameChoice = []; // List of orders and the new name associated with them.
 function renameMultipleOrders() {
     for (key in nameChoice) {
         let toBeRenamed = JSON.parse(sessionStorage.getItem(key));
-        
+
         // console.log(sessionStorage)
         let oldHtmlKey = "state-" + key + "-" + toBeRenamed.name; // Indicate key of old html state.
         toBeRenamed.name = nameChoice[key]; // Rename order
@@ -222,8 +227,8 @@ function renameMultipleOrders() {
         sessionStorage.setItem(newHtmlKey, JSON.stringify(oldHtmlState)); // Store a new state since we cannot change key name
         sessionStorage.removeItem(oldHtmlKey); // Remove old html state.
         // console.log(sessionStorage);
-        
-        
+
+
     }
     location.reload();
 }
