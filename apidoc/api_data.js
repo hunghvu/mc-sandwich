@@ -161,6 +161,13 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
+            "optional": true,
+            "field": "username",
+            "description": "<p>a username *unique, if none provided, email will be used</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "email",
             "description": "<p>a users email *unique</p>"
@@ -175,9 +182,9 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": true,
-            "field": "username",
-            "description": "<p>a username *unique, if none provided, email will be used</p>"
+            "optional": false,
+            "field": "a",
+            "description": "<p>retype of a users password</p>"
           }
         ]
       },
@@ -273,7 +280,7 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "orders",
+    "url": "/order",
     "title": "Delete selected previous order",
     "name": "DeleteOrders",
     "group": "Orders",
@@ -291,6 +298,17 @@ define({ "api": [
       }
     },
     "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "orderId",
+            "description": "<p>an ID of order to be deleted</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Request-Body-Example:",
@@ -381,9 +399,9 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/orders",
+    "url": "/order",
     "title": "Request to get all Order entries in the DB",
-    "name": "GetOrders",
+    "name": "GetPreviousOrders",
     "group": "Orders",
     "header": {
       "fields": {
@@ -422,9 +440,9 @@ define({ "api": [
     },
     "error": {
       "fields": {
-        "404: No Orders Found": [
+        "400: No Orders Found": [
           {
-            "group": "404: No Orders Found",
+            "group": "400: No Orders Found",
             "type": "String",
             "optional": false,
             "field": "message",
@@ -466,7 +484,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "orders",
+    "url": "/order",
     "title": "Place orders by putting orders information into DB",
     "name": "PostOrders",
     "group": "Orders",
@@ -484,10 +502,133 @@ define({ "api": [
       }
     },
     "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "order",
+            "description": "<p>a JSON key which can inlcude multiple orders</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "JSON",
+            "optional": false,
+            "field": "0",
+            "description": "<p>a number of an order, used for interation</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double[]",
+            "optional": false,
+            "field": "breadPrice",
+            "description": "<p>total price of bread option</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "breadType",
+            "description": "<p>name of bread choice</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double[]",
+            "optional": false,
+            "field": "meatPrice",
+            "description": "<p>a total meat price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "meatType",
+            "description": "<p>name of meat choice</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>a name of an order</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>a quantity of item</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double[]",
+            "optional": false,
+            "field": "sizePrice",
+            "description": "<p>total price of size choice</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "sizeType",
+            "description": "<p>name of choosen size</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double[]",
+            "optional": false,
+            "field": "specialToppingPrice",
+            "description": "<p>a total price of choosen special toppings</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "JSON",
+            "optional": false,
+            "field": "specialToppingPriceList",
+            "description": "<p>represent a list of choosen special toppings and their respective price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "specialToppingType",
+            "description": "<p>a name list of choosen special toppings</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "double[]",
+            "optional": false,
+            "field": "toppingPrice",
+            "description": "<p>a total price of choosen toppings</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "JSON",
+            "optional": false,
+            "field": "toppingPriceList",
+            "description": "<p>represent a list of choosen toppings and their respective price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "toppingType",
+            "description": "<p>a name list of choosen toppings</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "total",
+            "description": "<p>a string represents a total price of this order</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Request-Body-Example:",
-          "content": "{\n    \"size\": \"large\",\n    \"color\": \"green\",\n    \"option1\": \"true\",\n    \"option2\": \"false\",\n    \"option3\": \"true\"\n}",
+          "content": "{\n    \"order\": {\n        \"0\": {\n            breadPrice: [0.99],\n            breadType: [\"Wheat Bread\"],\n            meatPrice: [1.99],\n            meatType: [\"Chicken\"],\n            name: \"Order name here\",\n            quantity: \"12\",\n            sizePrice: [0.49],\n            sizeType: [\"Small\"],\n            specialToppingPrice: [0.49],\n            specialToppingPriceList: {\n                special-topping-bbq: 0,\n                special-topping-garlic: 0,\n                special-topping-hanabero: 0.49,\n                special-topping-mayonnaise: 0,\n                special-topping-none: 0\n            },\n            specialToppingType: [\"Habanero Hot Sauce\"],\n            toppingPrice: [1.99],\n            toppingPriceList: {\n                topping-carrot: 0,\n                topping-cheedar: 1.99,\n                topping-english: 0,\n                topping-feta: 0,\n                topping-mozzarella: 0,\n                topping-none: 0,\n                topping-pickle: 0,\n                topping-spinach: 0,\n                topping-sprout: 0\n            },\n            toppingType: [\"Natural Cheddar Cheese\"],\n            total: \"$71.40\"\n        }\n    }\n}",
           "type": "json"
         }
       ]

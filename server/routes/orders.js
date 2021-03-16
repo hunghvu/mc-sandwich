@@ -13,8 +13,8 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  */ 
 
 /**
- * @api {get} /orders Request to get all Order entries in the DB
- * @apiName GetOrders
+ * @api {get} /order Request to get all Order entries in the DB
+ * @apiName GetPreviousOrders
  * @apiGroup Orders
  *
  * @apiHeader {String} authorization Valid JSON Web Token JWT 
@@ -24,7 +24,7 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  * 
  * @apiSuccess {Object[]} orders List of Orders in the database
  * 
- * @apiError (404: No Orders Found) {String} message "No Orders"
+ * @apiError (400: No Orders Found) {String} message "No Orders"
  * @apiError (400: JSON Error) {String} message "malformed JSON in parameters"
  * @apiError (403: JSON Error) {String} message "Token is not valid" when a JWT is provided but it is expired or otherwise not valid
  * @apiError (401: JSON Error) {String} message "Auth token is not supplied" when a JWT is not provided or it is provided in an incorrect format
@@ -44,7 +44,7 @@ router.get("/", (request, response) => {
                     orders: result.rows
                 })
             } else {
-                response.status(404).send({
+                response.status(400).send({
                     message: "No Orders"
                 })
             }
@@ -59,19 +59,67 @@ router.get("/", (request, response) => {
 })
 
 /**
- * @api {post} orders Place orders by putting orders information into DB
+ * @api {post} /order Place orders by putting orders information into DB
  * @apiName PostOrders
  * @apiGroup Orders
  *
  * @apiHeader {String} authorization Valid JSON Web Token JWT 
  * 
+ * @apiParam {String} order a JSON key which can inlcude multiple orders
+ * @apiParam {JSON} 0 a number of an order, used for interation
+ * @apiParam {double[]} breadPrice total price of bread option
+ * @apiParam {String[]} breadType name of bread choice
+ * @apiParam {double[]} meatPrice a total meat price
+ * @apiParam {String[]} meatType name of meat choice
+ * @apiParam {String} name a name of an order
+ * @apiParam {String} quantity a quantity of item
+ * @apiParam {double[]} sizePrice total price of size choice
+ * @apiParam {String[]} sizeType name of choosen size
+ * @apiParam {double[]} specialToppingPrice a total price of choosen special toppings
+ * @apiParam {JSON} specialToppingPriceList represent a list of choosen special toppings and their respective price
+ * @apiParam {String[]} specialToppingType a name list of choosen special toppings
+ * @apiParam {double[]} toppingPrice a total price of choosen toppings
+ * @apiParam {JSON} toppingPriceList represent a list of choosen toppings and their respective price
+ * @apiParam {String[]} toppingType a name list of choosen toppings
+ * @apiParam {String} total a string represents a total price of this order
+
  * @apiParamExample {json} Request-Body-Example:
  *      {
- *          "size": "large",
- *          "color": "green",
- *          "option1": "true",
- *          "option2": "false",
- *          "option3": "true"
+ *          "order": {
+ *              "0": {
+ *                  breadPrice: [0.99],
+ *                  breadType: ["Wheat Bread"],
+ *                  meatPrice: [1.99],
+ *                  meatType: ["Chicken"],
+ *                  name: "Order name here",
+ *                  quantity: "12",
+ *                  sizePrice: [0.49],
+ *                  sizeType: ["Small"],
+ *                  specialToppingPrice: [0.49],
+ *                  specialToppingPriceList: {
+ *                      special-topping-bbq: 0,
+ *                      special-topping-garlic: 0,
+ *                      special-topping-hanabero: 0.49,
+ *                      special-topping-mayonnaise: 0,
+ *                      special-topping-none: 0
+ *                  },
+ *                  specialToppingType: ["Habanero Hot Sauce"],
+ *                  toppingPrice: [1.99],
+ *                  toppingPriceList: {
+ *                      topping-carrot: 0,
+ *                      topping-cheedar: 1.99,
+ *                      topping-english: 0,
+ *                      topping-feta: 0,
+ *                      topping-mozzarella: 0,
+ *                      topping-none: 0,
+ *                      topping-pickle: 0,
+ *                      topping-spinach: 0,
+ *                      topping-sprout: 0
+ *                  },
+ *                  toppingType: ["Natural Cheddar Cheese"],
+ *                  total: "$71.40"
+ *              }
+ *          }
  *      }
  * 
  * @apiSuccessExample {json} Success-Response:
@@ -92,6 +140,7 @@ router.get("/", (request, response) => {
  * @apiUse JSONError
  */ 
 router.post("/", (request, response) => {
+    console.log(request.body)
     const valueProvided = request.body.order[0] !== undefined;
     if (!valueProvided)  {
         response.status(400).send({message: "Missing parameters"});
@@ -175,12 +224,13 @@ router.post("/", (request, response) => {
 })
 
 /**
- * @api {delete} orders Delete selected previous order
+ * @api {delete} /order Delete selected previous order
  * @apiName DeleteOrders
  * @apiGroup Orders
  *
  * @apiHeader {String} authorization Valid JSON Web Token JWT 
  * 
+ * @apiParam {String} orderId an ID of order to be deleted
  * @apiParamExample {json} Request-Body-Example:
  *      {
  *          "orderId": 1

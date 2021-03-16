@@ -21,9 +21,10 @@ const router = express.Router()
  * 
  * @apiParam {String} first a users first name
  * @apiParam {String} last a users last name
+ * @apiParam {String} [username] a username *unique, if none provided, email will be used
  * @apiParam {String} email a users email *unique
  * @apiParam {String} password a users password
- * @apiParam {String} [username] a username *unique, if none provided, email will be used
+ * @apiParam {String} a retype of a users password
  * 
  * @apiParamExample {json} Request-Body-Example:
  *  {
