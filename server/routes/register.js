@@ -70,7 +70,7 @@ router.post('/', (request, response) => {
                 message: "Invalid email format"
             })
             return;
-        } else if (password === password.toLowerCase || password.length < 8) {
+        } else if (password === password.toLowerCase() || password.length < 8) {
             response.status(400).send({
                 message: "Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7"
             })
