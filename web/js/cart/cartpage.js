@@ -79,7 +79,7 @@ window.onload = () => {
             + "</td>"
 
             + "<td>"
-            + "<img src='../image/order-remove.svg' onclick='removeOrder(" + key + ")'>" // Pass key along the way so it can detect the order.
+            + "<img src='../image/order-remove.svg' alt='Remove order button' onclick='removeOrder(" + key + ")'>" // Pass key along the way so it can detect the order.
             + "</td>"
 
             + "<td>"
@@ -91,7 +91,7 @@ window.onload = () => {
             + "</td>"
 
             + "<td>"
-            + "<img src='../image/order-update.svg' onclick='navigateToOrderPage(" + key + ", \x22" + orderInJson.name + "\x22 )'>" // For some reason, cannot put string inside args
+            + "<img src='../image/order-update.svg' alt='Update order button' onclick='navigateToOrderPage(" + key + ", \x22" + orderInJson.name + "\x22 )'>" // For some reason, cannot put string inside args
             // E.g: "state123" causes unexpected syntax err at line 1. => also cannot use order name which contains alpha character (html treat the char as a reference to the page)
             //  => non-existed reference causes bug, while number is implcitly converted to a string (coercion). => Need to put name inside quote.
             // The work around is using 2 args then process inside callee instead.
@@ -303,16 +303,14 @@ function placeOrder() {
  * This function handles confirm order button.
  */
 async function acceptOrder() {
-    // if (!sessionStorage.getItem("username")) {
-    //     alert("Please sign in to place order.");
-    //     // return;
-    // } else if ((checkEmpty($("#order-fullname").val())
-    //     || checkEmpty($("#order-address").val()))) {
-    //     alert("Error: Empty field(s). Please enter all required information.")
-    // } else {
-    //     alert("Order(s) placed succesfully. Cart cleared.")
-    //     reset();
-    // }
+    if(checkEmpty($("#order-fullname").val())) {
+        alert("Name can't be empty");
+        return;
+    }
+    if(checkEmpty($("#order-address").val())) {
+        alert("Address can't be empty");
+        return;
+    }
     let toOrder = {};
     for (let i = 0; i < orderList.length; i++) {
         toOrder[i] = orderList[i];

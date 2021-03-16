@@ -22,7 +22,7 @@ async function getPreviousOrders() {
             orderHistoryContent.empty();
             json.orders.forEach(element => {
                 let orderString =
-                    "<p id='orderid-" + element.orderid + "' name='previous-order'><img src='../image/order-remove.svg' onclick='deletePreviousOrders("
+                    "<p id='orderid-" + element.orderid + "' name='previous-order'><img src='../image/order-remove.svg' alt='Remove order button' onclick='deletePreviousOrders("
                     + element.orderid + ")'> <b>Order name:</b> "
                     + element["order_name"]
                     + ", <b>bread: </b>"
