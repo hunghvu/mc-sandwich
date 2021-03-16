@@ -54,6 +54,7 @@ app.get("/menu", (request, response) => { response.sendFile(path.join(__dirname 
 app.get("/order", (request, response) => { response.sendFile(path.join(__dirname + "/web/order.html")) });
 app.get("/cart", (request, response) => { response.sendFile(path.join(__dirname + "/web/cart.html")) });
 app.get("/profile", middleware.checkTokenCookies, (request, response) => {
+    app.use(express.static("web_restricted/assets"));
     app.use(express.static("web_restricted/js"));
     response.sendFile(path.join(__dirname + "/web_restricted/profile.html"));
 });

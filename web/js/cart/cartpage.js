@@ -167,7 +167,7 @@ function reset() {
     for (key in sessionStorage) {
         if (key !== "username") sessionStorage.removeItem(key);
     };
-    alert("Reset all orders successfully.");
+    alert("Your cart is now empty.");
     location.reload();
 }
 

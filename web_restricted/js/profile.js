@@ -9,10 +9,44 @@
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
         let json = await response.json()
-        if(json.orders) console.log(json.orders);
+        if(json.orders) {
+            console.log(json.orders);
+            let orderHistoryTab = $("#order-history-tab");
+            json.orders.forEach(element => {
+                let orderString =                     
+                    "<p name='previous-order'> <b>Order name:</b> "
+                    +element["order_name"]
+                    +", <b>bread: </b>"
+                    +element.bread
+                    +", <b>meat: </b>"
+                    +element.meat
+                    +", <b>quantity: </b>"
+                    +element.quantity
+                    +", <b>size: </b>"
+                    +element.size;
+            orderString += ", <b>topping: </b>";
+            if(element["topping_crumbled_feta"]) orderString += "Crumbled Feta, ";
+            if(element["topping_mozzarella_cheese"]) orderString += "Mozzarella cheese, ";
+            if(element["topping_natural_cheddar_cheese"]) orderString += "Natural Cheddar cheese, ";
+            if(element["topping_not_choose"]) orderString += "None, ";
+            if(element["topping_old_english_cheese"]) orderString += "Old English cheese, ";
+            if(element["topping_pickle"]) orderString += "Pickle, ";
+            if(element["topping_shredded_carrot"]) orderString += "Shredded Carrot, ";
+            if(element["topping_spinach"]) orderString += "Spinach, ";
+            if(element["topping_sprout"]) orderString += "Sprout, ";
+            orderString += "<b>special topping: </b>"
+            if(element["special_topping_garlic_aioli"]) orderString += "Garlic Aioli, ";
+            if(element["special_topping_habanero_hot_sauce"]) orderString += "Hanebaro Hot Sauce, "
+            if(element["special_topping_mayonnaise"]) orderString += "Mayonnaise, "
+            if(element["special_topping_not_choose"]) orderString += "None, "
+            if(element["special_topping_smokey_bbq"]) orderString += "Smokey BBQ, "
+            orderString += "<b>Total: </b>$" + element["total_usd"] + "</p><br>";
+            orderHistoryTab.append(orderString);
+
+            });
+        }
         if(json.message) console.log(json.message);
         // alert(json.orders);
-        reset();
 
     } else {
         // console.log(response.status)
