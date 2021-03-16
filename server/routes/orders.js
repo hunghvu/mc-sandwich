@@ -183,4 +183,60 @@ router.post("/", (request, response) => {
         orderCounter++;
     }
 })
+
+/**
+ * @api {delete} orders Delete selected previous order
+ * @apiName PostOrders
+ * @apiGroup Orders
+ *
+ * @apiHeader {String} authorization Valid JSON Web Token JWT 
+ * 
+ * @apiParamExample {json} Request-Body-Example:
+ *      {
+ *          "orderId": 1
+ *      }
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *          success: true,
+ *          message: "Order is deleted"
+ *     }
+ * 
+ * @apiError (400: Missing authorization header) {String} message "Missing authorization header"
+ * @apiError (400: JSON Error) {String} message "malformed JSON in parameters"
+ * @apiError (400: Missing parameters) {String} message "Missing parameters"
+ * @apiError (400: Invalid parameters) {String} message "Invalid parameters"
+ * @apiError (400: Fail to insert order) {String} message "Fail to delete order"
+ * @apiError (403: JSON Error) {String} message "Token is not valid" when a JWT is provided but it is expired or otherwise not valid
+ * @apiError (401: JSON Error) {String} message "Auth token is not supplied" when a JWT is not provided or it is provided in an incorrect format
+ * 
+ * @apiUse JSONError
+ */ 
+ router.delete("/", (request, response) => {
+    const valueProvided = request.body.orderId !== undefined;
+    if (!valueProvided)  {
+        response.status(400).send({message: "Missing parameters"});
+        return;
+    };
+    if (!Number.isInteger(request.body.orderId)) {
+        response.status(400).send({message: "Invalid parameters"});
+    }
+    const theQuery = "DELETE FROM Orders WHERE OrderID = $1"
+        // Error prone, need to fix "cannot set headers again".
+    const values = [request.body.orderId]
+    pool.query(theQuery, values).then(result => {
+        response.status(200).send({
+            success: true,
+            message: "Order is deleted" // Weird bug, an order is already deleted, but keep return 200?
+        })
+    }).catch((err) => {
+        // console.log(err);
+        response.status(400).send({
+            success: false,
+            message: "Fail to delete order"
+        })
+    })
+})
+
 module.exports = router

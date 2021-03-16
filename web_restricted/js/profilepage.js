@@ -1,5 +1,6 @@
 window.onload = () => {
     displayUsername();
+    getPreviousOrders();
 }
 
 /**
@@ -17,8 +18,9 @@ window.onload = () => {
             console.log(json.orders);
             let orderHistoryTab = $("#order-history-tab");
             json.orders.forEach(element => {
-                let orderString =                     
-                    "<p name='previous-order'> <b>Order name:</b> "
+                let orderString =
+                    "<p id='orderid-" + element.orderid + "' name='previous-order'><img src='../image/order-remove.svg' onclick='deletePreviousOrders(" 
+                    + element.orderid + ")'> <b>Order name:</b> "
                     +element["order_name"]
                     +", <b>bread: </b>"
                     +element.bread
@@ -52,6 +54,30 @@ window.onload = () => {
         if(json.message) console.log(json.message);
         // alert(json.orders);
 
+    } else {
+        // console.log(response.status)
+        let json = await response.json() // Short json, parsing is fast so can but alert after this
+        alert("HTTP-Error: " + response.status + "-" + json.message);
+    }
+}
+
+async function deletePreviousOrders(orderid) {
+    // console.log(orderid)
+    let response = await fetch("../orders", {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify({
+            orderId: orderid
+        })
+    })
+
+    if (response.ok) { // if HTTP-status is 200-299
+        let json = await response.json();
+        alert(json.message);
+        $("#orderid-" + orderid).next().remove();
+        $("#orderid-" + orderid).remove();
     } else {
         // console.log(response.status)
         let json = await response.json() // Short json, parsing is fast so can but alert after this
