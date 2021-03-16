@@ -1,3 +1,7 @@
+window.onload = () => {
+    displayUsername();
+}
+
 /**
  * This function get a logged user's previous orders.
  */
