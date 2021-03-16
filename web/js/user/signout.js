@@ -19,6 +19,9 @@ async function signout() {
         sessionStorage.removeItem("username"); // Clear user name
         // sessionStorage.removeItem("0"); // Clear guest order
         // location.reload();
+
+        // Remove previous order
+        if(document.getElementsByName("previous-order").length !== 0)  location.href = "../";
     } else {
         alert("HTTP-Error: " + response.status)
         console.log(response.status)

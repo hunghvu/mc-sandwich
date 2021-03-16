@@ -18,8 +18,8 @@ async function getPreviousOrders() {
         // get the response body (the method explained below)
         let json = await response.json()
         if (json.orders) {
-            console.log(json.orders);
-            let orderHistoryTab = $("#order-history-tab");
+            let orderHistoryContent = $("#order-history-content");
+            orderHistoryContent.empty();
             json.orders.forEach(element => {
                 let orderString =
                     "<p id='orderid-" + element.orderid + "' name='previous-order'><img src='../image/order-remove.svg' onclick='deletePreviousOrders("
@@ -50,7 +50,7 @@ async function getPreviousOrders() {
                 if (element["special_topping_not_choose"]) orderString += "None, "
                 if (element["special_topping_smokey_bbq"]) orderString += "Smokey BBQ, "
                 orderString += "<b>Total: </b>$" + element["total_usd"] + "</p><br>";
-                orderHistoryTab.append(orderString);
+                orderHistoryContent.append(orderString);
 
             });
         }
