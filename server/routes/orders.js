@@ -20,7 +20,7 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  * @apiHeader {String} authorization Valid JSON Web Token JWT 
  * 
  * @apiParamExample {json} Request-Query-Example:
- *     https://uwnetid-tcss460-w21.herokuapp.com/orders
+ *     https://hungvu-mcsandwich.herokuapp.com/order
  * 
  * @apiSuccess {Object[]} orders List of Orders in the database
  * 
@@ -32,21 +32,11 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  * @apiUse JSONError
  */ 
 router.get("/", (request, response) => {
-
-    // const theQuery = 
-    //     `SELECT My_Size, My_Color, Option1, Option2, Option3 
-    //      FROM Orders`
-
     const theQuery = 
         `SELECT *
          FROM Orders
          WHERE MemberID=$1`
     let values = [request.decoded.memberid]
-
-    // const theQuery = 
-    //     `SELECT * 
-    //      FROM Orders`
-
     pool.query(theQuery, values)
         .then(result => {
             if (result.rowCount > 0) {
@@ -186,7 +176,7 @@ router.post("/", (request, response) => {
 
 /**
  * @api {delete} orders Delete selected previous order
- * @apiName PostOrders
+ * @apiName DeleteOrders
  * @apiGroup Orders
  *
  * @apiHeader {String} authorization Valid JSON Web Token JWT 
@@ -207,8 +197,8 @@ router.post("/", (request, response) => {
  * @apiError (400: JSON Error) {String} message "malformed JSON in parameters"
  * @apiError (400: Missing parameters) {String} message "Missing parameters"
  * @apiError (400: Invalid parameters) {String} message "Invalid parameters"
- * @apiError (400: Fail to insert order) {String} message "Fail to delete order"
- * @apiError (403: JSON Error) {String} message "Token is not valid" when a JWT is provided but it is expired or otherwise not valid
+ * @apiError (400: Fail to delete order) {String} message "Fail to delete order"
+ * @apiError (403: JSON Error) {String} message "Token is not valid" when a JWT is provided but it is expired not valid
  * @apiError (401: JSON Error) {String} message "Auth token is not supplied" when a JWT is not provided or it is provided in an incorrect format
  * 
  * @apiUse JSONError

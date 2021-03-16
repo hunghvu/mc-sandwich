@@ -29,8 +29,10 @@ const router = express.Router()
  *  {
  *      "first":"Charles",
  *      "last":"Bryan",
+ *      "username":"abc123",
  *      "email":"cfb3@fake.email",
- *      "password":"test12345"
+ *      "password":"test12345",
+ *      "retypePassword": "test12345"
  *  }
  * 
  * @apiSuccess (Success 201) {boolean} success true when the name is inserted
@@ -120,20 +122,5 @@ router.post('/', (request, response) => {
         })
     }
 })
-
-router.get('/hash_demo', (request, response) => {
-    let password = 'hello12345'
-
-    let salt = crypto.randomBytes(32).toString("hex")
-    let salted_hash = getHash(password, salt)
-    let unsalted_hash = getHash(password)
-
-    response.status(200).send({
-        'salt': salt,
-        'salted_hash': salted_hash,
-        'unsalted_hash': unsalted_hash
-    })
-})
-
 
 module.exports = router

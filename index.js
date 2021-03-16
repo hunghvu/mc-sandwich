@@ -58,8 +58,10 @@ app.get("/profile", middleware.checkTokenCookies, (request, response) => {
     app.use(express.static("web_restricted/js"));
     response.sendFile(path.join(__dirname + "/web_restricted/profile.html"));
 });
+app.use("/api", express.static('apidoc'));
 
-
+const favicon = require("serve-favicon")
+app.use(favicon(path.join(__dirname, "web", "assets", "image" ,"navbar-icon.svg")));
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server up and running on port: " + (process.env.PORT || 5000));

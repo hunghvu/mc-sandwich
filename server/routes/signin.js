@@ -144,6 +144,20 @@ router.get('/', (request, response, next) => {
         })
 })
 
+/**
+ * @api {delete} /auth Delete user's cookie upon signing out
+ * @apiName DeleteAuth
+ * @apiGroup Auth
+ * 
+ * 
+ * @apiSuccess {boolean} delete:true when a cookie is succesfully deleted
+ * 
+ *  * @apiSuccessExample {cookie} Success-Response:
+ *     HTTP/1.1 201 OK
+ *     {
+ *       "delete": true
+ *     }
+ */ 
 router.delete("/", (request, response) => { 
 
     response.cookie('access_token',  '',
