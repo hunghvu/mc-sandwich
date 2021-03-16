@@ -19,8 +19,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <script src="../order/orderobject.js"></script>
-    <script src="../order/orderpage.js"></script>
+    <script src="../profile.js"></script>
     <script src="../user/generictest.js"></script>
     <script src="../user/signin.js"></script>
     <script src="../user/register.js"></script>
@@ -51,7 +50,28 @@
     <div class="bg" style="height: 1080px;">
 
         <div w3-include-html="../nav.html"></div>
+        <h1 style="text-align: center; padding-top: 50px; color: aqua;" class="font">Profile</h1>
 
+        <!-- Tab -->
+        <ul class="nav nav-tabs nav-fill" id="profileTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="order-history-tab" data-toggle="tab" href="#orderhistory" role="tab"
+                    style="background-color: #144F57; color: white;" aria-controls="customization"
+                    aria-selected="false" onclick="getPreviousOrders()">Previous Orders</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link " id="quick-order-tab" data-toggle="tab" href="#quickorder" role="tab"
+                    style="background-color: blue; color: white;" aria-controls="quickorder" aria-selected="true">Quick
+                    Order</a>
+            </li> -->
+        </ul>
+        <div class="tab-content" id="tab-content" style="background-color: antiquewhite;">
+
+            <!-- Customization content -->
+            <div class="tab-pane fade show active" id="orderhistory" role="tabpanel" aria-labelledby="order-history-tab">
+            
+            </div>
+        </div>
 
 
     </div>

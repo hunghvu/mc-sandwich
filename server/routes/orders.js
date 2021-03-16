@@ -38,7 +38,7 @@ router.get("/", (request, response) => {
     //      FROM Orders`
 
     const theQuery = 
-        `SELECT My_Size, My_Color, Option1, Option2, Option3 
+        `SELECT *
          FROM Orders
          WHERE MemberID=$1`
     let values = [request.decoded.memberid]
