@@ -128,6 +128,15 @@
             "field": "message",
             "description": "<p>&quot;Invalid input(s)&quot;</p>"
           }
+        ],
+        "400: Malformed JSON": [
+          {
+            "group": "400: Malformed JSON",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
+          }
         ]
       }
     },
@@ -183,7 +192,7 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "a",
+            "field": "retypePasword",
             "description": "<p>retype of a users password</p>"
           }
         ]
@@ -270,6 +279,15 @@
             "optional": false,
             "field": "message",
             "description": "<p>&quot;Invalid password(s)! Passwords mismatch&quot;</p>"
+          }
+        ],
+        "400: Malformed JSON": [
+          {
+            "group": "400: Malformed JSON",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
           }
         ]
       }

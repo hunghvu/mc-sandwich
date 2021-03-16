@@ -43,6 +43,8 @@ const jwt = require('jsonwebtoken')
  * 
  * @apiError (400: Invalid input(s)) {String} message "Invalid input(s)"
  * 
+ * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
+ * 
  */ 
 router.get('/', (request, response, next) => {
     if (isProvided(request.headers.authorization)) {

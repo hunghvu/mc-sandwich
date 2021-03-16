@@ -24,7 +24,7 @@ const router = express.Router()
  * @apiParam {String} [username] a username *unique, if none provided, email will be used
  * @apiParam {String} email a users email *unique
  * @apiParam {String} password a users password
- * @apiParam {String} a retype of a users password
+ * @apiParam {String} retypePasword retype of a users password
  * 
  * @apiParamExample {json} Request-Body-Example:
  *  {
@@ -51,6 +51,7 @@ const router = express.Router()
  * 
  * @apiError (400: Invalid retype-password) {String} message "Invalid password(s)! Passwords mismatch"
  * 
+ * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
  */ 
 router.post('/', (request, response) => {
 
