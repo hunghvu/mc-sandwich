@@ -273,7 +273,7 @@ router.post("/", (request, response) => {
             message: "Order is deleted"
         })
         :response.status(400).send({
-            success: true,
+            success: false,
             message: "Fail to delete order"
         })
     }).catch((err) => {
