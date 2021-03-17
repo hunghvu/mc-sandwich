@@ -267,9 +267,14 @@ router.post("/", (request, response) => {
         // Error prone, need to fix "cannot set headers again".
     const values = [request.body.orderId]
     pool.query(theQuery, values).then(result => {
-        response.status(200).send({
+        result.rowCount > 0
+        ?response.status(200).send({
             success: true,
-            message: "Order is deleted" // Weird bug, an order is already deleted, but keep return 200?
+            message: "Order is deleted"
+        })
+        :response.status(400).send({
+            success: true,
+            message: "Fail to delete order"
         })
     }).catch((err) => {
         // console.log(err);
