@@ -24,7 +24,7 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  * 
  * @apiSuccess {Object[]} orders List of Orders in the database
  * 
- * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
+
  * @apiError (400: No Orders Found) {String} message "No Orders"
  * 
  * @apiError (403: JSON Error) {String} message "Token is not valid" when a JWT is provided but it is expired or otherwise not valid
@@ -130,7 +130,7 @@ router.get("/", (request, response) => {
  *       "message": "Order is inserted"
  *     }
  *
- * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
+
  * @apiError (400: Missing parameters) {String} message "Missing parameters"
  * @apiError (400: Invalid parameters) {String} message "Invalid parameters"
  * 
@@ -244,7 +244,7 @@ router.post("/", (request, response) => {
  *          message: "Order is deleted"
  *     }
  * 
- * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
+ 
  * @apiError (400: Missing parameters) {String} message "Missing parameters"
  * @apiError (400: Invalid parameters) {String} message "Invalid parameters"
  * 

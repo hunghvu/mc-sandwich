@@ -346,15 +346,6 @@ define({ "api": [
     },
     "error": {
       "fields": {
-        "400: Malformed JSON": [
-          {
-            "group": "400: Malformed JSON",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
-          }
-        ],
         "400: Missing parameters": [
           {
             "group": "400: Missing parameters",
@@ -458,15 +449,6 @@ define({ "api": [
     },
     "error": {
       "fields": {
-        "400: Malformed JSON": [
-          {
-            "group": "400: Malformed JSON",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
-          }
-        ],
         "400: No Orders Found": [
           {
             "group": "400: No Orders Found",
@@ -671,15 +653,6 @@ define({ "api": [
     },
     "error": {
       "fields": {
-        "400: Malformed JSON": [
-          {
-            "group": "400: Malformed JSON",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
-          }
-        ],
         "400: Missing parameters": [
           {
             "group": "400: Missing parameters",
