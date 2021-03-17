@@ -298,7 +298,7 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/order",
+    "url": "/orders",
     "title": "Delete selected previous order",
     "name": "DeleteOrders",
     "group": "Orders",
@@ -417,7 +417,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/order",
+    "url": "/orders",
     "title": "Request to get all Order entries in the DB",
     "name": "GetPreviousOrders",
     "group": "Orders",
@@ -502,7 +502,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/order",
+    "url": "/orders",
     "title": "Place orders by putting orders information into DB",
     "name": "PostOrders",
     "group": "Orders",

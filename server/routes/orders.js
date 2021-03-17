@@ -13,7 +13,7 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  */ 
 
 /**
- * @api {get} /order Request to get all Order entries in the DB
+ * @api {get} /orders Request to get all Order entries in the DB
  * @apiName GetPreviousOrders
  * @apiGroup Orders
  *
@@ -59,7 +59,7 @@ router.get("/", (request, response) => {
 })
 
 /**
- * @api {post} /order Place orders by putting orders information into DB
+ * @api {post} /orders Place orders by putting orders information into DB
  * @apiName PostOrders
  * @apiGroup Orders
  *
@@ -224,7 +224,7 @@ router.post("/", (request, response) => {
 })
 
 /**
- * @api {delete} /order Delete selected previous order
+ * @api {delete} /orders Delete selected previous order
  * @apiName DeleteOrders
  * @apiGroup Orders
  *
