@@ -355,24 +355,6 @@
             "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
           }
         ],
-        "400: Missing authorization header": [
-          {
-            "group": "400: Missing authorization header",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;Missing authorization header&quot;</p>"
-          }
-        ],
-        "400: JSON Error": [
-          {
-            "group": "400: JSON Error",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
-          }
-        ],
         "400: Missing parameters": [
           {
             "group": "400: Missing parameters",
@@ -406,7 +388,7 @@
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>&quot;Token is not valid&quot; when a JWT is provided but it is expired not valid</p>"
+            "description": "<p>&quot;Token is not valid&quot; when a JWT is provided but it is expired or not valid</p>"
           }
         ],
         "401: JSON Error": [
@@ -416,6 +398,15 @@
             "optional": false,
             "field": "message",
             "description": "<p>&quot;Auth token is not supplied&quot; when a JWT is not provided or it is provided in an incorrect format</p>"
+          }
+        ],
+        "400: JSON Error": [
+          {
+            "group": "400: JSON Error",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
           }
         ]
       }
@@ -485,15 +476,6 @@
             "description": "<p>&quot;No Orders&quot;</p>"
           }
         ],
-        "400: JSON Error": [
-          {
-            "group": "400: JSON Error",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
-          }
-        ],
         "403: JSON Error": [
           {
             "group": "403: JSON Error",
@@ -510,6 +492,15 @@
             "optional": false,
             "field": "message",
             "description": "<p>&quot;Auth token is not supplied&quot; when a JWT is not provided or it is provided in an incorrect format</p>"
+          }
+        ],
+        "400: JSON Error": [
+          {
+            "group": "400: JSON Error",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
           }
         ]
       }
@@ -689,24 +680,6 @@
             "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
           }
         ],
-        "400: Missing authorization header": [
-          {
-            "group": "400: Missing authorization header",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;Missing authorization header&quot;</p>"
-          }
-        ],
-        "400: JSON Error": [
-          {
-            "group": "400: JSON Error",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
-          }
-        ],
         "400: Missing parameters": [
           {
             "group": "400: Missing parameters",
@@ -750,6 +723,15 @@
             "optional": false,
             "field": "message",
             "description": "<p>&quot;Auth token is not supplied&quot; when a JWT is not provided or it is provided in an incorrect format</p>"
+          }
+        ],
+        "400: JSON Error": [
+          {
+            "group": "400: JSON Error",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>&quot;malformed JSON in parameters&quot;</p>"
           }
         ]
       }
