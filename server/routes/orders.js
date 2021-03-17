@@ -26,7 +26,6 @@ const isProvided = require('../utilities/exports').helpers.isProvided
  * 
  * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
  * @apiError (400: No Orders Found) {String} message "No Orders"
- * @apiError (400: JSON Error) {String} message "malformed JSON in parameters"
  * @apiError (403: JSON Error) {String} message "Token is not valid" when a JWT is provided but it is expired or otherwise not valid
  * @apiError (401: JSON Error) {String} message "Auth token is not supplied" when a JWT is not provided or it is provided in an incorrect format
  * 
@@ -132,7 +131,6 @@ router.get("/", (request, response) => {
  *
  * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
  * @apiError (400: Missing authorization header) {String} message "Missing authorization header"
- * @apiError (400: JSON Error) {String} message "malformed JSON in parameters"
  * @apiError (400: Missing parameters) {String} message "Missing parameters"
  * @apiError (400: Invalid parameters) {String} message "Invalid parameters"
  * @apiError (400: Fail to insert order) {String} message "Fail to insert order"
@@ -247,7 +245,6 @@ router.post("/", (request, response) => {
  * 
  * @apiError (400: Malformed JSON) {String} message "malformed JSON in parameters"
  * @apiError (400: Missing authorization header) {String} message "Missing authorization header"
- * @apiError (400: JSON Error) {String} message "malformed JSON in parameters"
  * @apiError (400: Missing parameters) {String} message "Missing parameters"
  * @apiError (400: Invalid parameters) {String} message "Invalid parameters"
  * @apiError (400: Fail to delete order) {String} message "Fail to delete order"
