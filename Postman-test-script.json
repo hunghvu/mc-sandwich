@@ -1,0 +1,2919 @@
+{
+	"info": {
+		"_postman_id": "3ede9fa0-1594-405a-8482-b4b91b75b041",
+		"name": "Assignment2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Formal Unit Tests - Correct Flows Auth",
+			"item": [
+				{
+					"name": "Register New User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"pm.test(\"Response is OK\", () => {",
+									"    pm.response.to.have.status(201)",
+									"})",
+									"",
+									"pm.test(\"Body to have success\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"success\")",
+									"    pm.expect(response.success).to.equal(true) ",
+									"})",
+									"",
+									"pm.test(\"Body to have email\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"email\")",
+									"    pm.expect(response.email).to.equal(pm.collectionVariables.replaceIn(\"1234@test.com\"))",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"1236@test.com\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign-in New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"pm.test(\"Response is OK\", () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test(\"Body to have success\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"success\")",
+									"    pm.expect(response.success).to.equal(true) ",
+									"})",
+									"",
+									"pm.test(\"Body to have message\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Authentication successful!\")",
+									"})",
+									"",
+									"pm.test(\"Body to have token\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"token\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "1236@test.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Delete cookie\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"deleted\")\r",
+									"    pm.expect(response.deleted).to.equal(true) \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User No Username",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"pm.test(\"Response is OK\", () => {",
+									"    pm.response.to.have.status(201)",
+									"})",
+									"",
+									"pm.test(\"Body to have success\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"success\")",
+									"    pm.expect(response.success).to.equal(true) ",
+									"})",
+									"",
+									"pm.test(\"Body to have email\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"email\")",
+									"    pm.expect(response.email).to.equal(pm.collectionVariables.replaceIn(\"12345@test.com\"))",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"tt1233\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign-in New User No Username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"pm.test(\"Response is OK\", () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test(\"Body to have success\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"success\")",
+									"    pm.expect(response.success).to.equal(true) ",
+									"})",
+									"",
+									"pm.test(\"Body to have message\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Authentication successful!\")",
+									"})",
+									"",
+									"pm.test(\"Body to have token\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"token\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "12345@test.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Formal Unit Tests - Incorrect Flows Auth",
+			"item": [
+				{
+					"name": "Register New Use Missing First",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Missing First\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Missing required information\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"tt1233\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Missing Last",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Missing Last\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Missing required information\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"tt1233\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Missing Email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Missing Email\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Missing required information\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"tt1233\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Missing Password",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Missing Password\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Missing required information\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"tt1233\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Missing Retype Password",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Missing Retype Password\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Missing required information\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"12345678A\",\n    \"username\": \"tt1233\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Username Exists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Username Exists\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Email exists\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"axd\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Email Exists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Email Exists\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Email exists\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"12345678A\",\n    \"retypePassword\": \"12345678A\",\n    \"username\": \"dqg\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Password Too Short",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Password too short\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"A\",\n    \"retypePassword\": \"A\",\n    \"username\": \"dqg\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Password No Capital Letter",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Password missing capital letter\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Invalid password(s)! Passwords require at least 1 upper case character and length greater than 7\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"123456789\",\n    \"retypePassword\": \"123456789\",\n    \"username\": \"dqg\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Invalid Email Format",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Invalid email format\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Invalid password(s)! Passwords mismatch\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"A12345678\",\n    \"retypePassword\": \"A\",\n    \"username\": \"dqg\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User Malformed JSON",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Malformed JSON\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"malformed JSON in parameters\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first\":\"test\",\n    \"last\":\"abc\",\n    \"email\":\"12345@test.com\",\n    \"password\":\"A12345678\",\n    \"retypePassword\": \"A\",\n    \"username\": \"dqg\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin Missing Authorization Header",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Missing Auth Header\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Missing Authorization Header\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin Malformed Authorization Header",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Malformed Auth Header\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Malformed Authorization Header\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin User Not Found",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"User not found\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"User not found\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(404)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "t",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin User Credential Mismatches",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Invalid credentials\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Credentials did not match\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "AAAAAAAAAA",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "1236@test.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin Invalid input(s)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Invalid Input(s)\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Invalid input(s)\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "12345@test.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin Missing Authorization Header Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"",
+									"pm.test(\"Email Exists\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"malformed JSON in parameters\")",
+									"})",
+									"",
+									"pm.test(\"Response is ERROR\", () => {",
+									"    pm.response.to.have.status(400)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ad",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Formal Unit Tests - Correct Flows Order",
+			"item": [
+				{
+					"name": "Helper Request - Signout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Delete cookie\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"deleted\")\r",
+									"    pm.expect(response.deleted).to.equal(true) \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Helper Request - Signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"pm.test(\"Response is OK\", () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test(\"Body to have success\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"success\")",
+									"    pm.expect(response.success).to.equal(true) ",
+									"})",
+									"",
+									"pm.test(\"Body to have message\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Authentication successful!\")",
+									"})",
+									"",
+									"pm.test(\"Body to have token\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"token\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "1236@test.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Add Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body to have success\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"success\")\r",
+									"    pm.expect(response.success).to.equal(true) \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Order is inserted\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Order is inserted\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order\": {\r\n        \"0\": {\r\n            \"breadPrice\": [0.99],\r\n            \"breadType\": [\"Wheat Bread\"],\r\n            \"meatPrice\": [1.99],\r\n            \"meatType\": [\"Chicken\"],\r\n            \"name\": \"Order name here\",\r\n            \"quantity\": \"12\",\r\n            \"sizePrice\": [0.49],\r\n            \"sizeType\": [\"Small\"],\r\n            \"specialToppingPrice\": [0.49],\r\n            \"specialToppingPriceList\": {\r\n                \"special-topping-bbq\": 0,\r\n                \"special-topping-garlic\": 0,\r\n                \"special-topping-hanabero\": 0.49,\r\n                \"special-topping-mayonnaise\": 0,\r\n                \"special-topping-none\": 0\r\n            },\r\n            \"specialToppingType\": [\"Habanero Hot Sauce\"],\r\n            \"toppingPrice\": [1.99],\r\n            \"toppingPriceList\": {\r\n                \"topping-carrot\": 0,\r\n                \"topping-cheedar\": 1.99,\r\n                \"topping-english\": 0,\r\n                \"topping-feta\": 0,\r\n                \"topping-mozzarella\": 0,\r\n                \"topping-none\": 0,\r\n                \"topping-pickle\": 0,\r\n                \"topping-spinach\": 0,\r\n                \"topping-sprout\": 0\r\n            },\r\n            \"toppingType\": [\"Natural Cheddar Cheese\"],\r\n            \"total\": \"$71.40\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Get Previous Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Get previous order successfully\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"orders\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Delete Previous Order - need to manually get a previous order id from GET request above",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Order is deleted\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Order is deleted\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have success\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"success\")\r",
+									"    pm.expect(response.success).to.equal(true) \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Helper Request - Signout 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Delete cookie\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"deleted\")\r",
+									"    pm.expect(response.deleted).to.equal(true) \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Formal Unit Tests - Incorrect Flows Order",
+			"item": [
+				{
+					"name": "Helper Request - Signout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Delete cookie\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"deleted\")\r",
+									"    pm.expect(response.deleted).to.equal(true) \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Helper Request - Signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()",
+									"",
+									"pm.test(\"Response is OK\", () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test(\"Body to have success\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"success\")",
+									"    pm.expect(response.success).to.equal(true) ",
+									"})",
+									"",
+									"pm.test(\"Body to have message\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"message\")",
+									"    pm.expect(response.message).to.equal(\"Authentication successful!\")",
+									"})",
+									"",
+									"pm.test(\"Body to have token\", () => {",
+									"    pm.expect(response).to.have.ownProperty(\"token\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "12345@test.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order No Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"No order\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"No Orders\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orders Token Is Not Valid - need to manually adjust cookie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Token is not valid\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Token is not valid\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(403)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Malformed JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Malformed JSON\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"malformed JSON in parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ".",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Missing Parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Missing parameter\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Missing parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Invalid Parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Invalid parameters\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Invalid parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": \"a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Fail To Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Fail to delete\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Fail to delete order\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have success\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"success\")\r",
+									"    pm.expect(response.success).to.equal(false) \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": -1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orders Token Is Not Valid - need to manually adjust cookie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Token is not valid\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Token is not valid\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(403)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 34\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Malformed JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Malformed JSON\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"malformed JSON in parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ".",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Missing Parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Missing parameters\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Missing parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order\": {\r\n\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Invalid Parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Invalid parameters\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Invalid parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order\": {\r\n        \"0\": {\r\n            \"breadPrice\": [0.99],\r\n            \"breadType\": [\"Wheat Bread\"],\r\n            \"meatPrice\": [1.99],\r\n            \"meatType\": [\"Chicken\"],\r\n            \"name\": \"Order name here\",\r\n            \"quantity\": \"12\",\r\n            \"sizePrice\": [0.49],\r\n            \"sizeType\": [\"Small\"],\r\n            \"specialToppingPrice\": [0.49],\r\n            \"specialToppingPriceList\": {\r\n                \"special-topping-bbq\": 0,\r\n                \"special-topping-garlic\": 0,\r\n                \"special-topping-hanabero\": 0.49,\r\n                \"special-topping-mayonnaise\": 0,\r\n                \"special-topping-none\": 0\r\n            },\r\n            \"specialToppingType\": [\"Habanero Hot\"],\r\n            \"toppingPrice\": [1.99],\r\n            \"toppingPriceList\": {\r\n                \"topping-carrot\": 0,\r\n                \"topping-cheedar\": 1.99,\r\n                \"topping-english\": 0,\r\n                \"topping-feta\": 0,\r\n                \"topping-mozzarella\": 0,\r\n                \"topping-none\": 0,\r\n                \"topping-pickle\": 0,\r\n                \"topping-spinach\": 0,\r\n                \"topping-sprout\": 0\r\n            },\r\n            \"toppingType\": [\"Natural Cheddar Cheese\"],\r\n            \"total\": \"$71.40\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orders Token Is Not Valid - need to manually adjust cookie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Token is not valid\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"Token is not valid\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(403)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order\": {\r\n\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Malformed JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Malformed JSON\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(\"malformed JSON in parameters\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is ERROR\", () => {\r",
+									"    pm.response.to.have.status(400)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RhYmMtbnVAZmFrZS5lbWFpbCIsIm1lbWJlcmlkIjozNiwiaWF0IjoxNjEzOTY3NjA3LCJleHAiOjE2MTUxNzcyMDd9.PM_zr3VJ1LV6tWIxyMMfR2-U6VN07CNG8inEdpUeFgw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ".",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Helper Request - Signout 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Delete cookie\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"deleted\")\r",
+									"    pm.expect(response.deleted).to.equal(true) \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Auth Token Not Supplied",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(401)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have success\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"success\")\r",
+									"    pm.expect(response.success).to.equal(false) \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have email\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(pm.collectionVariables.replaceIn(\"Auth token is not supplied\"))\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Auth Token Not Supplied",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(401)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have success\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"success\")\r",
+									"    pm.expect(response.success).to.equal(false) \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have email\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(pm.collectionVariables.replaceIn(\"Auth token is not supplied\"))\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Auth Token Not Supplied",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is OK\", () => {\r",
+									"    pm.response.to.have.status(401)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have success\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"success\")\r",
+									"    pm.expect(response.success).to.equal(false) \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body to have email\", () => {\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\")\r",
+									"    pm.expect(response.message).to.equal(pm.collectionVariables.replaceIn(\"Auth token is not supplied\"))\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://hungvu-mcsandwich.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"hungvu-mcsandwich",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		}
+	]
+}
