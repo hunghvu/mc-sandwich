@@ -2,8 +2,8 @@
 
 ## Description
 
-- From TCSS 460 assignment. This is a subsandwich restaurant website which has four main pages: Home, menu, Order and Cart page. The frontend is mainly based on Bootstrap.
-- The users can sign in and create a new account to order foods. The food options are customizabile and orders will be saved to user account.
+- From TCSS 460 assignment. This is a sub sandwich restaurant website which has four main pages: Home, menu, Order and Cart page. The frontend is mainly based on Bootstrap.
+- The users can sign in and create a new account to order foods. The food options are customizable and orders will be saved to user account.
 - The backend is provided by a Node.js web services, with PostgreSQL as database. This backend handles all authentication and order operations.
 - For API documentation: <https://hungvu-mcsandwich.herokuapp.com/api/>
 
