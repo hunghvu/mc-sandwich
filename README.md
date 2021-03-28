@@ -17,7 +17,7 @@
   - Has 2 tabs: Customized order and quick order. Quick order is like an order preset.
   - For customized order (focus of "Order"), it displays a running tally (total price) in real time, and give users all option to create their own version of sub sandwich.
   - User can name, reset and add order to cart.
-  - After the user add order to cart, the user must click on "Go to cart" or a cart icon on top right to go to Shopping cart"
+  - After the user add order to cart, the user must click on "Go to cart" or a cart icon on top right to go to Shopping cart".
 
 - Shopping cart page:
   - A user can see order detail by click on order name.
@@ -69,6 +69,16 @@
     - Postman test script for API endpoints is included, however, some test might not work unless some specific information is manually adjusted to create a specific test condition/flow. They are indicated via test name, and most are related to cookies.
 
 ## Screenshots
+
+![image](https://user-images.githubusercontent.com/62678592/112762802-99acf180-8fb6-11eb-9a6d-26241ae3a120.png)
+
+![image](https://user-images.githubusercontent.com/62678592/112762834-c3661880-8fb6-11eb-8c89-593000f5d47d.png)
+
+![image](https://user-images.githubusercontent.com/62678592/112762844-cf51da80-8fb6-11eb-9934-9d8d7b29374e.png)
+
+![image](https://user-images.githubusercontent.com/62678592/112762898-0a540e00-8fb7-11eb-8bfc-18324abd32ca.png)
+
+![image](https://user-images.githubusercontent.com/62678592/112762929-2eafea80-8fb7-11eb-97a9-7cca38fbc4d4.png)
 
 ## Credits
 
